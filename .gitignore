@@ -1,3 +1,6 @@
-.idea/
+.idea
+.project
+.settings
+.classpath
 .gradle/
 .DS_Store
