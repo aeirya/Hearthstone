@@ -1,6 +1,7 @@
 package app;
 
-class Game {
+public abstract class Game {
+
     GameManager gameManager;
 
     Game() {
@@ -9,10 +10,5 @@ class Game {
 
     private void initializeComponents() {
         gameManager = GameManager.getInstance();
-    }
-
-    public static void main(String[] args) {
-        //1. Load Game Assets
-        //2. Show UI
     }
 }

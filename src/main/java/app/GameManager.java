@@ -15,6 +15,7 @@ public class GameManager {
     private GameManager(Boolean consoleMode) {
         this.consoleMode = consoleMode;
         initialize();
+        run();
     }
     
     private GameManager() {
@@ -25,6 +26,10 @@ public class GameManager {
         if (consoleMode) {
             uiManager = new CliManager();
         }
+    }
+
+    private void run() {
+        uiManager.show();
     }
 
     public static GameManager getInstance() {
