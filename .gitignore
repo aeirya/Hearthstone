@@ -1,3 +1,4 @@
+bin
 .vscode
 .idea
 .project
@@ -5,3 +6,4 @@
 .classpath
 .gradle/
 .DS_Store
+    

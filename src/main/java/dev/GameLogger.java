@@ -16,7 +16,7 @@ public class GameLogger {
     }
 
     private static void debugLog(String message) {
-        logger.log(Level.ALL, message);
+        logger.log(Level.SEVERE, message);
     }
 
     public static void debugLog(String message, String loggerName) {
@@ -27,4 +27,8 @@ public class GameLogger {
     public static void debugLog(String message, Object ref) {
         debugLog(message, ref.getClass().getName());
     }
+
+    // public static void debugLog(String message, Ob Color color) {
+    //     debugLog(message, );
+    // }
 }

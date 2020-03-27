@@ -10,7 +10,7 @@ import ui.cli.CliManager;
 public class GameManager {
     private static GameManager instance;
     private IUiManager uiManager;
-    private Boolean consoleMode;
+    private boolean consoleMode;
 
     private GameManager(Boolean consoleMode) {
         this.consoleMode = consoleMode;
