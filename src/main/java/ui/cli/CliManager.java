@@ -1,14 +1,14 @@
 package ui.cli;
 
-import dev.JavaUtilLogger;
-
 public class CliManager implements ui.IUiManager {
 
+    dev.ILogger logger;
+
     public CliManager() {
-        JavaUtilLogger.setLogger(this.getClass().getName());
+        logger = new dev.JavaUtilLogger(this.getClass());
     }
 
     public void show() {
-        JavaUtilLogger.debugLog("test");
+        logger.debug("started CLI manager");
     }
 }

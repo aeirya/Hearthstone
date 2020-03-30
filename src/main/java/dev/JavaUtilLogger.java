@@ -5,31 +5,41 @@ import java.util.logging.Logger;
 import ui.cli.color.Color;
 
 /**
- * JavaUtilGameLogger
+ * JavaUtilLogger
  */
-public class JavaUtilLogger {
-    private static Logger logger;
+public class JavaUtilLogger implements ILogger {
+    private Logger logger;
    
-    private JavaUtilLogger() {}
-
-    public static void setLogger(String loggerName) {
-        logger = Logger.getLogger(loggerName);
+    public JavaUtilLogger(Class<?> clazz) {
+        setLogger(clazz);
     }
 
-    public static void debugLog(String message) {
+    private void setLogger(Class<?> clazz) {
+        logger = Logger.getLogger(clazz.getClass().getName());
+    }
+
+    private void setLogger(String classname) {
+        logger = Logger.getLogger(classname);
+    }
+
+    public void debug(String message) {
         logger.log(Level.SEVERE, message);
     }
 
-    public static void debugLog(String message, String loggerName) {
+    public void debug(String message, String loggerName) {
         setLogger(loggerName);
-        debugLog(message);  
+        debug(message);  
     }
 
-    public static void debugLog(String message, Object ref) {
-        debugLog(message, ref.getClass().getName());
+    public void debug(String message, Object ref) {
+        debug(message, ref.getClass().getName());
     }
 
-    public static void debugLog(String message, Object ref, Color color) {
-        debugLog(color.getAscii() + message, ref );
+    public void debug(String message, Object ref, Color color) {
+        debug(color.getAscii() + message, ref );
+    }
+
+    public void info(String message) {
+        logger.log(Level.INFO, message);
     }
 }
