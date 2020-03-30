@@ -1,34 +1,24 @@
 package dev;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * GameLogger
  */
-public class GameLogger {
-
-    private static Logger logger;
-   
-    private GameLogger() {}
-
-    private static void setLogger(String loggerName) {
-        logger = Logger.getLogger(loggerName);
+public class GameLogger implements IGameLogger {
+    private ILogger logger;
+    
+    public void setLogger(ILogger logger) {
+        this.logger = logger;
     }
 
-    private static void debugLog(String message) {
-        logger.log(Level.SEVERE, message);
+    public ILogger getLogger() {
+        return logger;
     }
 
-    public static void debugLog(String message, String loggerName) {
-        setLogger(loggerName);
-        debugLog(message);
+    public void debug(String message) {
+        logger.debug(message);
     }
 
-    public static void debugLog(String message, Object ref) {
-        debugLog(message, ref.getClass().getName());
+    public void debug(Log log) {
+        logger.debug(log.toString());
     }
-
-    // public static void debugLog(String message, Ob Color color) {
-    //     debugLog(message, );
-    // }
 }

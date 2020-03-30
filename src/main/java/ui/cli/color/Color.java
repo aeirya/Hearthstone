@@ -26,4 +26,8 @@ public class Color {
     public Color() {
         this(Colors.BLACK, false, false);
     }
+
+    public String getAscii() {
+        return ColorManager.getColorAscii(this);
+    }
 }
