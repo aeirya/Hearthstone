@@ -1,36 +1,12 @@
 package com.bubble.hearthstone.util.file.serialize;
 
-import java.lang.reflect.Type;
-
-import com.google.common.reflect.TypeToken;
-
 public interface ISerializer {
     
-    String serialize(Object obj, Type type);
+    String serialize(Object obj, Class<?> clazz);
     
-    // T deserialize(String string, Type type);
+    <T> T deserialize(String string, Class<T> clazz);
     
-    default <T> String serialize(Serializable<T> obj) {
+    default String serialize(Serializable obj) {
         return obj.serialize(this);
     }
-
-    // default void 
-
-
-    // default String serialize(Object obj) {
-    //     return serialize(
-    //         obj, 
-    //         TypeToken.of(obj.getClass()).getType()
-    //     );
-    // }
-
-    // default T deserialize(String string, Class<T> clazz) {
-    //     return deserialize(string, TypeToken.of(clazz).getType());
-    // }
-
-    // default T deserialize (String string) {
-    //     return deserialize(
-    //         string, null
-    //     );
-    // }
 }

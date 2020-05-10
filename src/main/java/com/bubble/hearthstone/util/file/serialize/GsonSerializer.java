@@ -2,7 +2,6 @@ package com.bubble.hearthstone.util.file.serialize;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.lang.reflect.Type;
 
 public class GsonSerializer implements ISerializer {
 
@@ -12,11 +11,11 @@ public class GsonSerializer implements ISerializer {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
-    public String serialize(Object obj, Type type) {
-        return gson.toJson(obj, type);
+    public String serialize(Object obj, Class<?> clazz) {
+        return gson.toJson(obj, clazz);
     }
     
-    // public <T> T deserialize(String string, Type type) {
-    //     return gson.fromJson(string, type);
-    // }
+    public <T> T deserialize(String string, Class<T> clazz) {
+        return gson.fromJson(string, clazz);
+    }
 }
