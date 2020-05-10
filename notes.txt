@@ -1,0 +1,52 @@
+/*
+
+ * com.bubble.hearthstone
+ * 
+ * net.minecraft.*
+ * 
+ * com.bubble.hearthstone.client.Hearthstone
+ * com.bubble.hearthstone.server.HearthstoneServer
+
+
+ * com.bubble.hearthstone.card.Card
+ * com.bubble.hearthstone.card.CardRegistry
+
+ * com.bubble.hearthstone.model.card.Card
+    singleton:
+ * com.bubble.hearthstone.model.card.CardRegistry
+ * com.bubble.hearthstone.model.card.CardInstance
+
+each card:  File -> Load -> CardFactory -> My Hand
+
+
+folder -> troll.json -> name: "Troll", health: 4,... -> Card -> troll
+
+4 * new CardInstance(troll);
+
+ CardModel (singleton)
+ Card
+
+ deck_1.json { 
+     //
+  }
+
+////////////
+
+main -> Main
+
+GameEngine -> Game Engine
+        GameRenderer -> SubsystemRender
+        Window
+
+
+Game -> Game
+    CardRegistry
+    Arena
+    
+    Game.logic();
+
+////////////
+
+de
+mo
+*/
