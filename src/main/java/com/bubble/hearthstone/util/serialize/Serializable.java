@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.util.file.serialize;
+package com.bubble.hearthstone.util.serialize;
 
 
 public interface Serializable {
