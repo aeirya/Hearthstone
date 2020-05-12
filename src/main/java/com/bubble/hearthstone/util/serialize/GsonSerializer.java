@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.util.file.serialize;
+package com.bubble.hearthstone.util.serialize;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
