@@ -29,9 +29,11 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
 
 application {
     // Define the main class for the application.
-    mainClassName = 'app.App'
+    mainClassName = 'com.bubble.hearthstone.app.Hearthstone'
 }
