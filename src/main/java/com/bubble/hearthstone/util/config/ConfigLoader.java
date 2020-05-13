@@ -1,49 +1,33 @@
 package com.bubble.hearthstone.util.config;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.Properties;
 
-import com.bubble.hearthstone.util.file.FileLoader;
-import com.bubble.hearthstone.util.file.IFileReader;
+import com.bubble.hearthstone.util.resource.ResourceLoader;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
-public class ConfigLoader implements IFileReader<Config> {
+public class ConfigLoader extends ResourceLoader<Config> {
 
-    private static final ConfigLoader instance = new ConfigLoader();
-
-    private static ConfigLoader getInstance() {
-        return instance;
+    public ConfigLoader(Config resourceConfig) {
+        super(resourceConfig);
     }
 
-    /** loads the config at path */
-    public static Config get(String path) {
-        return getInstance().load(
-            getPath(path)
-        );
+    protected String getKey() {
+        return "config";
     }
 
-    private static String getPath(String path) {
-        String inClasspath = getFileInClassPath(path);
-        if (new File(inClasspath).exists()) return inClasspath;
-        return path; 
-    }
-
-    private static String getFileInClassPath(String path) {
-        return ConfigLoader.class.getClassLoader().getResource(path).getFile();
-        //gotta change this
-    }
-
-    public Config load(String path) {
-        final FileLoader loader = new FileLoader(path);
-        final Properties properties = new Properties();
-        try {
-            properties.load(loader.getReader());
+    protected Config loadResource(String path) {
+        final Properties properties;
+        try(Reader reader = new FileReader(new File(path))) {
+            properties = new Properties();
+            properties.load(reader);
         } catch (IOException e) {
             ServiceLocator.getLogger().error(this, e);
+            return null;
         }
-        return (Config) properties; //TODO: fix config mechanism
+        return (Config) properties;
     }
-
-    //TODO: integrate IFileReader interface and ResourceLoader
 }
