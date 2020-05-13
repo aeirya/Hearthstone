@@ -2,6 +2,8 @@ package com.bubble.hearthstone.util.resource;
 
 // import java.awt.Image
 import java.util.Map;
+import java.util.Properties;
+
 import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.net.user.User;
 import com.bubble.hearthstone.util.config.Config;
@@ -9,7 +11,8 @@ import com.bubble.hearthstone.util.config.ConfigLoader;
 
 public class ResourceManager {
  
-    private final Config resourceConfig;
+    private static final String DATA_PATH = "data/";
+    private final Properties resourceConfig;
 
     private final Map<String, CardRecord> cards;
     private final Map<String, User> users;
@@ -23,12 +26,14 @@ public class ResourceManager {
         cards = loadCards();
     }
     
-    private Config findConfig(String path) {
-        return ConfigLoader.get(path);
+    private Properties findConfig(String path) {
+        return new ConfigLoader().loadFile(
+            this.getClass().getClassLoader().getResource(path).getFile()
+        );
     }
 
     private Map<String, CardRecord> loadCards() {
-        return new CardLoader(resourceConfig).load(); 
+        return new CardLoader().loadDir(DATA_PATH + resourceConfig.getProperty("cards"));
     }
     
     public Map<String, CardRecord> getCards() {
