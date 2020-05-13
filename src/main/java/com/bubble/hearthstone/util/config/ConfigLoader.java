@@ -28,6 +28,10 @@ public class ConfigLoader extends ResourceLoader<Config> {
             ServiceLocator.getLogger().error(this, e);
             return null;
         }
-        return (Config) properties;
+        return new Config(properties);
+    }
+
+    public static Config get(String path) {
+        return new ConfigLoader(null).loadResource(findPath(path));
     }
 }

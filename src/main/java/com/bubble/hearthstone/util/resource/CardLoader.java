@@ -20,7 +20,7 @@ public class CardLoader extends ResourceLoader <CardRecord> {
 
     @Override
     protected CardRecord loadResource(String path) {
-        final FileLoader fileLoader = new FileLoader(path);
+        final FileLoader fileLoader = new FileLoader(findPath(path));
         final ISerializer ser = new GsonSerializer();
         final StringBuilder str = new StringBuilder();
         fileLoader.load().forEach(str::append);

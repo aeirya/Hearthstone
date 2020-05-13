@@ -21,22 +21,26 @@ public abstract class ResourceLoader<T> {
     protected String getPath() {
         final String key = getKey();
         final String path = resourceConfig.getProperty(key);
+        return findPath(path);
+    }
+
+    protected static String findPath(String path) {
         if (pathExists(getFileInData(path))) {
             return getFileInData(path);
         }
         else return getFileInClassPath(path);
     }
 
-    private boolean pathExists(String path) {
+    private static boolean pathExists(String path) {
         return new File(path).exists();
     }
 
-    private String getFileInData(String path) {
+    private static String getFileInData(String path) {
         return "data/" + path;
     }
 
-    private String getFileInClassPath(String path) {
-        return getClass().getClassLoader().getResource(path).getFile();
+    private static String getFileInClassPath(String path) {
+        return ResourceLoader.class.getClassLoader().getResource(path).getFile();
     }
     
     public Map<String, T> load() {

@@ -22,6 +22,10 @@ public class FileLoader implements IFileReader<List<String>> {
     }
 
     private void setPath(String path) {
+        if (new File(path).exists()) {
+            this.path = path;
+            return;
+        }
         final String path1 = "data/" + path;
         if (new File(path1).exists()) {
             this.path = path1;
