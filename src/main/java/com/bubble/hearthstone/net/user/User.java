@@ -1,5 +1,7 @@
 package com.bubble.hearthstone.net.user;
 
+import com.bubble.hearthstone.util.services.ServiceLocator;
+
 public class User {
     private final String username;
     private final String password;
@@ -9,13 +11,14 @@ public class User {
         this.password = password;
     }
 
-    boolean exists() {
-        //to be implemented
-        return false;
-    }
-
     boolean authenticate(String password) {
         return this.password.equals(password);
+    }
+
+    public String getFilePath() {
+        return ServiceLocator.getResources().getResource("users")
+            + username
+            + ".json";
     }
 
     public String getUsername() {
