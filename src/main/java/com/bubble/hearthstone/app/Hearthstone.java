@@ -39,7 +39,7 @@ public class Hearthstone implements Runnable {
         final GameLogger logger = new ColoredGameLogger();
         final ResourceManager resourceManager = new ResourceManager(config);
         ServiceLocator.getInstance()
-            .provideLogger(logger); 
+            .provideLogger(logger)
             .provideResources(resourceManager);
     }
 
