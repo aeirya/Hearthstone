@@ -11,9 +11,13 @@ public abstract class ResourceLoader<T> {
     public Map<String, T> loadDir(String dir) {
         final Map<String, T> map = new HashMap<>();
         listFiles(dir).forEach(
-            file -> map.put(file.getName(), loadFile(file.getPath()))
+            file -> map.put(getFileName(file), loadFile(file.getPath()))
         );
         return map;
+    }
+
+    private String getFileName(File file) {
+        return file.getName().split("\\.")[0];
     }
 
     private List<File> listFiles(String path) {

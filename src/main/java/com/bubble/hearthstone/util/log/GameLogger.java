@@ -30,6 +30,10 @@ public class GameLogger extends AbstractLogger {
         log(concat(messages));
     }
 
+    public void logEvent(String message) {
+        log(message);
+    }
+
     private String concat(String... strings) {
         final StringBuilder build = new StringBuilder();
         Arrays.asList(strings).forEach(build::append);

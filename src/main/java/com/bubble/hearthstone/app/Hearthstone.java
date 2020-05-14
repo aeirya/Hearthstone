@@ -25,10 +25,13 @@ public class Hearthstone implements Runnable {
 
     public void run()
     {
+        initiateServiceLocator();   
+        /*
+        * fixed bug: GameEventHandler needs to register a logger upon initializations
+        */
         final Game game = new Game(GraphicsMode.CLI);
         EventQueue.invokeLater(
             () -> {
-                initiateServiceLocator();   
                 game.start();
             }
             );
