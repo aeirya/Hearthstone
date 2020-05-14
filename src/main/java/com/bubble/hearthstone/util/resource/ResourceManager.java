@@ -6,7 +6,6 @@ import java.util.Properties;
 
 import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.net.user.User;
-import com.bubble.hearthstone.util.config.Config;
 import com.bubble.hearthstone.util.config.ConfigLoader;
 
 public class ResourceManager {
@@ -17,8 +16,8 @@ public class ResourceManager {
     private final Map<String, CardRecord> cards;
     private final Map<String, User> users;
     
-    //TODO: load images here instead?
     // private final Map<String, Image> images
+    //TODO: load images here instead?
 
     public ResourceManager(String path) {
         resourceConfig = findConfig(path);
@@ -41,8 +40,11 @@ public class ResourceManager {
     }
     
     private Map<String, User> loadUsers() {
-        // return new  
-        return null;
+        return new UserLoader().loadDir(DATA_PATH + resourceConfig.getProperty("users"));
+    }
+
+    public Map<String, User> getUsers() {
+        return users;
     }
     
 } 
