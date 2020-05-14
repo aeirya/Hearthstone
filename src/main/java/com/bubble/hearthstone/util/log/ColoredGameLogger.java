@@ -23,6 +23,11 @@ public class ColoredGameLogger extends GameLogger {
         super.info(AnsiColor.GREEN.apply(message));
     }
 
+    @Override
+    public void logEvent(String message) {
+        super.logEvent(AnsiColor.PURPLE.apply(message));
+    }
+
     private String colored(String message) {
         return color.apply(message);
     }

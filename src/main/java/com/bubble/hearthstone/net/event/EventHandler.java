@@ -5,12 +5,16 @@ import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class EventHandler {
     private final EventQueue queue;
-    private final GameManager manager;
+    protected final GameManager manager;
     private static final int WAIT_TIME = 10;
 
     public EventHandler(GameManager manager) {
         this.queue = new EventQueue();
         this.manager = manager;
+        initialize();
+    }
+    
+    protected void initialize() {
         start();
     }
 
@@ -35,12 +39,16 @@ public class EventHandler {
     private void loop() {
         if (queue.isFree()) goIdle();
         else {
-            process();
+            process(getNext());
         }
     }
 
-    private void process() {
-        queue.next().process(manager);
+    private IGameEvent getNext() {
+        return queue.next();
+    }
+
+    protected void process(IGameEvent event) {
+        event.process(manager);
     }
 
     private void goIdle() {
