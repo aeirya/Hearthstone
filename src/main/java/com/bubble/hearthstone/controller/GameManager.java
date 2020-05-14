@@ -18,9 +18,10 @@ public class GameManager {
 
     public GameManager() {
         userManager = new UserManager();
+        userManager.login("guest", "");
         eventHandler = new GameEventHandler(this, userManager.getUser()).start();
         network = new DummyNetworkEventQueue();
-        // test()
+        test();
     }
 
     public boolean login(String username, String password) {
