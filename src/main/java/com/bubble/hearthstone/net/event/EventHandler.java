@@ -11,14 +11,9 @@ public class EventHandler {
     public EventHandler(GameManager manager) {
         this.queue = new EventQueue();
         this.manager = manager;
-        initialize();
-    }
-    
-    protected void initialize() {
-        start();
     }
 
-    private void start() {
+    public EventHandler start() {
         new Thread(
             () -> {
                 synchronized (this) {
@@ -34,6 +29,7 @@ public class EventHandler {
                 }
             }
         ).start();
+        return this;
     }
 
     private void loop() {
