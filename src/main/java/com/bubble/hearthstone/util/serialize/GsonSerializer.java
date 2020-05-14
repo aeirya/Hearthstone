@@ -11,6 +11,14 @@ public class GsonSerializer implements ISerializer {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
+    /** registers type adapter for the clazz with an implementation of it */
+    public GsonSerializer(Class<?> clazz, Object object) {
+        gson = new GsonBuilder()
+                .registerTypeAdapter(clazz, object)
+                .setPrettyPrinting()
+                .create();
+    }
+
     public String serialize(Object obj, Class<?> clazz) {
         return gson.toJson(obj, clazz);
     }
