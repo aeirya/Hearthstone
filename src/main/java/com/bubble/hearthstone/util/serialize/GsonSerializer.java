@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 
 public class GsonSerializer implements ISerializer {
 
-    private final Gson gson;
+    protected final Gson gson;
 
     public GsonSerializer() {
         gson = new GsonBuilder().setPrettyPrinting().create();
