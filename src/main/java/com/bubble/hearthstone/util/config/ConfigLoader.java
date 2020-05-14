@@ -9,17 +9,9 @@ import java.util.Properties;
 import com.bubble.hearthstone.util.resource.ResourceLoader;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
-public class ConfigLoader extends ResourceLoader<Config> {
+public class ConfigLoader extends ResourceLoader<Properties> {
 
-    public ConfigLoader(Config resourceConfig) {
-        super(resourceConfig);
-    }
-
-    protected String getKey() {
-        return "config";
-    }
-
-    protected Config loadResource(String path) {
+    public Properties loadFile(String path) {
         final Properties properties;
         try(Reader reader = new FileReader(new File(path))) {
             properties = new Properties();
@@ -28,6 +20,6 @@ public class ConfigLoader extends ResourceLoader<Config> {
             ServiceLocator.getLogger().error(this, e);
             return null;
         }
-        return (Config) properties;
+        return properties;
     }
 }

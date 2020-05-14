@@ -5,10 +5,18 @@ import com.google.gson.GsonBuilder;
 
 public class GsonSerializer implements ISerializer {
 
-    private final Gson gson;
+    protected final Gson gson;
 
     public GsonSerializer() {
         gson = new GsonBuilder().setPrettyPrinting().create();
+    }
+
+    /** registers type adapter for the clazz with an implementation of it */
+    public GsonSerializer(Class<?> clazz, Object object) {
+        gson = new GsonBuilder()
+                .registerTypeAdapter(clazz, object)
+                .setPrettyPrinting()
+                .create();
     }
 
     public String serialize(Object obj, Class<?> clazz) {

@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,14 +21,7 @@ public class FileLoader implements IFileReader<List<String>> {
     }
 
     private void setPath(String path) {
-        final String path1 = "data/" + path;
-        if (new File(path1).exists()) {
-            this.path = path1;
-            return;
-        }
-        final String path2 = getClass().getClassLoader().getResource(path).getFile();
-        if (new File(path2).exists()) this.path = path2;
-        
+        this.path = path;
     }
 
     public Reader getReader() {
