@@ -1,11 +1,13 @@
 package com.bubble.hearthstone.app;
 
 import com.bubble.hearthstone.app.Game.GraphicsMode;
+import com.bubble.hearthstone.util.config.ConfigLoader;
 import com.bubble.hearthstone.util.log.ColoredGameLogger;
 import com.bubble.hearthstone.util.log.GameLogger;
 import com.bubble.hearthstone.util.resource.ResourceManager;
 import com.bubble.hearthstone.util.services.ServiceLocator;
-import java.awt.EventQueue; 
+import java.awt.EventQueue;
+import java.util.Properties;
 
 public class Hearthstone implements Runnable {
 
@@ -25,7 +27,7 @@ public class Hearthstone implements Runnable {
 
     public void run()
     {
-        initiateServiceLocator();   
+        new Initializer().initialize();
         /*
         * fixed bug: GameEventHandler needs to register a logger upon initializations
         */
@@ -38,15 +40,29 @@ public class Hearthstone implements Runnable {
         while (!quit) game.update();
     }
         
-    private void initiateServiceLocator() {
-        final GameLogger logger = new ColoredGameLogger();
-        final ResourceManager resourceManager = new ResourceManager(config);
-        ServiceLocator.getInstance()
-            .provideLogger(logger)
-            .provideResources(resourceManager);
-    }
-
+    
     public static void quit() {
         quit = true;
+    }
+    
+    private class Initializer {
+        private void initialize() {
+            final GameLogger logger = new ColoredGameLogger();
+            final Properties resourceConfig = findConfig(config);
+            final ResourceManager resourceManager = new ResourceManager(resourceConfig);
+            initiateServiceLocator(logger, resourceManager);   
+        }
+
+        private Properties findConfig(String path) {
+            return new ConfigLoader().loadFile(
+                this.getClass().getClassLoader().getResource(path).getFile()
+            );
+        }
+    
+        private void initiateServiceLocator(GameLogger logger, ResourceManager resourceManager) {
+            ServiceLocator.getInstance()
+                .provideLogger(logger)
+                .provideResources(resourceManager);
+        }
     }
 }

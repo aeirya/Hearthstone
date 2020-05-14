@@ -9,7 +9,6 @@ import java.util.Properties;
 
 import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.net.user.User;
-import com.bubble.hearthstone.util.config.ConfigLoader;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class ResourceManager {
@@ -23,8 +22,8 @@ public class ResourceManager {
     // private final Map<String, Image> images
     // phase2: load images here instead?
 
-    public ResourceManager(String path) {
-        resourceConfig = findConfig(path);
+    public ResourceManager(Properties resourceConfig) {
+        this.resourceConfig = resourceConfig;
         createFoldersIfNeeded();
         users = loadUsers();
         cards = loadCards();
@@ -39,12 +38,6 @@ public class ResourceManager {
                     ServiceLocator.getLogger().error(this, e);
                 }
             }
-        );
-    }
-    
-    private Properties findConfig(String path) {
-        return new ConfigLoader().loadFile(
-            this.getClass().getClassLoader().getResource(path).getFile()
         );
     }
 
