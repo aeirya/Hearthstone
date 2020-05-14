@@ -1,9 +1,9 @@
 package com.bubble.hearthstone.net.user;
 
+import com.bubble.hearthstone.controller.GameManager;
+import com.bubble.hearthstone.net.event.events.LoginEvent;
 import com.bubble.hearthstone.util.log.EventLogger;
 import com.bubble.hearthstone.util.log.IEventLogger;
-import com.bubble.hearthstone.util.log.MyFileWriter;
-import com.bubble.hearthstone.util.serialize.UserSerializer;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,22 +15,26 @@ public class UserManager {
 
     private User current;
     private Map<String, User> users;
+    private UserSave save;
 
     private final IEventLogger logger;
+    private final GameManager gameManager;
 
-    public static final User GLOBAL = new User("gloabal", "");
+    public static final User GLOBAL = new User("global", "");
+    private static final User GUEST = new User("guest", "");
 
-    public UserManager() {
+    public UserManager(GameManager gameManager) {
         users = new HashMap<>();
         users = ServiceLocator.getResources().getUsers();
         this.logger = new EventLogger(ServiceLocator.getLogger(), this);
+        this.gameManager = gameManager;
         this.loginToGuest();
     }
     
     private void loginToGuest() {
-        final String user = "guest";
+        final String user = GUEST.getUsername();
         if (!exists(user)) signup(user, "");
-        login(user, "");
+        login(GUEST);
     }
 
     private boolean exists(String username) {
@@ -44,7 +48,7 @@ public class UserManager {
         }
         final User user = users.get(username);
         if (user.authenticate(password)) {
-            current = user;
+            login(user);
             return true;
         } else {
             logger.error("wrong password");
@@ -52,10 +56,18 @@ public class UserManager {
         }
     }
 
+    private void login(User user) {
+        current = user;
+        if (! user.equals(GUEST)) save = SaveManager.loadSave(user);
+    }
+
     public boolean signup(String username, String password) {
         if (!exists(username)) {
             users.put(username, new User(username, password));
             createUserFile(username, password);
+            gameManager.networkPush(
+                new LoginEvent(username, password)
+            );
             return true;
         } else {
             logger.error("user already exists");
@@ -65,8 +77,10 @@ public class UserManager {
 
     private void createUserFile(String username, String password) {
         final User user = new User(username, password);
-        new MyFileWriter(user.getFilePath()).write(new UserSerializer().serialize(user));
+        SaveManager.createUserFile(user);
+        SaveManager.createSaveFile(user);
     }
+    
 
     public boolean deleteUser(String username, String password) {
         if (exists(username)) {
@@ -92,10 +106,18 @@ public class UserManager {
     }
 
     private void logout() {
-        login("guest", "");
+        loginToGuest();
     }
 
     public User getUser() {
         return current;
+    }
+
+    //TODO: move texts here
+    private enum LogError {
+        WRONG_PASSWORD,
+        CANT_DELETE,
+        DUPLICATE_USER,
+        USER_NOT_EXIST,
     }
 }

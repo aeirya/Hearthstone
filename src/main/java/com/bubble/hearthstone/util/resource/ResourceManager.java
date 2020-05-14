@@ -1,15 +1,15 @@
 package com.bubble.hearthstone.util.resource;
 
+import com.bubble.hearthstone.card.registry.CardRecord;
+import com.bubble.hearthstone.net.user.User;
+import com.bubble.hearthstone.net.user.UserSave;
+import com.bubble.hearthstone.util.services.ServiceLocator;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 // import java.awt.Image
 import java.util.Map;
 import java.util.Properties;
-
-import com.bubble.hearthstone.card.registry.CardRecord;
-import com.bubble.hearthstone.net.user.User;
-import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class ResourceManager {
 
@@ -18,7 +18,7 @@ public class ResourceManager {
 
     private final Map<String, CardRecord> cards;
     private final Map<String, User> users;
-
+    
     // private final Map<String, Image> images
     // phase2: load images here instead?
 
@@ -27,6 +27,12 @@ public class ResourceManager {
         createFoldersIfNeeded();
         users = loadUsers();
         cards = loadCards();
+    }
+
+    public UserSave loadSave(User user) {
+        return new JsonLoader().load(
+            DATA_PATH + resourceConfig.getProperty("save") + user.getUsername() + ".save", UserSave.class
+            );
     }
 
     private void createFoldersIfNeeded() {

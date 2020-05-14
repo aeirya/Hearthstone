@@ -4,7 +4,7 @@ import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class User {
     private final String username;
-    private final String password;
+    private final transient String password;
 
     public User(String username, String password) {
         this.username = username;
