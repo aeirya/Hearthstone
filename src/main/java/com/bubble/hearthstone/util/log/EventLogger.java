@@ -48,8 +48,6 @@ public class EventLogger implements IEventLogger {
     public void success(String message) {
         logger.info(message);
     }
-
-    //TODO: implement the user change scenario
     
     /*
     logging style:
