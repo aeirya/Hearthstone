@@ -18,7 +18,7 @@ public class UserManager {
 
     private final IEventLogger logger;
 
-    public static final User GLOBAL = new User("gloabl", "");
+    public static final User GLOBAL = new User("gloabal", "");
 
     public UserManager() {
         users = new HashMap<>();
@@ -47,7 +47,7 @@ public class UserManager {
             current = user;
             return true;
         } else {
-            logger.error("wrong passwrd");
+            logger.error("wrong password");
             return false;
         }
     }
