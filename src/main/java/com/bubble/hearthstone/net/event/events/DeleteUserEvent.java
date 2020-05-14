@@ -7,6 +7,7 @@ public class DeleteUserEvent implements IGameEvent {
 
     public final String username;
     public final String password;
+    private String message;
 
     public DeleteUserEvent(String username, String password) {
         this.username = username;
@@ -15,11 +16,18 @@ public class DeleteUserEvent implements IGameEvent {
 
     @Override
     public void process(GameManager manager) {
-        manager.deleteUser(username, password);
+        final boolean result = manager.deleteUser(username, password);
+        message = setMessage(result);
+    }
+
+    private String setMessage(boolean result) {
+        if (result) 
+            return "User [" + username + "] was deleted";
+        else return "User [" + username + "] could not be deleted";
     }
 
     @Override
     public String getMessage() {
-        return "User [" + username + "] was deleted";
+        return message;
     }
 }

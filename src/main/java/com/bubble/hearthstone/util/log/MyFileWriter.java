@@ -8,13 +8,22 @@ import java.io.PrintWriter;
 
 public class MyFileWriter {
     
-    private final String path;
+    private String path;
 
-    /** appends text to the end of string */
+    public MyFileWriter() {
+        this("");
+    }
+
     public MyFileWriter(String path) {
         this.path = path;
     }
 
+    public MyFileWriter setPath(String path) {
+        this.path = path;
+        return this;
+    }
+    
+    /** appends text to the end of string */
     public void write(String line) {
         try (
             final FileWriter fw = new FileWriter(path, true); 
@@ -27,4 +36,15 @@ public class MyFileWriter {
             ServiceLocator.getLogger().error(this, e);
         }
     }
+    
+    // public void writeFile(String text) {
+    //     try (
+    //         final FileWriter fw = new FileWriter(path);
+    //         ) {
+    //             fw.write(text);
+    //         } 
+    //     catch (IOException e) {
+    //         ServiceLocator.getLogger().error(this, e);
+    //     }
+    // }
 }

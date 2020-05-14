@@ -7,6 +7,7 @@ public class SignupEvent implements IGameEvent {
 
     private final String username;
     private final String password;
+    private String message;
 
     public SignupEvent(String username, String password) {
         this.username = username;
@@ -14,11 +15,18 @@ public class SignupEvent implements IGameEvent {
     }
 
     public void process(GameManager manager) {
-        manager.signup(username, password);
+        final boolean result = manager.signup(username, password);
+        message = setMessage(result);
+    }
+
+    private String setMessage(boolean result) {
+        if (result)
+            return "User [" + username + "] was registered";
+        else return "User [" + username + "] could not register";
     }
 
     @Override
     public String getMessage() {
-        return "User [" + username + "] was registered";
+        return message;
     }
 }

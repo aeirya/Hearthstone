@@ -47,4 +47,7 @@ public class ResourceManager {
         return users;
     }
     
+    public String getResource(String resource) {
+        return DATA_PATH + resourceConfig.getProperty(resource);
+    }
 } 
