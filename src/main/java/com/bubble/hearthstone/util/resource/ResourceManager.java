@@ -16,8 +16,8 @@ public class ResourceManager {
     private final Map<String, CardRecord> cards;
     private final Map<String, User> users;
     
-    // private final Map<String, Image> images
-    //TODO: load images here instead?
+    //private final Map<String, Image> images
+    //phase2: load images here instead?
 
     public ResourceManager(String path) {
         resourceConfig = findConfig(path);

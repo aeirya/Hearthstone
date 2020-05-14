@@ -2,7 +2,7 @@ package com.bubble.hearthstone.util.time;
 
 public class Waiter {
 
-    private static final int FPS = 2; //TODO: hardcored
+    private static final int FPS = 2; //warning: hardcored
     
     private Waiter() { }
 

@@ -1,7 +1,5 @@
 package com.bubble.hearthstone.net.user;
 
-import com.bubble.hearthstone.util.serialize.UserSerializer;
-
 public class User {
     private final String username;
     private final String password;

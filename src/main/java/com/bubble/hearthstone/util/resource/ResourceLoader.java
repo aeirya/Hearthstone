@@ -26,5 +26,5 @@ public abstract class ResourceLoader<T> {
         
     public abstract T loadFile(String path);
     
-    //TODO: make image loader extend this
+    //phase2: make image loader extend this
 }
