@@ -10,6 +10,7 @@ import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class FileLoader extends ResourceLoader<String> {
 
+    /** loads the file in a whole text */
     public String loadFile(String path) {
         try (
             InputStream is = new FileInputStream(path);
