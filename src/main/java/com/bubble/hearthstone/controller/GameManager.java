@@ -5,7 +5,6 @@ import com.bubble.hearthstone.net.event.INetworkEventQueue;
 import com.bubble.hearthstone.net.event.EventHandler;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
-import com.bubble.hearthstone.net.event.events.LoginEvent;
 import com.bubble.hearthstone.net.user.UserManager;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
@@ -19,10 +18,6 @@ public class GameManager {
         userManager = new UserManager();
         eventHandler = new EventHandler(this);
         network = new DummyNetworkEventQueue();
-        //test
-        // network.push(
-        //     new LoginEvent("aeirya", "123")
-        // );
     }
 
     public boolean login(String username, String password) {
