@@ -18,11 +18,12 @@ public class UserManager {
 
     private final IEventLogger logger;
 
+    public static final User GLOBAL = new User("gloabl", "");
+
     public UserManager() {
         users = new HashMap<>();
         users = ServiceLocator.getResources().getUsers();
         this.logger = new EventLogger(ServiceLocator.getLogger(), this);
-
         this.loginToGuest();
     }
     
