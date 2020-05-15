@@ -9,14 +9,13 @@ import com.bubble.hearthstone.util.services.ServiceLocator;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Map;
 
 public class UserManager {
 
     private User current;
-    private Map<String, User> users;
     private UserSave save;
+    private final Map<String, User> users;
 
     private final IEventLogger logger;
     private final GameManager gameManager;
@@ -25,7 +24,6 @@ public class UserManager {
     private static final User GUEST = new User("guest", "");
 
     public UserManager(GameManager gameManager) {
-        users = new HashMap<>();
         users = ServiceLocator.getResources().getUsers();
         this.logger = new EventLogger(ServiceLocator.getLogger(), this);
         this.gameManager = gameManager;
