@@ -8,6 +8,7 @@ import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
 import com.bubble.hearthstone.net.user.UserManager;
 import com.bubble.hearthstone.ui.IGameGraphics;
+import com.bubble.hearthstone.ui.IMenu;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
 //will probably connect interfaces with event handler..
@@ -67,5 +68,14 @@ public class GameManager {
 
     public void message(String message) {
         graphics.message(message);
+    }
+
+    public void lunch(IMenu menu) {
+        // graphics.lunch(menu)
+    }
+
+    //The part I really hate: getter, setters
+    public UserManager getUserManager() {
+        return userManager;
     }
 }

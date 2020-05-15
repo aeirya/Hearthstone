@@ -1,19 +1,21 @@
 package com.bubble.hearthstone.net.user;
 
 import com.bubble.hearthstone.card.deck.Deck;
+import com.bubble.hearthstone.model.shop.Wallet;
 import com.bubble.hearthstone.util.serialize.Serializable;
 
 public class UserSave implements Serializable {
     private final User user;
     private Deck deck;
-    private int gem;
+    private Wallet wallet;
     
     public UserSave(User user) {
         this.user = user;
-        this.gem = 0;
+        wallet = new Wallet();
+        deck = new Deck();
     }
     
-    void selectDeck(Deck deck) {
+    public void selectDeck(Deck deck) {
         this.deck = deck;
         //call event
     }
