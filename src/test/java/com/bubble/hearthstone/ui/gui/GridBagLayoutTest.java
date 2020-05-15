@@ -1,6 +1,9 @@
 package com.bubble.hearthstone.ui.gui;
 
 import com.bubble.hearthstone.ui.gui.components.CustomLabel;
+
+import static org.junit.Assert.assertNotNull;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -22,6 +25,11 @@ public class GridBagLayoutTest extends JPanel {
         this.setPreferredSize(new Dimension(500,500));
         initiate();
         // test2();
+    }
+
+    @Test
+    public void dummyTest() {
+        assertNotNull(this);
     }
 
     private void initiate() {
@@ -51,8 +59,7 @@ public class GridBagLayoutTest extends JPanel {
         this.add(btn4, c);
     }
 
-    @Test
-    private void test1() {
+    public void test1() {
         final boolean shouldFill = true;
         final boolean shouldWeightX = true;
         JButton button;
@@ -106,8 +113,7 @@ public class GridBagLayoutTest extends JPanel {
         this.add(button, c);
     }
 
-    @Test
-    private void test2() {
+    public void test2() {
         final boolean shouldFill = true;
         final boolean shouldWeightX = true;
         JButton button;

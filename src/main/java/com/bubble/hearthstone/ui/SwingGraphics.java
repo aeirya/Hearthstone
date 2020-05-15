@@ -1,6 +1,6 @@
 package com.bubble.hearthstone.ui;
 
-import com.bubble.hearthstone.ui.gui.panels.LoginPanel;
+// import com.bubble.hearthstone.ui.gui.panels.LoginPanel
 import com.bubble.hearthstone.ui.gui.panels.MainMenuPanel;
 import com.bubble.hearthstone.ui.gui.panels.Panel;
 import java.awt.BorderLayout;
@@ -18,7 +18,7 @@ public class SwingGraphics implements IGameGraphics {
 
     public SwingGraphics() {
         frame = initiateFrame();
-        // load(new LoginPanel(frame));
+        // load(new LoginPanel(frame))
         load(new MainMenuPanel(frame)); 
     }
 
