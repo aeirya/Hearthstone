@@ -4,13 +4,16 @@ import java.util.Random;
 
 import com.bubble.hearthstone.app.Hearthstone;
 import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.net.event.events.ActionEvent;
 import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
+import com.bubble.hearthstone.net.event.events.ChangeMenuEvent;
 import com.bubble.hearthstone.net.event.events.DeleteUserEvent;
 import com.bubble.hearthstone.net.event.events.HelpEvent;
 import com.bubble.hearthstone.net.event.events.LoginEvent;
 import com.bubble.hearthstone.net.event.events.LogoutEvent;
 import com.bubble.hearthstone.net.event.events.SignupEvent;
 import com.bubble.hearthstone.net.event.events.login.ListPlayerEvent;
+import com.bubble.hearthstone.ui.MenuType;
 import com.bubble.hearthstone.util.log.GameLogger;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
@@ -100,16 +103,45 @@ public enum EnumCommands implements ICommand {
 
         @Override
         public IGameEvent toEvent(String... args) {
-            // TODO Auto-generated method stub
-            return null;
+            return new ChangeMenuEvent(MenuType.SHOP);
         }
 
         @Override
         public String getDescription() {
-            // TODO Auto-generated method stub
-            return null;
+            return "find the best merchandises you could ever imagine :p";
         }
         
+    },
+    MAIN_MENU {
+
+        @Override
+        public IGameEvent toEvent(String... args) {
+            return new ChangeMenuEvent(MenuType.MAIN);
+        }
+
+        @Override
+        public String getDescription() {
+            return "get back to main menu";
+        }
+
+    },
+    SHOW_USER {
+
+        @Override
+        public IGameEvent toEvent(String... args) {
+            return new ActionEvent(
+                g -> 
+                    g.message(
+                        "current user: " + g.getUserManager().getUser().getUsername()
+                    )
+            );
+        }
+
+        @Override
+        public String getDescription() {
+            return "see your status";
+        }
+
     };
 
     private static final GameLogger logger = ServiceLocator.getLogger();

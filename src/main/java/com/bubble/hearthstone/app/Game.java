@@ -28,7 +28,6 @@ public class Game implements IGame {
     }
 
     void start() {
-        graphics.message("HI!");
         input.start();
     }
 
