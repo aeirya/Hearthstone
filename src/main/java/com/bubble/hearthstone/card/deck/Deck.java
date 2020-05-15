@@ -18,7 +18,7 @@ public class Deck {
 
     public List<String> listCardNames() {
         final List<String> names = new ArrayList<>();
-        cards.forEach(c -> names.add(c.getName()));
+        cards.forEach(card -> names.add(card.getName()));
         return names;
     }
 
@@ -28,5 +28,22 @@ public class Deck {
 
     public void removeCard(CardRecord card) {
         cards.remove(card);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        listCardNames().forEach(cardname -> builder.append("\n" + cardname));
+        return builder.toString();
+    }
+    
+    public static String makeTable(Deck deck) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(
+            "card\tmana\ttype\tclass\trarity\t\tdescription\n"
+        ); 
+        builder.append("--------------------------------------------------\n");
+        deck.cards.forEach(card -> builder.append(card.makeRecord() + "\n"));
+        return builder.toString();
     }
 }

@@ -15,6 +15,7 @@ public abstract class CliMenu implements IMenu {
         final Cli g = (Cli) graphics;
         g.load(this);
         this.graphics = g;
+        printCommands();
     }
 
     public void printCommands() {

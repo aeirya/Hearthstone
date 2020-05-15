@@ -1,18 +1,11 @@
 package com.bubble.hearthstone.ui.cli;
 
 import com.bubble.hearthstone.input.EnumCommands;
-import com.bubble.hearthstone.ui.IGameGraphics;
 
 public class CliLoginMenu extends CliMenu {
 
     public CliLoginMenu() {
         this.menuCommands = new CliLoginMenuCommnads();
-    }
-
-    @Override
-    public void lunch(IGameGraphics graphics) {
-        super.lunch(graphics);
-        printCommands();
     }
 
     private final class CliLoginMenuCommnads extends MenuCommands {

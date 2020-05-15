@@ -11,9 +11,10 @@ public class CliMainMenu extends CliMenu {
     private final class CliMainMenuCommnads extends MenuCommands {
         CliMainMenuCommnads() {
             super();
-            mapper.put("out", EnumCommands.LOGOUT);
             mapper.put("store", EnumCommands.SHOP);
+            mapper.put("user", EnumCommands.SHOW_USER);
             mapper.put("help", EnumCommands.HELP);
+            mapper.put("out", EnumCommands.LOGOUT);
             mapper.put("quit", EnumCommands.QUIT);
         }
     }

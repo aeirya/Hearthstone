@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import com.bubble.hearthstone.ui.cli.CliLoginMenu;
 import com.bubble.hearthstone.ui.cli.CliMainMenu;
 import com.bubble.hearthstone.ui.cli.CliMenu;
+import com.bubble.hearthstone.ui.cli.CliShopMenu;
 import com.bubble.hearthstone.util.log.GameLogger;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
@@ -51,6 +52,7 @@ public class Cli implements IGameGraphics {
         private void init() {
             mapper.put(MenuType.MAIN, CliMainMenu.class);
             mapper.put(MenuType.LOGIN, CliLoginMenu.class);
+            mapper.put(MenuType.SHOP, CliShopMenu.class);
         }
 
         public void lunch(Class<? extends IMenu> clazz) {

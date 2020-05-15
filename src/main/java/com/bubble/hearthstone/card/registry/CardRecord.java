@@ -61,4 +61,14 @@ public class CardRecord extends Card implements Cloneable <Card> {
     public String getName() {
         return name;
     }
+
+    public String makeRecord() {
+        return 
+            name + "\t" + 
+            manaCost + "\t" + 
+            type + "\t" + 
+            heroClass + "\t" + 
+            rarity + "\t" + 
+            description;
+    }
 }
