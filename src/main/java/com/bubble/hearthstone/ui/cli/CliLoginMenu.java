@@ -40,9 +40,13 @@ public class CliLoginMenu extends CliMenu {
         return inputParser.getCommands();
     }
 
-    private class CliInputParser {
+    public Map<String, EnumCommands> getMapper() { 
+        return inputParser.mapper;
+    }
+
+    private class CliInputParser implements ICliInputParser {
         
-        private final Map<String, EnumCommands> mapper;
+        final Map<String, EnumCommands> mapper;
 
         CliInputParser() {
             mapper = new LinkedHashMap<>();
@@ -55,7 +59,7 @@ public class CliLoginMenu extends CliMenu {
             mapper.put("quit", EnumCommands.QUIT);
         }
 
-        IGameEvent parse(String input) {
+        public IGameEvent parse(String input) {
             final List <String> split = Arrays.asList(input.split(" "));
             final LinkedList<String> list = new LinkedList<>(split);
             final String key = list.removeFirst();

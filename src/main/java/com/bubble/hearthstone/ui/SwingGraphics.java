@@ -140,4 +140,9 @@ public class SwingGraphics implements IGameGraphics {
         // TODO Auto-generated method stub
 
     }
+
+    @Override
+    public IMenu getCurrentMenu() {
+        return currentPanel;
+    }
 }

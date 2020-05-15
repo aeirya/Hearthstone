@@ -11,6 +11,10 @@ import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.IdleEvent;
 import com.bubble.hearthstone.ui.IGameGraphics;
+import com.bubble.hearthstone.ui.IMenu;
+import com.bubble.hearthstone.ui.cli.CliLoginMenu;
+import com.bubble.hearthstone.ui.cli.CliMenu;
+import com.bubble.hearthstone.ui.cli.ICliInputParser;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class CliInput implements IInput {
@@ -18,6 +22,7 @@ public class CliInput implements IInput {
     private final CliInputParser inputParser;
     private final GameManager manager;
     private final IGameGraphics graphics;
+    // private ICliInputParser inputParser;
 
     //todo: replace manager by an event handler
     public CliInput(GameManager manager, IGameGraphics graphics) {
@@ -47,17 +52,11 @@ public class CliInput implements IInput {
 
     private class CliInputParser {
         
-        private final Map<String, EnumCommands> mapper;
 
-        CliInputParser() {
-            mapper = new LinkedHashMap<>();
-            mapper.put("login", EnumCommands.LOGIN);
-            mapper.put("reg" ,EnumCommands.SIGNUP);
-            mapper.put("del", EnumCommands.DELETE_USER);
-            mapper.put("ls", EnumCommands.LIST);
-            mapper.put("out", EnumCommands.LOGOUT);
-            mapper.put("help", EnumCommands.HELP);
-            mapper.put("quit", EnumCommands.QUIT);
+        private Map<String, EnumCommands> mapper;
+
+        void setMapper(Map<String, EnumCommands> mapper) {
+            this.mapper = mapper;
         }
 
         IGameEvent parse(String input) {
@@ -71,6 +70,7 @@ public class CliInput implements IInput {
         }
 
         private EnumCommands getCommand(String text) {
+            setMapper(((CliLoginMenu)graphics.getCurrentMenu()).getMapper());
             final EnumCommands command = mapper.getOrDefault(text, null);
             if (command == null) graphics.error("unacceptable input! write \"help\" for help");
             // if (command == EnumCommands.HELP) printHelp();

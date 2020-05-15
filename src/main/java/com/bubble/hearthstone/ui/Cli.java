@@ -77,4 +77,9 @@ public class Cli implements IGameGraphics {
     public void showHelp() {
         currentMenu.printCommands();
     }
+
+    @Override
+    public IMenu getCurrentMenu() {
+        return currentMenu;
+    }
 }
