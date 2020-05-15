@@ -5,8 +5,8 @@ import com.bubble.hearthstone.net.event.IGameEvent;
 
 public class DeleteUserEvent implements IGameEvent {
 
-    public final String username;
-    public final String password;
+    private final String username;
+    private final String password;
     private String message;
 
     public DeleteUserEvent(String username, String password) {

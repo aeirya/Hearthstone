@@ -50,3 +50,45 @@ Game -> Game
 de
 mo
 */
+
+
+
+IDLE Event
+
+
+
+
+
+
+
+
+eventQueue.push(new SignupEvent(username, pass, ...));
+
+class ServerEventHandler
+{
+    public void handle(Sigon e) {
+        
+    }
+
+
+    public void handle(SignupEvent e)
+    {
+        
+    }
+}
+
+...
+ 
+ Event () {
+     handle(ServerHanlder server) {
+         serverhandler.
+     }
+ }
+
+
+ServerEventHandler eventHandler;
+
+for (Event e : eventQueue)
+{
+    ServerEventHandler
+}

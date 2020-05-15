@@ -57,4 +57,8 @@ public class CardRecord extends Card implements Cloneable <Card> {
         GsonSerializer gson = new GsonSerializer(Ability.class, new AbilityImpl(AbilityType.DRAW, new AbilityArgument()));
         return gson.serialize(this);
     }
+
+    public String getName() {
+        return name;
+    }
 }

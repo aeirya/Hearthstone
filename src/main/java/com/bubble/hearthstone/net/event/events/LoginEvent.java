@@ -5,8 +5,8 @@ import com.bubble.hearthstone.net.event.IGameEvent;
 
 public class LoginEvent implements IGameEvent {
 
-    public final String username;
-    public final String password;
+    private final String username;
+    private final String password;
     private String message;
 
     public LoginEvent(String username, String password) {
