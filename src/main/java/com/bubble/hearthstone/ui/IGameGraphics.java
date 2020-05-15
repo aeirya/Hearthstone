@@ -9,4 +9,6 @@ public interface IGameGraphics extends Updatable {
      */    
     void message(String message);
     void error(String message);
+
+    void lunch(MenuType menu);
 }
