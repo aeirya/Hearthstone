@@ -12,14 +12,8 @@ public class Cli implements IGameGraphics {
     private final MenuLuncher luncher;
 
     public Cli() {
-        // logger = ServiceLocator.getLogger();
-        logger = null;
+        logger = ServiceLocator.getLogger();
         luncher = new CliMenuLuncher();
-        lunch(MenuType.MAIN);
-    }
-
-    public static void main(String[] args) {
-        new Cli();
     }
 
     public void update() {
@@ -27,8 +21,7 @@ public class Cli implements IGameGraphics {
     }
 
     public void message(String message) {
-        System.out.println(message);
-        // logger.log(message);
+        logger.log(message);
     }
 
     public void error(String message) {
@@ -37,10 +30,6 @@ public class Cli implements IGameGraphics {
 
     public void lunch(MenuType menu) {
         luncher.lunch(menu);
-    }
-
-    private void run(IMenu menu) {
-        menu.lunch(this);
     }
 
     private final class CliMenuLuncher extends MenuLuncher {
@@ -56,7 +45,11 @@ public class Cli implements IGameGraphics {
 
         public void lunch(Class<? extends IMenu> clazz) {
             final IMenu menu = construct(clazz);
-            run(menu);
+            if (menu != null) run(menu);
+        }
+
+        private void run(IMenu menu) {
+            menu.lunch(Cli.this);
         }
 
         private IMenu construct(Class<? extends IMenu> clazz) {

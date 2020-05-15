@@ -17,18 +17,21 @@ public class SwingGraphics implements IGameGraphics {
     protected final JFrame frame;
     private Panel currentPanel;
     private MenuLuncher luncher;
-    private final boolean B = true;
 
     public SwingGraphics() {
         frame = initiateFrame();
         luncher = new SwingLuncher();
-        
-        if (B) lunch(MenuType.MAIN);
-        else lunch(MenuType.LOGIN);
     }
 
+    /**
+     * this is a test for
+     * lunching  main menu / login menu
+     */
     public static void main(String[] args) {
-        new SwingGraphics();
+        final boolean B = false;
+        final IGameGraphics graphics = new SwingGraphics();
+        if (B) graphics.lunch(MenuType.LOGIN);
+        else graphics.lunch(MenuType.MAIN);
     }
 
     protected JFrame initiateFrame() {
@@ -84,10 +87,6 @@ public class SwingGraphics implements IGameGraphics {
         luncher.lunch(menu);
     }
 
-    private void run(IMenu menu) {
-        menu.lunch(this);
-    }
-
     private final class SwingLuncher extends MenuLuncher {
 
         SwingLuncher() {
@@ -100,13 +99,20 @@ public class SwingGraphics implements IGameGraphics {
             mapper.put(MenuType.MAIN, MainMenuPanel.class);
         }
 
+        private void run(IMenu menu) {
+            menu.lunch(SwingGraphics.this);
+        }
+
         @Override
-        protected void lunch(Class<? extends IMenu> menu) {
-            run(make(menu));
+        protected void lunch(Class<? extends IMenu> clazz) {
+            final IMenu menu = make(clazz);
+            if (menu != null) run(menu);
         }
 
         private IMenu make(Class<? extends IMenu> clazz) {
-            return construct(getConstructor(clazz));
+            final Constructor<? extends IMenu> c = getConstructor(clazz);
+            if (c != null) return construct(c);
+            else return null;
         }
 
         private Constructor<? extends IMenu> getConstructor(Class<? extends IMenu> clazz) {

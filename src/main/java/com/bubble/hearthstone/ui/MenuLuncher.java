@@ -9,14 +9,14 @@ public abstract class MenuLuncher {
     MenuLuncher() {
         mapper = new EnumMap<>(MenuType.class);
     }
-
-	protected abstract void lunch(Class<? extends IMenu> menu);
-    
-    void lunch(MenuType menu) {
-        lunch(get(menu));
-    }
     
     private Class<? extends IMenu> get(MenuType menuType) {
         return mapper.get(menuType);
     }
+
+    void lunch(MenuType menu) {
+        lunch(get(menu));
+    }
+
+	protected abstract void lunch(Class<? extends IMenu> menu);
 }
