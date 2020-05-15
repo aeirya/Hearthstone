@@ -10,4 +10,10 @@ public class SwingGraphics implements IGameGraphics {
     public void message(String message) {
         //
     }
+
+    @Override
+    public void error(String message) {
+        // TODO Auto-generated method stub
+
+    }
 }

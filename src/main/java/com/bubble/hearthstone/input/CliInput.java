@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.net.event.events.IdleEvent;
 import com.bubble.hearthstone.ui.IGameGraphics;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
@@ -55,6 +56,7 @@ public class CliInput implements IInput {
             mapper.put("ls", EnumCommands.LIST);
             mapper.put("out", EnumCommands.LOGOUT);
             mapper.put("help", EnumCommands.HELP);
+            mapper.put("quit", EnumCommands.QUIT);
         }
 
         IGameEvent parse(String input) {
@@ -62,12 +64,14 @@ public class CliInput implements IInput {
             final LinkedList<String> list = new LinkedList<>(split);
             final String key = list.removeFirst();
             final ICommand command = getCommand(key);
+            if (command == null) return new IdleEvent();
             final String[] args = list.toArray(new String[0]);
             return command.toEvent(args);
         }
 
         private EnumCommands getCommand(String text) {
-            final EnumCommands command = mapper.getOrDefault(text, EnumCommands.HELP);
+            final EnumCommands command = mapper.getOrDefault(text, null);
+            if (command == null) graphics.error("unacceptable input! write \"help\" for help");
             if (command == EnumCommands.HELP) printHelp();
             if (command == EnumCommands.LIST) listPlayers();
             return command;

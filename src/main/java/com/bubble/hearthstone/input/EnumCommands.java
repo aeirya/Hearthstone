@@ -1,6 +1,10 @@
 package com.bubble.hearthstone.input;
 
+import java.util.Random;
+
+import com.bubble.hearthstone.app.Hearthstone;
 import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
 import com.bubble.hearthstone.net.event.events.DeleteUserEvent;
 import com.bubble.hearthstone.net.event.events.IdleEvent;
 import com.bubble.hearthstone.net.event.events.LoginEvent;
@@ -69,6 +73,26 @@ public enum EnumCommands implements ICommand {
 
         public String getDescription() {
             return "lists usernames";
+        }
+    },
+    QUIT {
+
+        @Override
+        public IGameEvent toEvent(String... args) {
+            if (rand(5)) Hearthstone.quit();
+            if (rand(2)) return new BroadcastMessageEvent("muhahaaha i'm not leaving");
+            else return new BroadcastMessageEvent("oh come onnn!");
+        }
+
+        final Random rand = new Random();
+
+        private boolean rand(int unlikeliness) {
+            return rand.nextInt(unlikeliness) == 0;
+        }
+
+        @Override
+        public String getDescription() {
+            return "don't you dare write that :(";
         }
     };
 
