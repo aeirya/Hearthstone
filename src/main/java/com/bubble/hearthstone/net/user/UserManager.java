@@ -16,7 +16,7 @@ public class UserManager {
 
     private User current;
     private Map<String, User> users;
-    private UserSave save;
+    // private UserSave save
 
     private final IEventLogger logger;
     private final GameManager gameManager;
@@ -121,10 +121,10 @@ public class UserManager {
     }
 
     //TODO: move texts here
-    private enum LogError {
-        WRONG_PASSWORD,
-        CANT_DELETE,
-        DUPLICATE_USER,
-        USER_NOT_EXIST,
-    }
+    // private enum LogError 
+    //     WRONG_PASSWORD,
+    //     CANT_DELETE,
+    //     DUPLICATE_USER,
+    //     USER_NOT_EXIST,
+    // 
 }
