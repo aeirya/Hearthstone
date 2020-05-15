@@ -6,12 +6,10 @@ import com.bubble.hearthstone.net.event.EventHandler;
 import com.bubble.hearthstone.net.event.GameEventHandler;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
-import com.bubble.hearthstone.net.event.events.DeleteUserEvent;
-import com.bubble.hearthstone.net.event.events.LoginEvent;
-import com.bubble.hearthstone.net.event.events.SignupEvent;
 import com.bubble.hearthstone.net.user.UserManager;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
+//will probably connect interfaces with event handler..
 public class GameManager {
     
     private final UserManager userManager;
@@ -19,10 +17,9 @@ public class GameManager {
     protected final INetworkEventQueue network;
 
     public GameManager() {
-        userManager = new UserManager();
+        userManager = new UserManager(this);
         eventHandler = new GameEventHandler(this, userManager).start();
         network = new DummyNetworkEventQueue();
-        test();
     }
 
     public boolean login(String username, String password) {
@@ -37,6 +34,10 @@ public class GameManager {
         return userManager.deleteUser(username, password);
     }
     
+    public void logout() {
+        userManager.logout();
+    }
+
     public void printBroadcastMessage(String message) {
         ServiceLocator.getLogger().log("broadcast message: " + message);
     }
@@ -53,43 +54,7 @@ public class GameManager {
         eventHandler.receive(event);
     }
 
-    private void  test() {
-        registerTest();
-        loginTest();
-        newUserTest();
-        deleteUserTest();
-    }
-
-    private void registerTest() {
-        network.push(
-            new SignupEvent("aeirya", "123")
-        );
-        network.push(
-            new SignupEvent("aeirya", "1234")
-        );
-    }
-
-    private void loginTest() {
-        network.push(
-            new LoginEvent("aeirya", "123")
-        );
-        network.push(
-            new LoginEvent("aeirya", "1234")
-        );
-    }
-
-    private void newUserTest() {
-        network.push(
-            new SignupEvent("newUser", "newPassword")
-        );
-    }
-
-    private void deleteUserTest() {
-        network.push(
-            new DeleteUserEvent("aeirya", "1234")
-        );
-        network.push(
-            new DeleteUserEvent("aeirya", "123")
-        );
+    public void networkPush(IGameEvent event) {
+        network.push(event);
     }
 }

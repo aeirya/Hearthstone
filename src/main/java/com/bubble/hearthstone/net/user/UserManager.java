@@ -2,6 +2,7 @@ package com.bubble.hearthstone.net.user;
 
 import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.net.event.events.LoginEvent;
+import com.bubble.hearthstone.net.event.events.LogoutEvent;
 import com.bubble.hearthstone.util.log.EventLogger;
 import com.bubble.hearthstone.util.log.IEventLogger;
 import com.bubble.hearthstone.util.services.ServiceLocator;
@@ -34,7 +35,9 @@ public class UserManager {
     private void loginToGuest() {
         final String user = GUEST.getUsername();
         if (!exists(user)) signup(user, "");
+        
         login(GUEST);
+        logger.success("logged in as guest");
     }
 
     private boolean exists(String username) {
@@ -65,6 +68,9 @@ public class UserManager {
         if (!exists(username)) {
             users.put(username, new User(username, password));
             createUserFile(username, password);
+            if (current != null && ! current.equals(GUEST)) {
+                gameManager.networkPush(new LogoutEvent(current.getUsername()));
+            }
             gameManager.networkPush(
                 new LoginEvent(username, password)
             );
@@ -105,7 +111,8 @@ public class UserManager {
         return false;
     }
 
-    private void logout() {
+    public void logout() {
+        logger.error("logged out");
         loginToGuest();
     }
 
