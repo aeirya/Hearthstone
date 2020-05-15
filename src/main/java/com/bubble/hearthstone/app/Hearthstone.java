@@ -43,6 +43,7 @@ public class Hearthstone implements Runnable {
     
     public static void quit() {
         quit = true;
+        System.exit(0);
     }
     
     private class Initializer {

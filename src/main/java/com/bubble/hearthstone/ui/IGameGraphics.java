@@ -8,4 +8,5 @@ public interface IGameGraphics extends Updatable {
      *  use LWJGL 3
      */    
     void message(String message);
+    void error(String message);
 }
