@@ -1,28 +1,21 @@
 package com.bubble.hearthstone.input;
 
+import com.bubble.hearthstone.controller.GameManager;
+import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.ui.IGameGraphics;
+import com.bubble.hearthstone.ui.cli.CliMenu;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
-import com.bubble.hearthstone.controller.GameManager;
-import com.bubble.hearthstone.net.event.IGameEvent;
-import com.bubble.hearthstone.net.event.events.IdleEvent;
-import com.bubble.hearthstone.ui.IGameGraphics;
-import com.bubble.hearthstone.ui.IMenu;
-import com.bubble.hearthstone.ui.cli.CliLoginMenu;
-import com.bubble.hearthstone.ui.cli.CliMenu;
-import com.bubble.hearthstone.ui.cli.ICliInputParser;
-import com.bubble.hearthstone.util.services.ServiceLocator;
+import java.util.function.Supplier;
 
 public class CliInput implements IInput {
     
     private final CliInputParser inputParser;
     private final GameManager manager;
     private final IGameGraphics graphics;
-    // private ICliInputParser inputParser;
 
     //todo: replace manager by an event handler
     public CliInput(GameManager manager, IGameGraphics graphics) {
@@ -40,58 +33,45 @@ public class CliInput implements IInput {
         while (scanner.hasNext()) {
             final String line = scanner.nextLine();
             final IGameEvent e = inputParser.parse(line);
-            this.handleEvent(e);
+            if (e != null) this.handleEvent(e);
+            else graphics.error("unacceptable input! write \"help\" for help");
         }   
         scanner.close();
     }
-
+    
     private void handleEvent(IGameEvent e) {
-        if (e != null) manager.networkPush(e);
+        if (e == null) return;
+        manager.handleEvent(e);
     }
-
 
     private class CliInputParser {
         
-
-        private Map<String, EnumCommands> mapper;
-
-        void setMapper(Map<String, EnumCommands> mapper) {
-            this.mapper = mapper;
+        private Map<String, ICommand> getMapper() {
+            return ((CliMenu)(graphics.getCurrentMenu())).getMapper();
         }
 
         IGameEvent parse(String input) {
+            final LinkedList<String> list = split(input);
+            return eventSupplier(list).get();
+        }
+        
+        private LinkedList<String> split(String input) {
             final List <String> split = Arrays.asList(input.split(" "));
-            final LinkedList<String> list = new LinkedList<>(split);
+            return new LinkedList<>(split);
+        }
+        
+        private Supplier<IGameEvent> eventSupplier(LinkedList<String> list) {
             final String key = list.removeFirst();
-            final ICommand command = getCommand(key);
-            if (command == null) return new IdleEvent();
+            final ICommand command = toCommand(key);
+            if (command == null) {
+                return () -> null;
+            }
             final String[] args = list.toArray(new String[0]);
-            return command.toEvent(args);
+            return () -> command.toEvent(args);
         }
 
-        private EnumCommands getCommand(String text) {
-            setMapper(((CliLoginMenu)graphics.getCurrentMenu()).getMapper());
-            final EnumCommands command = mapper.getOrDefault(text, null);
-            if (command == null) graphics.error("unacceptable input! write \"help\" for help");
-            // if (command == EnumCommands.HELP) printHelp();
-            if (command == EnumCommands.LIST) listPlayers();
-            return command;
-        }
-
-        void printHelp() {
-            final StringBuilder builder = new StringBuilder();
-            mapper.forEach((k,v) -> builder.append(
-                "\n" + "[" + k + "]" + " : " + v.getDescription())
-                );
-            graphics.message(builder.toString());
-        }
-
-        void listPlayers() {
-            final StringBuilder builder = new StringBuilder();
-            ServiceLocator.getResources().getUsers().keySet().forEach(
-                k -> builder.append("\n" + k)
-            );
-            graphics.message(builder.toString());
+        private ICommand toCommand(String text) {
+            return getMapper().getOrDefault(text, null);
         }
     }
 }

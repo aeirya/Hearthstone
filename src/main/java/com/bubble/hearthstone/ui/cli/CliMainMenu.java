@@ -1,15 +1,20 @@
 package com.bubble.hearthstone.ui.cli;
 
-import com.bubble.hearthstone.ui.Cli;
-import com.bubble.hearthstone.ui.IGameGraphics;
+import com.bubble.hearthstone.input.EnumCommands;
 
 public class CliMainMenu extends CliMenu {
 
-    private IGameGraphics graphics;
-
-    @Override
-    public void printCommands() {
-        //
+    public CliMainMenu() {
+        this.menuCommands = new CliMainMenuCommnads();
     }
-    
+
+    private final class CliMainMenuCommnads extends MenuCommands {
+        CliMainMenuCommnads() {
+            super();
+            mapper.put("out", EnumCommands.LOGOUT);
+            mapper.put("store", EnumCommands.SHOP);
+            mapper.put("help", EnumCommands.HELP);
+            mapper.put("quit", EnumCommands.QUIT);
+        }
+    }
 }
