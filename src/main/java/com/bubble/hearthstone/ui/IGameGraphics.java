@@ -11,4 +11,5 @@ public interface IGameGraphics extends Updatable {
     void error(String message);
 
     void lunch(MenuType menu);
+	void showHelp();
 }

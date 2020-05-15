@@ -78,4 +78,8 @@ public class GameManager {
     public UserManager getUserManager() {
         return userManager;
     }
+
+    public IGameGraphics getGraphics() {
+        return graphics;
+    }
 }

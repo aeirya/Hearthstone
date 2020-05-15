@@ -6,6 +6,7 @@ import com.bubble.hearthstone.app.Hearthstone;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
 import com.bubble.hearthstone.net.event.events.DeleteUserEvent;
+import com.bubble.hearthstone.net.event.events.HelpEvent;
 import com.bubble.hearthstone.net.event.events.IdleEvent;
 import com.bubble.hearthstone.net.event.events.LoginEvent;
 import com.bubble.hearthstone.net.event.events.LogoutEvent;
@@ -59,7 +60,7 @@ public enum EnumCommands implements ICommand {
     },
     HELP {
         public IGameEvent toEvent(String... args) {
-            return new IdleEvent();
+            return new HelpEvent();
         }
 
         public String getDescription() {

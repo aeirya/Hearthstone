@@ -134,4 +134,10 @@ public class SwingGraphics implements IGameGraphics {
             return null;
         }
     }
+
+    @Override
+    public void showHelp() {
+        // TODO Auto-generated method stub
+
+    }
 }
