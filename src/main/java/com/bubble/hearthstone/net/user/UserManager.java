@@ -3,12 +3,14 @@ package com.bubble.hearthstone.net.user;
 import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.net.event.events.LoginEvent;
 import com.bubble.hearthstone.net.event.events.LogoutEvent;
+import com.bubble.hearthstone.ui.MenuType;
 import com.bubble.hearthstone.util.log.EventLogger;
 import com.bubble.hearthstone.util.log.IEventLogger;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.Map;
 
 public class UserManager {
@@ -59,7 +61,11 @@ public class UserManager {
 
     private void login(User user) {
         current = user;
-        if (! user.equals(GUEST)) save = SaveManager.loadSave(user);
+        if (! user.equals(GUEST)) {
+            save = SaveManager.loadSave(user);
+
+            gameManager.getGraphics().lunch(MenuType.MAIN);
+        }
     }
 
     public boolean signup(String username, String password) {
@@ -111,11 +117,16 @@ public class UserManager {
 
     public void logout() {
         logger.error("logged out");
+        gameManager.getGraphics().lunch(MenuType.LOGIN);
         loginToGuest();
     }
 
     public User getUser() {
         return current;
+    }
+
+    public Collection<User> getUsers() {
+        return users.values();
     }
 
     //TODO: move texts here

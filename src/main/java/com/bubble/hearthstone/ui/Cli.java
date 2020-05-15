@@ -2,7 +2,9 @@ package com.bubble.hearthstone.ui;
 
 import java.lang.reflect.InvocationTargetException;
 
+import com.bubble.hearthstone.ui.cli.CliLoginMenu;
 import com.bubble.hearthstone.ui.cli.CliMainMenu;
+import com.bubble.hearthstone.ui.cli.CliMenu;
 import com.bubble.hearthstone.util.log.GameLogger;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
@@ -10,10 +12,12 @@ public class Cli implements IGameGraphics {
 
     private final GameLogger logger;
     private final MenuLuncher luncher;
+    private CliMenu currentMenu;
 
     public Cli() {
         logger = ServiceLocator.getLogger();
         luncher = new CliMenuLuncher();
+        this.lunch(MenuType.LOGIN);
     }
 
     public void update() {
@@ -32,6 +36,10 @@ public class Cli implements IGameGraphics {
         luncher.lunch(menu);
     }
 
+    public void load(CliMenu menu) {
+        this.currentMenu = menu;
+    }
+
     private final class CliMenuLuncher extends MenuLuncher {
 
         CliMenuLuncher() {
@@ -39,8 +47,10 @@ public class Cli implements IGameGraphics {
             init();
         }
 
+        //hey, don't forget to add all your menus here!
         private void init() {
             mapper.put(MenuType.MAIN, CliMainMenu.class);
+            mapper.put(MenuType.LOGIN, CliLoginMenu.class);
         }
 
         public void lunch(Class<? extends IMenu> clazz) {
@@ -61,5 +71,15 @@ public class Cli implements IGameGraphics {
             }
             return null;
         }
-    }   
+    }
+
+    @Override
+    public void showHelp() {
+        currentMenu.printCommands();
+    }
+
+    @Override
+    public IMenu getCurrentMenu() {
+        return currentMenu;
+    }
 }

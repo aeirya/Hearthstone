@@ -6,10 +6,11 @@ import com.bubble.hearthstone.app.Hearthstone;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
 import com.bubble.hearthstone.net.event.events.DeleteUserEvent;
-import com.bubble.hearthstone.net.event.events.IdleEvent;
+import com.bubble.hearthstone.net.event.events.HelpEvent;
 import com.bubble.hearthstone.net.event.events.LoginEvent;
 import com.bubble.hearthstone.net.event.events.LogoutEvent;
 import com.bubble.hearthstone.net.event.events.SignupEvent;
+import com.bubble.hearthstone.net.event.events.login.ListPlayerEvent;
 import com.bubble.hearthstone.util.log.GameLogger;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
@@ -59,7 +60,7 @@ public enum EnumCommands implements ICommand {
     },
     HELP {
         public IGameEvent toEvent(String... args) {
-            return new IdleEvent();
+            return new HelpEvent();
         }
 
         public String getDescription() {
@@ -68,7 +69,7 @@ public enum EnumCommands implements ICommand {
     },
     LIST {
         public IGameEvent toEvent(String... args) {
-            return new IdleEvent();
+            return new ListPlayerEvent();
         }
 
         public String getDescription() {
@@ -94,6 +95,21 @@ public enum EnumCommands implements ICommand {
         public String getDescription() {
             return "don't you dare write that :(";
         }
+    },
+    SHOP {
+
+        @Override
+        public IGameEvent toEvent(String... args) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public String getDescription() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+        
     };
 
     private static final GameLogger logger = ServiceLocator.getLogger();

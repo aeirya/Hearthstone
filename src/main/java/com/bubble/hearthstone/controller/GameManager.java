@@ -6,6 +6,7 @@ import com.bubble.hearthstone.net.event.EventHandler;
 import com.bubble.hearthstone.net.event.GameEventHandler;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
+import com.bubble.hearthstone.net.event.events.IClientEvent;
 import com.bubble.hearthstone.net.user.UserManager;
 import com.bubble.hearthstone.ui.IGameGraphics;
 import com.bubble.hearthstone.ui.MenuType;
@@ -58,6 +59,11 @@ public class GameManager {
         eventHandler.receive(event);
     }
 
+    public void handleEvent(IGameEvent e) {
+        if (e instanceof IClientEvent) clientPush(e);
+        else networkPush(e);
+    }
+
     public void networkPush(IGameEvent event) {
         network.push(event);
     }
@@ -77,5 +83,9 @@ public class GameManager {
     //The part I really hate: getter, setters
     public UserManager getUserManager() {
         return userManager;
+    }
+
+    public IGameGraphics getGraphics() {
+        return graphics;
     }
 }
