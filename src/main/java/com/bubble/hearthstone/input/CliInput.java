@@ -10,6 +10,7 @@ import java.util.Scanner;
 import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.ui.IGameGraphics;
+import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class CliInput implements IInput {
     
@@ -48,10 +49,11 @@ public class CliInput implements IInput {
 
         CliInputParser() {
             mapper = new LinkedHashMap<>();
-            mapper.put("reg" ,EnumCommands.SIGNUP);
             mapper.put("login", EnumCommands.LOGIN);
+            mapper.put("reg" ,EnumCommands.SIGNUP);
             mapper.put("del", EnumCommands.DELETE_USER);
-            mapper.put("logout", EnumCommands.LOGOUT);
+            mapper.put("ls", EnumCommands.LIST);
+            mapper.put("out", EnumCommands.LOGOUT);
             mapper.put("help", EnumCommands.HELP);
         }
 
@@ -67,6 +69,7 @@ public class CliInput implements IInput {
         private EnumCommands getCommand(String text) {
             final EnumCommands command = mapper.getOrDefault(text, EnumCommands.HELP);
             if (command == EnumCommands.HELP) printHelp();
+            if (command == EnumCommands.LIST) listPlayers();
             return command;
         }
 
@@ -75,6 +78,14 @@ public class CliInput implements IInput {
             mapper.forEach((k,v) -> builder.append(
                 "\n" + "[" + k + "]" + " : " + v.getDescription())
                 );
+            graphics.message(builder.toString());
+        }
+
+        void listPlayers() {
+            final StringBuilder builder = new StringBuilder();
+            ServiceLocator.getResources().getUsers().keySet().forEach(
+                k -> builder.append("\n" + k)
+            );
             graphics.message(builder.toString());
         }
     }

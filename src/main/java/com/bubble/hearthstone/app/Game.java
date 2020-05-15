@@ -16,8 +16,8 @@ public class Game implements IGame {
     private final IInput input;
     
     Game(GraphicsMode graphicsMode) {
-        manager = new GameManager();
         graphics = initiateGraphics(graphicsMode);
+        manager = new GameManager(graphics);
         input = new CliInput(manager, graphics);
     }
 

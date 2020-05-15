@@ -61,6 +61,15 @@ public enum EnumCommands implements ICommand {
         public String getDescription() {
             return "prints help";
         }
+    },
+    LIST {
+        public IGameEvent toEvent(String... args) {
+            return new IdleEvent();
+        }
+
+        public String getDescription() {
+            return "lists usernames";
+        }
     };
 
     private static final GameLogger logger = ServiceLocator.getLogger();

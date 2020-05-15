@@ -7,6 +7,7 @@ import com.bubble.hearthstone.net.event.GameEventHandler;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
 import com.bubble.hearthstone.net.user.UserManager;
+import com.bubble.hearthstone.ui.IGameGraphics;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
 //will probably connect interfaces with event handler..
@@ -15,11 +16,13 @@ public class GameManager {
     private final UserManager userManager;
     private final EventHandler eventHandler;
     protected final INetworkEventQueue network;
+    private final IGameGraphics graphics;
 
-    public GameManager() {
+    public GameManager(IGameGraphics graphics) {
         userManager = new UserManager(this);
         eventHandler = new GameEventHandler(this, userManager).start();
         network = new DummyNetworkEventQueue();
+        this.graphics = graphics; //not used yet
     }
 
     public boolean login(String username, String password) {
@@ -56,5 +59,13 @@ public class GameManager {
 
     public void networkPush(IGameEvent event) {
         network.push(event);
+    }
+
+    public void clientPush(IGameEvent event) {
+        eventHandler.receive(event);
+    }
+
+    public void message(String message) {
+        graphics.message(message);
     }
 }
