@@ -59,6 +59,7 @@ public class GameManager {
         eventHandler.receive(event);
     }
 
+    /** pushes event to the proper event queue */
     public void handleEvent(IGameEvent e) {
         if (e instanceof IClientEvent) clientPush(e);
         else networkPush(e);

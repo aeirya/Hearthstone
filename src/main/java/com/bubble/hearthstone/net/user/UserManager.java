@@ -3,7 +3,6 @@ package com.bubble.hearthstone.net.user;
 import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.net.event.events.LoginEvent;
 import com.bubble.hearthstone.net.event.events.LogoutEvent;
-import com.bubble.hearthstone.ui.MenuType;
 import com.bubble.hearthstone.util.log.EventLogger;
 import com.bubble.hearthstone.util.log.IEventLogger;
 import com.bubble.hearthstone.util.services.ServiceLocator;
@@ -63,8 +62,7 @@ public class UserManager {
         current = user;
         if (! user.equals(GUEST)) {
             save = SaveManager.loadSave(user);
-
-            gameManager.getGraphics().lunch(MenuType.MAIN);
+            ServiceLocator.getNetworkService().login(user);
         }
     }
 
@@ -117,7 +115,6 @@ public class UserManager {
 
     public void logout() {
         logger.error("logged out");
-        gameManager.getGraphics().lunch(MenuType.LOGIN);
         loginToGuest();
     }
 
@@ -129,7 +126,11 @@ public class UserManager {
         return users.values();
     }
 
-    //TODO: move texts here
+    public UserSave getSave() {
+        return save;
+    }
+
+    //option: move texts here
     // private enum LogError 
     //     WRONG_PASSWORD,
     //     CANT_DELETE,

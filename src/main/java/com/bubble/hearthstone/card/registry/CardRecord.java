@@ -9,12 +9,13 @@ import com.bubble.hearthstone.card.Ability.AbilityArgument;
 import com.bubble.hearthstone.card.Ability.AbilityType;
 import com.bubble.hearthstone.interfaces.Cloneable;
 import com.bubble.hearthstone.model.hero.Hero.HeroClass;
+import com.bubble.hearthstone.model.shop.Purchasable;
 import com.bubble.hearthstone.util.serialize.GsonSerializer;
 
 /** an editable version of card, stored in the registry for using */
-public class CardRecord extends Card implements Cloneable <Card> {
+public class CardRecord extends Card implements Cloneable <Card> , Purchasable {
 
-    public Card copy() {
+    public CardRecord copy() {
         return new CardFactory().build(name, manaCost, type, heroClass, rarity, abilities, description);                      
     }
 
@@ -64,11 +65,16 @@ public class CardRecord extends Card implements Cloneable <Card> {
 
     public String makeRecord() {
         return 
-            name + "\t" + 
+            name + "\t" + "\t" + "\t" +
             manaCost + "\t" + 
             type + "\t" + 
             heroClass + "\t" + 
             rarity + "\t" + 
             description;
+    }
+
+    // gonna add pricing later
+    public int getPrice() {
+        return 1;
     }
 }

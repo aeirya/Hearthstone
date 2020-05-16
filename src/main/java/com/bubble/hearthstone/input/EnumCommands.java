@@ -132,7 +132,7 @@ public enum EnumCommands implements ICommand {
             return new ActionEvent(
                 g -> 
                     g.message(
-                        "current user: " + g.getUserManager().getUser().getUsername()
+                        g.getUserManager().getSave().getPrintedVersion()
                     )
             );
         }

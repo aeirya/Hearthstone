@@ -1,5 +1,6 @@
 package com.bubble.hearthstone.util.services;
 
+import com.bubble.hearthstone.net.INetworkService;
 import com.bubble.hearthstone.util.log.GameLogger;
 import com.bubble.hearthstone.util.resource.ResourceManager;
 
@@ -7,6 +8,7 @@ public class ServiceLocator {
     
     private GameLogger logger;
     private ResourceManager resourceManager;
+    private INetworkService networkService;
 
     private static class InstanceHolder {
         private static final ServiceLocator instance = new ServiceLocator();
@@ -35,4 +37,13 @@ public class ServiceLocator {
     public static ResourceManager getResources() {
         return getInstance().resourceManager;
     }
+
+    public ServiceLocator provideNetworkService(INetworkService networkService) {
+        this.networkService = networkService;
+        return this;
+    }
+    
+    public static INetworkService getNetworkService() {
+        return getInstance().networkService;
+    } 
 }

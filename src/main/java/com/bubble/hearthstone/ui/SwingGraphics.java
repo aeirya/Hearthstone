@@ -55,7 +55,7 @@ public class SwingGraphics implements IGameGraphics {
     }
 
     public void update() {
-        currentPanel.update(null); // TODO: pass drawables here
+        currentPanel.update(null); //pass drawables here
         repaint();
     }
 
@@ -77,8 +77,7 @@ public class SwingGraphics implements IGameGraphics {
 
     @Override
     public void error(String message) {
-        // TODO Auto-generated method stub
-
+        //
     }
     /////////////
 
@@ -137,8 +136,7 @@ public class SwingGraphics implements IGameGraphics {
 
     @Override
     public void showHelp() {
-        // TODO Auto-generated method stub
-
+        //
     }
 
     @Override

@@ -25,6 +25,10 @@ public class User {
         return username;
     }
 
+    public String toString() {
+        return this.getUsername();
+    }
+
     public String getEncodedPassword() {
         return new UserEncodder().getEncoddedPassword();
     }

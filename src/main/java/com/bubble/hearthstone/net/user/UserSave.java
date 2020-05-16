@@ -11,12 +11,24 @@ public class UserSave implements Serializable {
     
     public UserSave(User user) {
         this.user = user;
+        this.deck = new Deck(user.getUsername());
         wallet = new Wallet();
-        deck = new Deck();
     }
     
     public void selectDeck(Deck deck) {
         this.deck = deck;
         //call event
     }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public String getPrintedVersion() {
+        return 
+            "\nusername: " + user.getUsername() + "\n" + 
+            "remaning gems: " + wallet.getGems() + "\n" +
+            "\ncurrent deck: \n" + deck.getName() + "\n" +
+            Deck.makeTable(deck);
+    }       
 }

@@ -1,6 +1,8 @@
 package com.bubble.hearthstone.app;
 
 import com.bubble.hearthstone.app.Game.GraphicsMode;
+import com.bubble.hearthstone.net.INetworkService;
+import com.bubble.hearthstone.net.NetworkService;
 import com.bubble.hearthstone.util.config.ConfigLoader;
 import com.bubble.hearthstone.util.log.ColoredGameLogger;
 import com.bubble.hearthstone.util.log.GameLogger;
@@ -33,9 +35,7 @@ public class Hearthstone implements Runnable {
         */
         final Game game = new Game(GraphicsMode.CLI);
         EventQueue.invokeLater(
-            () -> {
-                game.start();
-            }
+            game::start
             );
         while (!quit) game.update();
     }
@@ -51,7 +51,8 @@ public class Hearthstone implements Runnable {
             final GameLogger logger = new ColoredGameLogger();
             final Properties resourceConfig = findConfig(config);
             final ResourceManager resourceManager = new ResourceManager(resourceConfig);
-            initiateServiceLocator(logger, resourceManager);   
+            final INetworkService networkService = new NetworkService(resourceManager);
+            initiateServiceLocator(logger, resourceManager, networkService);   
         }
 
         private Properties findConfig(String path) {
@@ -60,10 +61,11 @@ public class Hearthstone implements Runnable {
             );
         }
     
-        private void initiateServiceLocator(GameLogger logger, ResourceManager resourceManager) {
+        private void initiateServiceLocator(GameLogger logger, ResourceManager resourceManager, INetworkService networkService) {
             ServiceLocator.getInstance()
                 .provideLogger(logger)
-                .provideResources(resourceManager);
+                .provideResources(resourceManager)
+                .provideNetworkService(networkService);
         }
     }
 }

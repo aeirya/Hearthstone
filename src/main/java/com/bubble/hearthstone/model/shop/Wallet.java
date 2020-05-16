@@ -19,4 +19,8 @@ public class Wallet {
         gem += value;
         //update collections
     }
+
+    public String getGems() {
+        return String.valueOf(gem);
+    }
 }

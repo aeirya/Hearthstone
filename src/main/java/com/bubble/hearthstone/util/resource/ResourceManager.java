@@ -18,7 +18,7 @@ public class ResourceManager {
 
     private final Map<String, CardRecord> cards;
     private final Map<String, User> users;
-    
+
     // private final Map<String, Image> images
     // phase2: load images here instead?
 

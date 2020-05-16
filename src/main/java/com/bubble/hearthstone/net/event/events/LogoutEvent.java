@@ -2,6 +2,7 @@ package com.bubble.hearthstone.net.event.events;
 
 import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.ui.MenuType;
 
 public class LogoutEvent implements IGameEvent {
 
@@ -13,6 +14,7 @@ public class LogoutEvent implements IGameEvent {
 
     @Override
     public void process(GameManager manager) {
+        manager.lunch(MenuType.LOGIN);
         manager.logout();
     }
     
