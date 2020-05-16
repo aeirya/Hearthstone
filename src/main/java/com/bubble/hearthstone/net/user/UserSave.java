@@ -1,6 +1,9 @@
 package com.bubble.hearthstone.net.user;
 
+import java.util.Collection;
+
 import com.bubble.hearthstone.card.deck.Deck;
+import com.bubble.hearthstone.model.shop.Purchasable;
 import com.bubble.hearthstone.model.shop.Wallet;
 import com.bubble.hearthstone.util.serialize.Serializable;
 
@@ -22,6 +25,11 @@ public class UserSave implements Serializable {
 
     public Wallet getWallet() {
         return wallet;
+    }
+
+    public Collection<Purchasable> getCollection() {
+        return deck; 
+        //returning deck for now, will have more options later
     }
 
     public String getPrintedVersion() {

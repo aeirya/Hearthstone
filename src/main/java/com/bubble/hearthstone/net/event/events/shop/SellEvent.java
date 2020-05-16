@@ -7,6 +7,6 @@ public class SellEvent extends ShopEvent {
     
     public SellEvent(Purchasable item, User user) {
         this.consumer = g ->
-            getShop().sell(item, getWallet(user));
+            getShop().sell(item, getWallet(user), getUserCollection(user));
     }
 }

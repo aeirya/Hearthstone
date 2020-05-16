@@ -9,6 +9,6 @@ public class BuyEvent extends ShopEvent {
     //or even bettter, an IPurchaser interface
     public BuyEvent(Purchasable item, User user) {
         this.consumer = g ->
-            getShop().purchase(item, getWallet(user));
+            getShop().purchase(item, getWallet(user), getUserCollection(user) );
     }
 }

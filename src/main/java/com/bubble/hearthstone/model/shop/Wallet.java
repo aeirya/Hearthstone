@@ -3,14 +3,16 @@ package com.bubble.hearthstone.model.shop;
 public class Wallet {
     private int gem = 0;
     
-    public void purchase(Purchasable item) {
+    public boolean purchase(Purchasable item) {
         final int value = item.getPrice();
         if (gem >= value) {
             gem -= value;
             //update collections
+            return true;
         }
         else {
             //purchase could not be made
+            return false;
         }
     }
 

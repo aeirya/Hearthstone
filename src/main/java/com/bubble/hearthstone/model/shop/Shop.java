@@ -24,12 +24,14 @@ public class Shop {
             ));
     }
 
-    public void purchase(Purchasable item, Wallet wallet) {
-        wallet.purchase(item);
+    public void purchase(Purchasable item, Wallet wallet, Collection<Purchasable> collection) {
+        final boolean result = wallet.purchase(item);
+        if (result) collection.add(item);
     }
 
-    public void sell(Purchasable item, Wallet wallet) {
+    public void sell(Purchasable item, Wallet wallet, Collection<Purchasable> collection) {
         wallet.sell(item);
+        collection.remove(item);
     }
 
     public CardRegistry getCardRegistry() {
