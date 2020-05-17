@@ -21,9 +21,9 @@ public class GameManager {
     private final IGameGraphics graphics;
 
     public GameManager(IGameGraphics graphics) {
+        network = new DummyNetworkEventQueue();
         userManager = new UserManager(this);
         eventHandler = new GameEventHandler(this, userManager).start();
-        network = new DummyNetworkEventQueue();
         this.graphics = graphics; //not used yet
     }
 

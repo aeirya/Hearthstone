@@ -69,12 +69,11 @@ public class Deck implements Collection<Purchasable> {
         return builder.toString();
     }
 
-    private static final CardRecord sampleCard = new CardFactory().build("hi", 1, CardType.MINION, HeroClass.MAGE,
+    public static final CardRecord sampleCard = new CardFactory().build("hi", 1, CardType.MINION, HeroClass.MAGE,
             CardRarity.LEGENDARY, List.of(new AbilityDamage(AbilityType.DRAW, new AbilityArgument())), "HIHSDHDHS");
     private static final CardRecord sampleCard2 = sampleCard.copy().setDescription("this is another card")
             .setHeroClass(HeroClass.ROUGE).setName("Black mage");
     protected static final Deck DEFAULT = new Deck("starter", Arrays.asList(sampleCard, sampleCard2));
-
     
     //Collection Interface
 

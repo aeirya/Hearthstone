@@ -63,11 +63,12 @@ public class ResourceManager {
         return users;
     }
     
-    public String getResource(String resource) {
-        return DATA_PATH + resourceConfig.getProperty(resource);
-    }
-
     public String getLogPath() {
         return DATA_PATH + resourceConfig.getProperty("logs");
     }
+    
+    public String getResource(String resource) {
+        return DATA_PATH + resourceConfig.getProperty(resource);
+    }
+    //start using this in ur code instead
 } 

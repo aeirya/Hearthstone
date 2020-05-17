@@ -15,7 +15,7 @@ public class UserSave implements Serializable {
     public UserSave(User user) {
         this.user = user;
         this.deck = new Deck(user.getUsername());
-        wallet = new Wallet();
+        this.wallet = new Wallet();
     }
     
     public void selectDeck(Deck deck) {

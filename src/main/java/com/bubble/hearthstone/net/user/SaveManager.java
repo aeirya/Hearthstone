@@ -19,7 +19,7 @@ public class SaveManager {
 
     public static void createSaveFile(User user) {
         new MyFileWriter(
-            getSavePath(user)
+            getSavePath(user) ,  false
             ).write(
                 new GsonSerializer().serialize(new UserSave(user), UserSave.class)
             );
@@ -31,6 +31,6 @@ public class SaveManager {
     }
             
     public static void createUserFile(User user) {
-        new MyFileWriter(user.getFilePath()).write(new UserSerializer().serialize(user));
+        new MyFileWriter(user.getFilePath(), false).write(new UserSerializer().serialize(user));
     }
 }

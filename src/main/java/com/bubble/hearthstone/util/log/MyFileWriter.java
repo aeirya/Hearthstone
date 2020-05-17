@@ -9,15 +9,21 @@ import java.io.PrintWriter;
 public class MyFileWriter {
     
     private String path;
+    private final boolean append;
 
     public MyFileWriter() {
         this("");
     }
 
     public MyFileWriter(String path) {
-        this.path = path;
+        this(path, true);
     }
 
+    public MyFileWriter(String path, boolean append) {
+        this.path = path;
+        this.append = append;
+    }
+    
     public MyFileWriter setPath(String path) {
         this.path = path;
         return this;
@@ -26,7 +32,7 @@ public class MyFileWriter {
     /** appends text to the end of string */
     public void write(String line) {
         try (
-            final FileWriter fw = new FileWriter(path, true); 
+            final FileWriter fw = new FileWriter(path, append); 
             final BufferedWriter bw = new BufferedWriter(fw);
             final PrintWriter pw = new PrintWriter(bw)
         ) {

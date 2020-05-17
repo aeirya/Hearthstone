@@ -8,6 +8,7 @@ import com.bubble.hearthstone.model.shop.Shop;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.MessageEvent;
 import com.bubble.hearthstone.net.event.events.shop.BuyEvent;
+import com.bubble.hearthstone.net.event.events.shop.SellEvent;
 import com.bubble.hearthstone.net.user.User;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
@@ -73,8 +74,12 @@ public class CliShopMenu extends CliMenu {
         SELL {
             @Override
             public IGameEvent toEvent(String... args) {
-                // TODO Auto-generated method stub
-                return null;
+                if (args.length > 0) 
+                    return new SellEvent(
+                        getPurchasable(args[0]) , getMe()
+                        );
+                else return null;
+                    
             }
 
             @Override

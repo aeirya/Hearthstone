@@ -1,5 +1,6 @@
 package com.bubble.hearthstone.card.registry;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import com.bubble.hearthstone.card.Ability;
@@ -11,16 +12,17 @@ import com.bubble.hearthstone.interfaces.Cloneable;
 import com.bubble.hearthstone.model.hero.Hero.HeroClass;
 import com.bubble.hearthstone.model.shop.Purchasable;
 import com.bubble.hearthstone.util.serialize.GsonSerializer;
+import com.google.gson.InstanceCreator;
 
 /** an editable version of card, stored in the registry for using */
-public class CardRecord extends Card implements Cloneable <Card> , Purchasable {
+public class CardRecord extends Card implements Cloneable<Card>, Purchasable, InstanceCreator<Purchasable> {
 
     public CardRecord copy() {
-        return new CardFactory().build(name, manaCost, type, heroClass, rarity, abilities, description);                      
+        return new CardFactory().build(name, manaCost, type, heroClass, rarity, abilities, description);
     }
 
     public CardRecord setName(String name) {
-        this.name = name; 
+        this.name = name;
         return this;
     }
 
@@ -55,7 +57,8 @@ public class CardRecord extends Card implements Cloneable <Card> , Purchasable {
     }
 
     public String toString() {
-        GsonSerializer gson = new GsonSerializer(Ability.class, new AbilityImpl(AbilityType.DRAW, new AbilityArgument()));
+        GsonSerializer gson = new GsonSerializer(Ability.class,
+                new AbilityImpl(AbilityType.DRAW, new AbilityArgument()));
         return gson.serialize(this);
     }
 
@@ -64,17 +67,17 @@ public class CardRecord extends Card implements Cloneable <Card> , Purchasable {
     }
 
     public String makeRecord() {
-        return 
-            name + "\t" + "\t" + "\t" +
-            manaCost + "\t" + 
-            type + "\t" + 
-            heroClass + "\t" + 
-            rarity + "\t" + 
-            description;
+        return name + "\t" + "\t" + "\t" + manaCost + "\t" + type + "\t" + heroClass + "\t" + rarity + "\t"
+                + description;
     }
 
     // gonna add pricing later
     public int getPrice() {
         return 1;
+    }
+
+    @Override
+    public Purchasable createInstance(Type type) {
+        return new CardRecord();
     }
 }
