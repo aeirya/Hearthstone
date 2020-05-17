@@ -1,6 +1,7 @@
 package com.bubble.hearthstone.util.serialize;
 
 import com.google.gson.GsonBuilder;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 public class GsonSerializer implements ISerializer {
 
@@ -19,6 +20,10 @@ public class GsonSerializer implements ISerializer {
     
     public GsonBuilder registerTypeAdapter(Class<?> clazz, Object object) {
         return gson.registerTypeAdapter(clazz, object);
+    }
+
+    public <T> GsonBuilder registerTypeAdapterFactory(RuntimeTypeAdapterFactory<T> adapter) {
+        return gson.registerTypeAdapterFactory(adapter);
     }
 
     public String serialize(Object obj, Class<?> clazz) {
