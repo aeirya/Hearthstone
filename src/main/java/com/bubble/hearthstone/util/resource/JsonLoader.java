@@ -32,12 +32,12 @@ public class JsonLoader {
                 .registerSubtype(CardRecord.class)
         );
 
-        ser.registerTypeAdapterFactory(
+        ser.registerTypeAdapterFactory(     
             RuntimeTypeAdapterFactory.of(Card.class, "type")
                 .registerSubtype(Minion.class, "MINION")  
         );
-
         //to prevent the loading decks bug
+        
         return ser.deserialize(file, clazz);
     }
 }
