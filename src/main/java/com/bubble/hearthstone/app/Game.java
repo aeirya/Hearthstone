@@ -16,15 +16,15 @@ public class Game implements IGame {
     private final IInput input;
     
     Game(GraphicsMode graphicsMode) {
-        graphics = initiateGraphics(graphicsMode);
-        manager = new GameManager(graphics);
+        graphics = initiateGraphics(graphicsMode, manager);
+        manager = new GameManager();
         input = new CliInput(manager, graphics);
     }
 
-    private IGameGraphics initiateGraphics(GraphicsMode graphicsMode) {
+    private IGameGraphics initiateGraphics(GraphicsMode graphicsMode, GameManager manager) {
         if(graphicsMode == GraphicsMode.CLI) {
-            return new Cli();
-        } else return new SwingGraphics();
+            return new Cli(); //not using manager
+        } else return new SwingGraphics(manager); //passing the manager to subclasses for now..
     }
 
     void start() {
@@ -33,7 +33,7 @@ public class Game implements IGame {
 
     void update() {
         manager.update();
-        graphics.update();
+        // graphics.update();s
         Waiter.sleep();
         /*
          * player input

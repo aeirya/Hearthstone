@@ -1,5 +1,6 @@
 package com.bubble.hearthstone.ui;
 
+import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.ui.gui.panels.LoginPanel;
 import com.bubble.hearthstone.ui.gui.panels.MainMenuPanel;
 import com.bubble.hearthstone.ui.gui.panels.Panel;
@@ -15,25 +16,20 @@ import javax.swing.JOptionPane;
 public class SwingGraphics implements IGameGraphics {
 
     protected final JFrame frame;
+    private final  MenuLuncher luncher;
     private Panel currentPanel;
-    private MenuLuncher luncher;
 
-    public SwingGraphics() {
+    public SwingGraphics(GameManager manager) {
         frame = initiateFrame();
-        luncher = new SwingLuncher();
+        luncher = new SwingLuncher(manager);
+        this.lunch(MenuType.LOGIN);
     }
 
     /**
      * this is a test for
      * lunching  main menu / login menu
      */
-    public static void main(String[] args) {
-        final boolean B = false;
-        final IGameGraphics graphics = new SwingGraphics();
-        if (B) graphics.lunch(MenuType.LOGIN);
-        else graphics.lunch(MenuType.MAIN);
-    }
-
+    
     protected JFrame initiateFrame() {
         final JFrame f = new JFrame();
         f.setLayout(new BorderLayout());
@@ -87,9 +83,11 @@ public class SwingGraphics implements IGameGraphics {
     }
 
     private final class SwingLuncher extends MenuLuncher {
+        private final GameManager manager;
 
-        SwingLuncher() {
+        SwingLuncher(GameManager manager) {
             super();
+            this.manager = manager;
             init();
         }
 
@@ -116,7 +114,7 @@ public class SwingGraphics implements IGameGraphics {
 
         private Constructor<? extends IMenu> getConstructor(Class<? extends IMenu> clazz) {
             try {
-                return clazz.getConstructor(JFrame.class);
+                return clazz.getConstructor(JFrame.class, GameManager.class);
             } catch (NoSuchMethodException | SecurityException e) {
                 //
             }
@@ -125,7 +123,7 @@ public class SwingGraphics implements IGameGraphics {
 
         private IMenu construct(Constructor<? extends IMenu> c) {
             try {
-                return c.newInstance(frame);
+                return c.newInstance(frame, manager);
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                     | InvocationTargetException e) {
                 //

@@ -33,7 +33,7 @@ public class Hearthstone implements Runnable {
         /*
         * fixed bug: GameEventHandler needs to register a logger upon initializations
         */
-        final Game game = new Game(GraphicsMode.CLI);
+        final Game game = new Game(GraphicsMode.SWING);
         EventQueue.invokeLater(
             game::start
             );

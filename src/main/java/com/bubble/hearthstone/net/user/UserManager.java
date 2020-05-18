@@ -61,7 +61,8 @@ public class UserManager {
     private void login(User user) {
         current = user;
         if (! user.equals(GUEST)) {
-            save = SaveManager.loadSave(user);
+            // save = SaveManager.loadSave(user);
+            //TODO: fix load bug
             ServiceLocator.getNetworkService().login(user);
         }
     }

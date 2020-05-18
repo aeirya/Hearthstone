@@ -69,7 +69,7 @@ public class MainMenuPanel extends Panel {
         }
     }
 
-    private List<String> btnTexts = List.of("Start", "See Decks", "Profile", "Settings", "Quit");
+    private List<String> btnTexts = List.of("Start", "See Decks", "Profile", "Settings", "Logout", "Quit");
 
     private class CommandTextbox extends JTextField {
 

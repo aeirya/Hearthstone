@@ -1,7 +1,10 @@
 package com.bubble.hearthstone.ui.gui.panels;
 
+import com.bubble.hearthstone.controller.GameManager;
+import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.net.event.events.LoginEvent;
 import com.bubble.hearthstone.ui.gui.components.CustomLabel;
-
+import com.bubble.hearthstone.util.services.ServiceLocator;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -19,9 +22,11 @@ public class LoginPanel extends Panel {
 
     private final JFrame frame;
     private final CenterBox centerBox;
+    private final GameManager manager;
 
-    public LoginPanel(JFrame frame) {
+    public LoginPanel(JFrame frame, GameManager manager) {
         this.frame = frame;
+        this.manager = manager;
         pane.setPreferredSize(frame.getSize());
         pane.setBackground(new Color(20,50,45));
         centerBox = new CenterBox();
@@ -58,6 +63,12 @@ public class LoginPanel extends Panel {
             );
         }
 
+        @SuppressWarnings("all")
+        private void sendEvent(IGameEvent event) 
+        {
+            manager.handleEvent(event);
+        }
+
         private class LoginBox extends JPanel {
             
             private static final long serialVersionUID = 1L;
@@ -74,6 +85,7 @@ public class LoginPanel extends Panel {
                 quit = new JButton("quit");
                 this.setup();
                 this.setFonts();
+                this.setEvents();
             }
 
             private void setup() {
@@ -147,6 +159,18 @@ public class LoginPanel extends Panel {
                 setComponentFont(lblPassword);
                 setComponentFont(login);
                 setComponentFont(quit);
+            }
+            
+            private void setEvents() {
+                login.addActionListener(
+                    e -> {
+                        final String user = username.getText();
+                        final String pass = String.valueOf(password.getPassword());
+                        sendEvent(
+                            new LoginEvent(user, pass)
+                        );
+                    }
+                );
             }
         }
     }

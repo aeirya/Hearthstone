@@ -1,5 +1,7 @@
 package com.bubble.hearthstone.controller.event;
 
+import com.bubble.hearthstone.net.event.IGameEvent;
+
 //this is mainly a note for me 
 
 public enum GameEvent {
