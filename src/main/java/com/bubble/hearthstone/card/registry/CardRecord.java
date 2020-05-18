@@ -13,9 +13,13 @@ import com.bubble.hearthstone.model.hero.Hero.HeroClass;
 import com.bubble.hearthstone.model.shop.Purchasable;
 import com.bubble.hearthstone.util.serialize.GsonSerializer;
 import com.google.gson.InstanceCreator;
+import com.google.gson.annotations.SerializedName;
 
 /** an editable version of card, stored in the registry for using */
 public class CardRecord extends Card implements Cloneable<Card>, Purchasable, InstanceCreator<Purchasable> {
+
+    @SerializedName("type")
+    private static final String ITEM_TYPE = "card";
 
     public CardRecord copy() {
         return new CardFactory().build(name, manaCost, type, heroClass, rarity, abilities, description);
@@ -79,5 +83,6 @@ public class CardRecord extends Card implements Cloneable<Card>, Purchasable, In
     @Override
     public Purchasable createInstance(Type type) {
         return new CardRecord();
+        // return this.copy();
     }
 }

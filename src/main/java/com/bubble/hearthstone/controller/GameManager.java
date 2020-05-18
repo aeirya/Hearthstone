@@ -60,8 +60,36 @@ public class GameManager {
 
     /** pushes event to the proper event queue */
     public void handleEvent(IGameEvent e) {
-        if (e instanceof IClientEvent) clientPush(e);
-        else networkPush(e);
+
+        if (e instanceof IClientEvent) this.clientPush(e);
+        else this.networkPush(e);
+
+        //خود این کد واضحه
+        //این خوبه؟
+        // if (e instanceof IClientEvent) userManager.handle(e);
+
+
+        // map / Enumeration
+        // enum -> handler
+
+        
+
+
+        //redirect کنم دستورا رو
+        //به عاملان مخصوص خودش
+
+        
+        
+        //همین الانم همین کار رو میکنم...
+        //ولی یه لول بالاترش رو میخوام
+
+        //که 
+
+
+
+        //
+
+        // else networkPush(e);
     }
 
     public void networkPush(IGameEvent event) {
