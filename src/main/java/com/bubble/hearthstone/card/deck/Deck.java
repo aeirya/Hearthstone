@@ -9,6 +9,7 @@ import com.bubble.hearthstone.card.registry.CardFactory;
 import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.model.hero.Hero.HeroClass;
 import com.bubble.hearthstone.model.shop.Purchasable;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -146,4 +147,7 @@ public class Deck implements Collection<Purchasable> {
     public void clear() {
         cards.clear();
     }
+
+    @SerializedName("type")
+    private static final String ITEM_TYPE = "deck";
 }

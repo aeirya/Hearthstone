@@ -2,6 +2,7 @@ package com.bubble.hearthstone.card;
 
 import com.bubble.hearthstone.model.hero.Hero.HeroClass;
 import com.bubble.hearthstone.util.serialize.Serializable;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
