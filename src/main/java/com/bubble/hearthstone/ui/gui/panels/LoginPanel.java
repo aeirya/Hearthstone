@@ -21,12 +21,10 @@ import javax.swing.JTextField;
 
 public class LoginPanel extends Panel {
 
-    private final JFrame frame;
     private final CenterBox centerBox;
 
     public LoginPanel(JFrame frame) {
-        this.frame = frame;
-        pane.setPreferredSize(frame.getSize());
+        super(frame);
         pane.setBackground(new Color(20,50,45));
         centerBox = new CenterBox();
         pane.add(centerBox);

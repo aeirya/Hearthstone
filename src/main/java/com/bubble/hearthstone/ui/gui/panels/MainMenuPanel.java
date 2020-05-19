@@ -25,6 +25,7 @@ public class MainMenuPanel extends Panel {
     private JPanel centerPanel;
 
     public MainMenuPanel(final JFrame frame) {
+        super(frame);
         mapper = new MainMenuManager();
         commandTextBox = new CommandTextbox();
         setup(frame);

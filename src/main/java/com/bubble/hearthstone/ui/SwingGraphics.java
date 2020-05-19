@@ -1,9 +1,11 @@
 package com.bubble.hearthstone.ui;
 
-import com.bubble.hearthstone.controller.GameManager;
+import com.bubble.hearthstone.ui.gui.panels.DecksPanel;
 import com.bubble.hearthstone.ui.gui.panels.LoginPanel;
 import com.bubble.hearthstone.ui.gui.panels.MainMenuPanel;
 import com.bubble.hearthstone.ui.gui.panels.Panel;
+import com.bubble.hearthstone.ui.gui.panels.ShopPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -39,8 +41,8 @@ public class SwingGraphics implements IGameGraphics {
     }
 
     static Dimension getWindowSize() {
-        return new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width / 3,
-                Toolkit.getDefaultToolkit().getScreenSize().height / 2);
+        return new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width * 4 / 5,
+                Toolkit.getDefaultToolkit().getScreenSize().height * 4 /5);
     }
 
     public void load(Panel panel) {
@@ -91,6 +93,8 @@ public class SwingGraphics implements IGameGraphics {
         private void init() {
             mapper.put(MenuType.LOGIN, LoginPanel.class);
             mapper.put(MenuType.MAIN, MainMenuPanel.class);
+            mapper.put(MenuType.DECKS, DecksPanel.class);
+            mapper.put(MenuType.SHOP, ShopPanel.class);
         }
 
         private void run(IMenu menu) {
