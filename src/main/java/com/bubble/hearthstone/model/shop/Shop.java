@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.bubble.hearthstone.card.deck.Deck;
 import com.bubble.hearthstone.card.registry.CardRegistry;
+import com.bubble.hearthstone.net.user.UserInventory;
 import com.bubble.hearthstone.util.resource.ResourceManager;
 
 public class Shop {
@@ -24,12 +25,12 @@ public class Shop {
             ));
     }
 
-    public void purchase(Purchasable item, Wallet wallet, Collection<Purchasable> collection) {
+    public void purchase(Purchasable item, Wallet wallet, UserInventory collection) {
         final boolean result = wallet.purchase(item);
         if (result) collection.add(item);
     }
 
-    public void sell(Purchasable item, Wallet wallet, Collection<Purchasable> collection) {
+    public void sell(Purchasable item, Wallet wallet, UserInventory collection) {
         wallet.sell(item);
         collection.remove(item);
     }
