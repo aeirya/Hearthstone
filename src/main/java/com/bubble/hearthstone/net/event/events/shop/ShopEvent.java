@@ -1,16 +1,14 @@
 package com.bubble.hearthstone.net.event.events.shop;
 
-import java.util.Collection;
-import java.util.function.Consumer;
-
-import com.bubble.hearthstone.controller.GameManager;
-import com.bubble.hearthstone.model.shop.Purchasable;
 import com.bubble.hearthstone.model.shop.Shop;
 import com.bubble.hearthstone.model.shop.Wallet;
 import com.bubble.hearthstone.net.user.User;
+import com.bubble.hearthstone.net.user.UserInventory;
 import com.bubble.hearthstone.net.user.UserSave;
 import com.bubble.hearthstone.util.resource.ResourceManager;
 import com.bubble.hearthstone.util.services.ServiceLocator;
+import java.util.function.Consumer;
+import com.bubble.hearthstone.controller.GameManager;
 
 public abstract class ShopEvent implements IShopEvent {
 
@@ -38,7 +36,7 @@ public abstract class ShopEvent implements IShopEvent {
         return getUserSave(user).getWallet();
     }
 
-    protected Collection<Purchasable> getUserCollection(User user) {
+    protected UserInventory getUserCollection(User user) {
         return getUserSave(user).getCollection();
     }
 }

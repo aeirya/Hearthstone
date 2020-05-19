@@ -8,17 +8,12 @@ import com.bubble.hearthstone.card.abilities.AbilityDamage;
 import com.bubble.hearthstone.card.registry.CardFactory;
 import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.model.hero.Hero.HeroClass;
-import com.bubble.hearthstone.model.shop.Purchasable;
-import com.google.gson.annotations.SerializedName;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
-public class Deck implements Collection<Purchasable> {
+public class Deck {
     private final String name; // will be implement a naming system later
     private final Collection<CardRecord> cards;
 
@@ -78,76 +73,4 @@ public class Deck implements Collection<Purchasable> {
     
     //Collection Interface
 
-    @Override
-    public int size() {
-        return cards.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return cards.isEmpty();
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        return cards.contains(o);
-    }
-
-    @Override
-    public Iterator<Purchasable> iterator() {
-        final List<Purchasable> list = new ArrayList<>();
-        cards.forEach(list::add); //types not checked
-        return list.iterator();
-    }
-
-    @Override
-    public Object[] toArray() {
-        return cards.toArray();
-    }
-
-    @Override
-    public <T> T[] toArray(T[] a) {
-        return cards.toArray(a);
-    }
-
-    @Override
-    public boolean add(Purchasable e) {
-        if (e instanceof CardRecord) return cards.add((CardRecord)e);
-        else return false;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return cards.remove(o);
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return cards.containsAll(c);
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends Purchasable> c) {
-        final Collection<CardRecord> collection = new LinkedList<>();
-        c.forEach(card -> collection.add((CardRecord) card)); //supressing warnings
-        return cards.addAll(collection);
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return cards.removeAll(c);
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return cards.retainAll(c);
-    }
-
-    @Override
-    public void clear() {
-        cards.clear();
-    }
-
-    @SerializedName("type")
-    private static final String ITEM_TYPE = "deck";
 }
