@@ -101,7 +101,7 @@ public class GameManager {
     }
 
     public void message(String message) {
-         .message(message);
+        graphics.message(message);
     }
 
     public void lunch(MenuType menu) {

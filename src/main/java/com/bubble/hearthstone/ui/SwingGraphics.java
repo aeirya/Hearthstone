@@ -19,10 +19,9 @@ public class SwingGraphics implements IGameGraphics {
     private final  MenuLuncher luncher;
     private Panel currentPanel;
 
-    public SwingGraphics(GameManager manager) {
+    public SwingGraphics() {
         frame = initiateFrame();
-        luncher = new SwingLuncher(manager);
-        this.lunch(MenuType.LOGIN);
+        luncher = new SwingLuncher();
     }
 
     /**
@@ -83,11 +82,9 @@ public class SwingGraphics implements IGameGraphics {
     }
 
     private final class SwingLuncher extends MenuLuncher {
-        private final GameManager manager;
 
-        SwingLuncher(GameManager manager) {
+        SwingLuncher() {
             super();
-            this.manager = manager;
             init();
         }
 
@@ -114,7 +111,7 @@ public class SwingGraphics implements IGameGraphics {
 
         private Constructor<? extends IMenu> getConstructor(Class<? extends IMenu> clazz) {
             try {
-                return clazz.getConstructor(JFrame.class, GameManager.class);
+                return clazz.getConstructor(JFrame.class);
             } catch (NoSuchMethodException | SecurityException e) {
                 //
             }
@@ -123,7 +120,7 @@ public class SwingGraphics implements IGameGraphics {
 
         private IMenu construct(Constructor<? extends IMenu> c) {
             try {
-                return c.newInstance(frame, manager);
+                return c.newInstance(frame);
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                     | InvocationTargetException e) {
                 //

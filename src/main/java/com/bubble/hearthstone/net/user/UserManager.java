@@ -1,8 +1,10 @@
 package com.bubble.hearthstone.net.user;
 
 import com.bubble.hearthstone.controller.GameManager;
+import com.bubble.hearthstone.net.event.events.ChangeMenuEvent;
 import com.bubble.hearthstone.net.event.events.LoginEvent;
 import com.bubble.hearthstone.net.event.events.LogoutEvent;
+import com.bubble.hearthstone.ui.MenuType;
 import com.bubble.hearthstone.util.log.EventLogger;
 import com.bubble.hearthstone.util.log.IEventLogger;
 import com.bubble.hearthstone.util.services.ServiceLocator;
@@ -37,6 +39,7 @@ public class UserManager {
         
         login(GUEST);
         logger.success("logged in as guest");
+        ServiceLocator.getNetworkService().push(new ChangeMenuEvent(MenuType.LOGIN));
     }
 
     private boolean exists(String username) {
@@ -61,10 +64,10 @@ public class UserManager {
     private void login(User user) {
         current = user;
         if (! user.equals(GUEST)) {
-            // save = SaveManager.loadSave(user);
+            save = SaveManager.loadSave(user);
             //TODO: fix load bug
-            ServiceLocator.getNetworkService().login(user);
         }
+        ServiceLocator.getNetworkService().login(user);
     }
 
     public boolean signup(String username, String password) {

@@ -39,7 +39,6 @@ public class Hearthstone implements Runnable {
             );
         while (!quit) game.update();
     }
-        
     
     public static void quit() {
         quit = true;

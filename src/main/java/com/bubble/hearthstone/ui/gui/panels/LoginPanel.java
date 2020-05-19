@@ -1,10 +1,10 @@
 package com.bubble.hearthstone.ui.gui.panels;
 
-import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.LoginEvent;
 import com.bubble.hearthstone.ui.gui.components.CustomLabel;
 import com.bubble.hearthstone.util.services.ServiceLocator;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -22,11 +23,9 @@ public class LoginPanel extends Panel {
 
     private final JFrame frame;
     private final CenterBox centerBox;
-    private final GameManager manager;
 
-    public LoginPanel(JFrame frame, GameManager manager) {
+    public LoginPanel(JFrame frame) {
         this.frame = frame;
-        this.manager = manager;
         pane.setPreferredSize(frame.getSize());
         pane.setBackground(new Color(20,50,45));
         centerBox = new CenterBox();
@@ -66,7 +65,8 @@ public class LoginPanel extends Panel {
         @SuppressWarnings("all")
         private void sendEvent(IGameEvent event) 
         {
-            manager.handleEvent(event);
+            // manager.handleEvent(event);
+            ServiceLocator.getNetworkService().push(event);
         }
 
         private class LoginBox extends JPanel {
@@ -77,10 +77,12 @@ public class LoginPanel extends Panel {
             private final JButton quit;
             private final CustomLabel lblUsername;
             private final CustomLabel lblPassword;
+            private final JLabel error;
             
             private LoginBox() {
                 lblUsername = new CustomLabel("username");
                 lblPassword = new CustomLabel("password");
+                error = new JLabel("enter your credentials here");
                 login = new JButton("login");
                 quit = new JButton("quit");
                 this.setup();
@@ -141,6 +143,11 @@ public class LoginPanel extends Panel {
                 c.gridx = 0;
                 c.gridy = 3;
                 this.add(quit, c);
+                c.weightx = 1;
+                c.gridx = 0;
+                c.gridy = 4;
+                c.gridwidth = 2;
+                this.add(error, c);
             }
 
             private void setSizes() {
