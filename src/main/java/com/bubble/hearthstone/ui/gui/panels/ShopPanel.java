@@ -218,22 +218,41 @@ public class ShopPanel extends Panel {
     }
 
     private class CardTable implements ResizableDrawable {
-        private final List<CardRecord> cards;
-        private List<CardTableRow> table;
-        private Dimension size;
-        private final int columns;
-        private final int rows;
+        private final List<CardTableItem> grids;
+        private final List<CardTableRow> table;
+        private final Dimension size;
+        private int columns;
+        private int rows;
 
         CardTable(Deck deck, Dimension size) {
-            this.cards = new LinkedList<>(deck.getCards()); //maybe i should change from linkedlist..
-            this.table = generateTable(4,2);
+            grids = new LinkedList<>();
+            deck.getCards().forEach(
+                card -> grids.add(makeTableGrid(card))
+            );
+            this.table = generateTable(columns, rows);
+            this.rearrange(2, 2);
             this.size = size;
             this.setSize(size);
             this.setLocation(0, 0);
         }
         
+        private void rearrange(int columns, int rows) {
+            this.grids.forEach(grid -> grid.resize(columns, rows));
+            this.table.clear();
+            this.table.addAll( generateTable(columns, rows) );
+        }
+
         private List<CardTableRow> generateTable(int c, int r) {
-            return arrange(c, r);
+            final List<CardTableRow> result = new ArrayList<>();
+            arrange(result, c, r);
+            return result;
+        }
+
+        private void arrange(List<CardTableRow> table, int c, int r) {
+            final Iterator<CardTableItem> it = grids.iterator();
+            while (it.hasNext()) {
+                table.add(new CardTableRow(c, it));
+            }
         }
 
         // public void add(CardRecord record) {
@@ -244,94 +263,31 @@ public class ShopPanel extends Panel {
         //     rows = arrange(columns);
         // }
 
-        private CardTableItem makeItem() {
-            
+        private CardTableItem makeTableGrid(CardRecord record) {
+            return new CardTableItem(record, getItemWidth(size), getItemWidth(size));
         }
 
-        private List<CardTableRow> arrange(int columns, int rows) {
-            final List<CardTableRow> result = new ArrayList<>();
-            final Iterator<CardRecord> it = cards.iterator();
-            while(it.hasNext()) {
-                result.add(makeRow(columns, it));
-            }
-            return result;
+        private int getItemHeight() {
+            return size.height / rows;
         }
 
-        private CardTableRow makeRow(int length, Iterator<CardRecord> it) {
-            final CardTableRow row = new CardTableRow(length);
-            for (int i = 0; i < length && it.hasNext(); i++) {
-                row.add(it.next());
-            }
-            return row;
+        private int getItemWidth() {
+            return size.width / columns;
         }
 
-        public void draw(Graphics g) {
-            rows.forEach(row -> row.draw(g));
-        }
+        private class CardTableRow {
 
-        private int getItemHeight(Dimension size) {
-            return size.height / rows.size();
-        }
+            private List<CardTableItem> items;
 
-        @Override
-        public void setSize(Dimension size) {
-            rows.forEach(
-                row -> row.setSize( new Dimension(size.width , getItemHeight(size)) )
-                );
-            this.size = size;
-        }
-
-        @Override
-        public void setLocation(int x, int y) {
-            final Iterator<CardTableRow> it = rows.iterator();
-            for (int i = 0; it.hasNext(); i++) {
-                it.next().setLocation(x, y + i * getItemHeight(size));
-            }
-        }
-
-        private class CardTableRow implements ResizableDrawable {
-            private final List<CardTableItem> items;
-            private final int maxSize;
-
-            CardTableRow(List<CardRecord> records) {
-                this(records.size());
-                records.forEach(
-                    record -> items.add(new CardTableItem(record))
-                );
+            CardTableRow(int maxLength, Iterator<CardTableItem> grids) {
+                items = new LinkedList<>();
+                makeRow(maxLength, grids);
             }
 
-            CardTableRow(int length) {
-                this.items = new ArrayList<>();
-                this.maxSize = length;
-            }
-
-            public void add(CardRecord record) {
-                items.add(
-                    new CardTableItem(record)
-                );
-            }
-
-            @Override
-            public void draw(Graphics g) {
-                items.forEach(item -> item.draw(g));
-            }
-
-            private int getItemWidth(Dimension size) {
-                return size.width / maxSize;
-            }
-
-            @Override
-            public void setSize(Dimension size) {
-                items.forEach(
-                    item -> item.setSize( new Dimension(getItemWidth(size), size.height) )
-                );
-            }
-
-            @Override
-            public void setLocation(int x, int y) {
-                final Iterator<CardTableItem> it = items.iterator();
-                for (int i = 0; it.hasNext(); i ++) {
-                    it.next().setLocation(x + i * getItemWidth(size), y);
+            private void makeRow(int maxLength, Iterator<CardTableItem> grids) {
+                for (int i = 0; i < maxLength && grids.hasNext(); i ++) {
+                    final CardTableItem item = grids.next();
+                    items.add(item);
                 }
             }
         }
@@ -341,9 +297,13 @@ public class ShopPanel extends Panel {
             private final CardRecord record;
             private final double drawSizeRatio = 0.95;
             private Dimension size;
+            private int width;
+            private int height;
 
-            CardTableItem(CardRecord record) {
+            CardTableItem(CardRecord record, int width, int height) {
                 this.record = record;
+                this.width = width;
+                this.height = height;
                 panel = new JPanel();
                 panel.setVisible(false);
                 // panel.setBackground(color.brighter()); //change the way it retrieves color maybe
@@ -366,6 +326,11 @@ public class ShopPanel extends Panel {
                 return new Dimension(
                     (int) (size.width * ratio), (int) (size.height * ratio)
                 );
+            }
+
+            public void resize(int columns, int height) {
+                final Dimension newSize = new Dimension(getItemWidth(size)); 
+                setSize(size);
             }
 
             //set sizes before calling this
