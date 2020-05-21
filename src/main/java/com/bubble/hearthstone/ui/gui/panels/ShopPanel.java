@@ -1,11 +1,19 @@
 package com.bubble.hearthstone.ui.gui.panels;
 
+import com.bubble.hearthstone.card.deck.Deck;
+import com.bubble.hearthstone.card.registry.CardRecord;
+import com.bubble.hearthstone.interfaces.Drawable;
+import com.bubble.hearthstone.interfaces.ResizableDrawable;
+import com.bubble.hearthstone.model.shop.Shop;
+import com.bubble.hearthstone.net.event.events.ChangeMenuEvent;
+import com.bubble.hearthstone.ui.MenuType;
+import com.bubble.hearthstone.ui.gui.DrawList;
+import com.bubble.hearthstone.util.services.ServiceLocator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -16,26 +24,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.Font;
 import java.awt.Graphics;
-
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.text.TableView.TableRow;
-
-import com.bubble.hearthstone.card.deck.Deck;
-import com.bubble.hearthstone.card.registry.CardRecord;
-import com.bubble.hearthstone.interfaces.Drawable;
-import com.bubble.hearthstone.interfaces.ResizableDrawable;
-import com.bubble.hearthstone.model.shop.Shop;
-import com.bubble.hearthstone.net.event.events.ChangeMenuEvent;
-import com.bubble.hearthstone.ui.MenuType;
-import com.bubble.hearthstone.ui.gui.DrawList;
-import com.bubble.hearthstone.util.services.ServiceLocator;
+import javax.swing.ScrollPaneConstants;
 
 public class ShopPanel extends Panel {
 
@@ -94,18 +90,27 @@ public class ShopPanel extends Panel {
         }
 
         private void setup() {
-            panel.getPane().setBackground(this.getBackground());
-            this.setHorizontalScrollBar(this.createHorizontalScrollBar());
+            //TODO: add custom scroll bar
+            final boolean hasScroll = false;
+            if (hasScroll) {
+            this.setVerticalScrollBarPolicy(
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            this.setHorizontalScrollBarPolicy(
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+            }
             this.setViewportView(panel.getPane());
+            panel.getPane().setBackground(this.getBackground());
             this.setSize(getCenterBoxSize()); //hmm..
         }
 
         private void makeTable() {
 
+            final int offset = 10;
             final CardTable table = new CardTable(
                 new Deck("name", getShop().getAllCards()),
-                new Dimension(getSize().width - getSidePanelSize().width, getSize().height)
+                new Dimension(getSize().width - getSidePanelSize().width - offset, getSize().height - offset)
             );
+            table.rearrange(3,3);
             final DrawList drawlist = new DrawList().add(table);
             panel.update(drawlist);
         }
@@ -217,131 +222,100 @@ public class ShopPanel extends Panel {
         private static final long serialVersionUID = 1L;
     }
 
-    private class CardTable implements ResizableDrawable {
-        private final List<CardTableItem> grids;
-        private final List<CardTableRow> table;
-        private final Dimension size;
+    private class CardTable implements Drawable {
+        private final List<CardGrid> grids;
+        private final Dimension tableDimension;
         private int columns;
         private int rows;
 
-        CardTable(Deck deck, Dimension size) {
-            grids = new LinkedList<>();
-            deck.getCards().forEach(
-                card -> grids.add(makeTableGrid(card))
-            );
-            this.table = generateTable(columns, rows);
-            this.rearrange(2, 2);
-            this.size = size;
-            this.setSize(size);
-            this.setLocation(0, 0);
+        CardTable(Deck deck, Dimension tableDimension) {
+            this.tableDimension = tableDimension;
+            grids = generateGrids(deck);
         }
         
-        private void rearrange(int columns, int rows) {
-            this.grids.forEach(grid -> grid.resize(columns, rows));
-            this.table.clear();
-            this.table.addAll( generateTable(columns, rows) );
-        }
-
-        private List<CardTableRow> generateTable(int c, int r) {
-            final List<CardTableRow> result = new ArrayList<>();
-            arrange(result, c, r);
+        private List<CardGrid> generateGrids(Deck deck) {
+            final List<CardGrid> result = new ArrayList<>();
+            deck.getCards().forEach(
+                card -> result.add(new CardGrid(card)));
             return result;
         }
 
-        private void arrange(List<CardTableRow> table, int c, int r) {
-            final Iterator<CardTableItem> it = grids.iterator();
-            while (it.hasNext()) {
-                table.add(new CardTableRow(c, it));
-            }
+        public void rearrange(int columns, int rows) {
+            arrange(columns, rows);
+            resize();
+            relocateGrids();
         }
 
-        // public void add(CardRecord record) {
-        //     cards.add(record);
-        // }
-
-        // public void rearrange(int columns) {
-        //     rows = arrange(columns);
-        // }
-
-        private CardTableItem makeTableGrid(CardRecord record) {
-            return new CardTableItem(record, getItemWidth(size), getItemWidth(size));
+        private void arrange(int columns, int rows) {
+            this.columns = columns;
+            this.rows = rows;
         }
 
-        private int getItemHeight() {
-            return size.height / rows;
+        private void resize() {
+            grids.forEach(CardGrid::resize);
         }
 
-        private int getItemWidth() {
-            return size.width / columns;
-        }
-
-        private class CardTableRow {
-
-            private List<CardTableItem> items;
-
-            CardTableRow(int maxLength, Iterator<CardTableItem> grids) {
-                items = new LinkedList<>();
-                makeRow(maxLength, grids);
-            }
-
-            private void makeRow(int maxLength, Iterator<CardTableItem> grids) {
-                for (int i = 0; i < maxLength && grids.hasNext(); i ++) {
-                    final CardTableItem item = grids.next();
-                    items.add(item);
+        private void relocateGrids() {
+            final Iterator<CardGrid> it = grids.iterator();
+            for (int j = 0; it.hasNext(); j ++) {
+                for (int i=0; i < columns; i ++) {
+                    if (! it.hasNext()) break;
+                    it.next().relocate(i, j);
                 }
             }
         }
 
-        private class CardTableItem implements ResizableDrawable{
-            private final JPanel panel;
-            private final CardRecord record;
-            private final double drawSizeRatio = 0.95;
-            private Dimension size;
-            private int width;
-            private int height;
+        /** don't forget to use rearrange after adding all the cards */
+        public void add(CardRecord card) {
+            grids.add(new CardGrid(card));
+        }
 
-            CardTableItem(CardRecord record, int width, int height) {
-                this.record = record;
-                this.width = width;
-                this.height = height;
-                panel = new JPanel();
-                panel.setVisible(false);
-                // panel.setBackground(color.brighter()); //change the way it retrieves color maybe
+        public void draw(Graphics g) {
+            grids.forEach(grid -> grid.draw(g));
+        }
+
+        private class CardGrid implements ResizableDrawable {
+            private final CardRecord card;
+
+            CardGrid(CardRecord card) {
+                this.card = card;
             }
 
-            @Override
-            public void draw(Graphics g) {
-                record.draw(g);
+            private void resize() {
+                setSize( getGridWidth(), getGridHeight() );
             }
 
-            @Override
-            public void setSize(Dimension size) {
-                this.size = size;
-                final Dimension drawSize = ratedSize(drawSizeRatio, size);
-                panel.setSize(drawSize);
-                record.setSize(drawSize);
-            }
-
-            private Dimension ratedSize(double ratio, Dimension size) {
-                return new Dimension(
-                    (int) (size.width * ratio), (int) (size.height * ratio)
+            private void setSize(int w, int h) {
+                setSize(
+                    new Dimension(w, h)
                 );
             }
 
-            public void resize(int columns, int height) {
-                final Dimension newSize = new Dimension(getItemWidth(size)); 
-                setSize(size);
+            public void setSize(Dimension size) {
+                card.setSize(size);
             }
 
-            //set sizes before calling this
-            @Override
-            public void setLocation(int x, int y) {
-                final Dimension wastedSpace = ratedSize(1 - drawSizeRatio, size);
-                final int drawX = x + wastedSpace.width / 2;
-                final int drawY = y + wastedSpace.height / 2;
-                panel.setLocation(drawX, drawY);
-                record.setLocation(drawX, drawY);
+            private int getGridHeight() {
+                return tableDimension.height / rows;
             }
+    
+            private int getGridWidth() {
+                return tableDimension.width / columns;
+            }
+
+            public void relocate(int x, int y) {
+                setLocation(x * getGridWidth(), y * getGridHeight());
+            }
+            
+            public void setLocation(int x, int y) {
+                card.setLocation(x, y);
+            }
+
+            public void draw(Graphics g) {
+                card.draw(g);
+            }
+
+            //TODO: add mouse listener and effects
         }
     }
 }
