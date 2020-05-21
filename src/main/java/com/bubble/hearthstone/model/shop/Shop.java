@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.bubble.hearthstone.card.deck.Deck;
+import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.card.registry.CardRegistry;
 import com.bubble.hearthstone.net.user.UserInventory;
 import com.bubble.hearthstone.util.resource.ResourceManager;
@@ -37,6 +38,10 @@ public class Shop {
 
     public CardRegistry getCardRegistry() {
         return registry;
+    }
+
+    public Collection<CardRecord> getAllCards() {
+        return getCardRegistry().getCards();
     }
 
     public List<String> listDecks() {
