@@ -19,6 +19,7 @@ import java.awt.Graphics;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -218,25 +219,50 @@ public class ShopPanel extends Panel {
 
     private class CardTable implements ResizableDrawable {
         private final List<CardRecord> cards;
-        private List<CardTableRow> rows;
+        private List<CardTableRow> table;
         private Dimension size;
+        private final int columns;
+        private final int rows;
 
         CardTable(Deck deck, Dimension size) {
             this.cards = new LinkedList<>(deck.getCards()); //maybe i should change from linkedlist..
-            this.rows = generateTable(1, 2);
+            this.table = generateTable(4,2);
             this.size = size;
             this.setSize(size);
             this.setLocation(0, 0);
         }
         
-        private List<CardTableRow> generateTable(int r, int c) {
-            final List<CardTableRow> table = new ArrayList<>();
-            for (int i = 0; i < r; i++) {
-                final List<CardRecord> sub =  cards.subList(i * c, (i + 1) * c);
-                final CardTableRow row = new CardTableRow(sub);
-                table.add(row);
+        private List<CardTableRow> generateTable(int c, int r) {
+            return arrange(c, r);
+        }
+
+        // public void add(CardRecord record) {
+        //     cards.add(record);
+        // }
+
+        // public void rearrange(int columns) {
+        //     rows = arrange(columns);
+        // }
+
+        private CardTableItem makeItem() {
+            
+        }
+
+        private List<CardTableRow> arrange(int columns, int rows) {
+            final List<CardTableRow> result = new ArrayList<>();
+            final Iterator<CardRecord> it = cards.iterator();
+            while(it.hasNext()) {
+                result.add(makeRow(columns, it));
             }
-            return table;
+            return result;
+        }
+
+        private CardTableRow makeRow(int length, Iterator<CardRecord> it) {
+            final CardTableRow row = new CardTableRow(length);
+            for (int i = 0; i < length && it.hasNext(); i++) {
+                row.add(it.next());
+            }
+            return row;
         }
 
         public void draw(Graphics g) {
@@ -265,11 +291,23 @@ public class ShopPanel extends Panel {
 
         private class CardTableRow implements ResizableDrawable {
             private final List<CardTableItem> items;
+            private final int maxSize;
 
             CardTableRow(List<CardRecord> records) {
-                items = new ArrayList<>();
+                this(records.size());
                 records.forEach(
                     record -> items.add(new CardTableItem(record))
+                );
+            }
+
+            CardTableRow(int length) {
+                this.items = new ArrayList<>();
+                this.maxSize = length;
+            }
+
+            public void add(CardRecord record) {
+                items.add(
+                    new CardTableItem(record)
                 );
             }
 
@@ -279,7 +317,7 @@ public class ShopPanel extends Panel {
             }
 
             private int getItemWidth(Dimension size) {
-                return size.width / items.size();
+                return size.width / maxSize;
             }
 
             @Override
@@ -299,14 +337,15 @@ public class ShopPanel extends Panel {
         }
 
         private class CardTableItem implements ResizableDrawable{
-            // private final JPanel panel;
+            private final JPanel panel;
             private final CardRecord record;
             private final double drawSizeRatio = 0.95;
             private Dimension size;
 
             CardTableItem(CardRecord record) {
                 this.record = record;
-                // panel = new JPanel();
+                panel = new JPanel();
+                panel.setVisible(false);
                 // panel.setBackground(color.brighter()); //change the way it retrieves color maybe
             }
 
@@ -319,6 +358,7 @@ public class ShopPanel extends Panel {
             public void setSize(Dimension size) {
                 this.size = size;
                 final Dimension drawSize = ratedSize(drawSizeRatio, size);
+                panel.setSize(drawSize);
                 record.setSize(drawSize);
             }
 
@@ -332,7 +372,10 @@ public class ShopPanel extends Panel {
             @Override
             public void setLocation(int x, int y) {
                 final Dimension wastedSpace = ratedSize(1 - drawSizeRatio, size);
-                record.setLocation(x + wastedSpace.width / 2, y + wastedSpace.height / 2);
+                final int drawX = x + wastedSpace.width / 2;
+                final int drawY = y + wastedSpace.height / 2;
+                panel.setLocation(drawX, drawY);
+                record.setLocation(drawX, drawY);
             }
         }
     }
