@@ -1,5 +1,6 @@
 package com.bubble.hearthstone.card.registry;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.lang.reflect.Type;
@@ -12,7 +13,7 @@ import com.bubble.hearthstone.card.CardView;
 import com.bubble.hearthstone.card.Ability.AbilityArgument;
 import com.bubble.hearthstone.card.Ability.AbilityType;
 import com.bubble.hearthstone.interfaces.Cloneable;
-import com.bubble.hearthstone.interfaces.Drawable;
+import com.bubble.hearthstone.interfaces.ResizableDrawable;
 import com.bubble.hearthstone.model.hero.Hero.HeroClass;
 import com.bubble.hearthstone.model.shop.Purchasable;
 import com.bubble.hearthstone.util.serialize.GsonSerializer;
@@ -20,13 +21,14 @@ import com.google.gson.InstanceCreator;
 import com.google.gson.annotations.SerializedName;
 
 /** an editable version of card, stored in the registry for using */
-public class CardRecord extends Card implements Drawable, Cloneable<Card>, Purchasable, InstanceCreator<Purchasable>, Serializable {
+public class CardRecord extends Card
+        implements ResizableDrawable, Cloneable<Card>, Purchasable, InstanceCreator<Purchasable>, Serializable {
 
     private final transient CardView view;
 
     public CardRecord() {
         view = new CardView("a");
-        //here is the bug3
+        // here is the bug3
     }
 
     @SerializedName("type")
@@ -82,12 +84,12 @@ public class CardRecord extends Card implements Drawable, Cloneable<Card>, Purch
     }
 
     public String makeRecord() {
-        return name + "\t\t\t" + manaCost + "\t" + type + "\t" + heroClass + "\t" + rarity + "\t\t"
-                + description;
+        return name + "\t\t\t" + manaCost + "\t" + type + "\t" + heroClass + "\t" + rarity + "\t\t" + description;
     }
 
     public String[] getRecord() {
-        return new String[] { name, String.valueOf(manaCost), String.valueOf(type), String.valueOf(heroClass), String.valueOf(rarity), description };
+        return new String[] { name, String.valueOf(manaCost), String.valueOf(type), String.valueOf(heroClass),
+                String.valueOf(rarity), description };
     }
 
     public static String[] getRecordTitle() {
@@ -108,6 +110,16 @@ public class CardRecord extends Card implements Drawable, Cloneable<Card>, Purch
     @Override
     public void draw(Graphics g) {
         view.draw(g);
+    }
+    
+    @Override
+    public void setSize(Dimension size) {
+       view.setSize(size);
+    }
+
+    @Override
+    public void setLocation(int x, int y) {
+        view.setLocation(x, y);
     }
 
     private static final long serialVersionUID = 1L;

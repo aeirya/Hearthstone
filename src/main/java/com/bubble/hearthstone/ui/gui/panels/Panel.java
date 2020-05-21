@@ -40,7 +40,9 @@ public abstract class Panel implements Drawable, IDrawer, IMenu {
     }
 
     protected void sendEvent(IGameEvent event) {
-        ServiceLocator.getGameInput().triggerEvent(event);
+        // ServiceLocator.getGameInput().triggerEvent(event);
+        ServiceLocator.getNetworkService().push(event);
+        //hotfix... change later
     }
 
     public JPanel getPane() {
