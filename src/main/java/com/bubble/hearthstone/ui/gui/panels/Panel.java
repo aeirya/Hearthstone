@@ -35,6 +35,10 @@ public abstract class Panel implements Drawable, IDrawer, IMenu {
         this.pane.setPreferredSize(frame.getSize());
     }
 
+    public Panel() {
+        this.frame = null;
+    }
+
     protected void sendEvent(IGameEvent event) {
         ServiceLocator.getGameInput().triggerEvent(event);
     }

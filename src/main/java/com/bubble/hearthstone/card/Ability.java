@@ -11,10 +11,16 @@ public abstract class Ability implements Serializable, InstanceCreator<Ability> 
     public abstract void act();
 
     public enum AbilityType {
-        DRAW
+        DRAW, HASTE, POKE
     }
 
     public static class AbilityArgument {
-        int num;
+
+        private final String[] args;
+        // private int num
+
+        public AbilityArgument(String... args) {
+            this.args = args;
+        }
     }
 }

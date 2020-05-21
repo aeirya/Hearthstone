@@ -19,6 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import com.bubble.hearthstone.card.registry.CardRecord;
+import com.bubble.hearthstone.ui.gui.DrawList;
+
 public class ShopPanel extends Panel {
 
     private static final Color color = new Color(101, 42, 14);
@@ -53,18 +56,27 @@ public class ShopPanel extends Panel {
 
     private class MainPanel extends JScrollPane {
 
-        private final JPanel panel;
+        private final transient Panel panel;
 
         MainPanel() {
-            panel = new JPanel();
+            // panel = new JPanel();
+            panel = new Panel() {};
             setup();
+            addCards();
         }
 
         private void setup() {
-            panel.setBackground(this.getBackground());
-            this.setViewportView(panel);
+            panel.getPane().setBackground(this.getBackground());
+            this.setViewportView(panel.getPane());
         }
-
+        
+        private void addCards() {
+            DrawList d = new DrawList().add(
+                    new CardRecord()
+                );
+            panel.update(d);
+        }
+        
         private static final long serialVersionUID = 1L;
     }
 

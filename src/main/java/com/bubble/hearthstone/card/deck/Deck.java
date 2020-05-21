@@ -42,6 +42,10 @@ public class Deck {
         cards.remove(card);
     }
 
+    public Collection<CardRecord> getCards() {
+        return this.cards;
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -60,7 +64,7 @@ public class Deck {
     public static String makeTable(Deck deck) {
         final StringBuilder builder = new StringBuilder();
         builder.append("card\t\t\tmana\ttype\tclass\trarity\t\tdescription\n");
-        builder.append("--------------------------------------------------\n");
+        builder.append("-------------------------------------------------------\n");
         deck.cards.forEach(card -> builder.append(card.makeRecord() + "\n"));
         return builder.toString();
     }

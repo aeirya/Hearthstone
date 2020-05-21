@@ -17,4 +17,9 @@ public class DrawList implements Drawable {
     public void draw(Graphics g) {
         list.forEach(d -> d.draw(g));
     }   
+
+    public DrawList add(Drawable drawable) {
+        list.add(drawable);
+        return this;
+    }
 }

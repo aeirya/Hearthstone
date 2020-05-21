@@ -7,7 +7,7 @@ import com.bubble.hearthstone.util.services.ServiceLocator;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-// import java.awt.Image
+import java.awt.Image;
 import java.util.Map;
 import java.util.Properties;
 
@@ -18,14 +18,13 @@ public class ResourceManager {
 
     private final Map<String, CardRecord> cards;
     private final Map<String, User> users;
-
-    // private final Map<String, Image> images
-    // phase2: load images here instead?
+    private final Map<String, Image> images;
 
     public ResourceManager(Properties resourceConfig) {
         this.resourceConfig = resourceConfig;
         createFoldersIfNeeded();
         users = loadUsers();
+        images = loadImages();
         cards = loadCards();
     }
 
@@ -62,7 +61,15 @@ public class ResourceManager {
     public Map<String, User> getUsers() {
         return users;
     }
+
+    private Map<String, Image> loadImages() {
+        return new ImageLoader().loadDir(DATA_PATH + resourceConfig.getProperty("image"));
+    }
     
+    public Image getImage(String name) {
+        return images.get(name);
+    }
+
     public String getLogPath() {
         return DATA_PATH + resourceConfig.getProperty("logs");
     }
