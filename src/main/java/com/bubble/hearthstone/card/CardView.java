@@ -1,25 +1,20 @@
 package com.bubble.hearthstone.card;
 
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-
 import com.bubble.hearthstone.interfaces.ResizableDrawable;
-import com.bubble.hearthstone.util.services.ServiceLocator;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
 
 public class CardView implements ResizableDrawable {
 
-    private final String cardname;
+    private final CardLayout layout;
     private Dimension size;
     private Point location;
-    private  Image image;
 
     CardView(Dimension size, Point location, String cardname) {
         this.size = size;
         this.location = location;
-        this.cardname = cardname;
+        this.layout = new CardLayout(cardname);
     }
 
     CardView() {
@@ -35,24 +30,6 @@ public class CardView implements ResizableDrawable {
     }
 
     @Override
-    public void draw(Graphics g) {
-        final Graphics2D g2 = (Graphics2D)g;
-        g2.drawImage(getImage(), location.x, location.y, size.width, size.height, null);
-    }
-
-    private Image getImage() {
-        if (image == null) {
-            image = ServiceLocator.getResources().getImage(
-                getFilename(cardname));
-        }
-        return image;
-    }
-
-    private String getFilename(String cardname) {
-        return cardname.replace(" ", "_").toLowerCase();
-    }
-
-    @Override
     public void setSize(Dimension size) {
         this.size = size;
     }
@@ -60,5 +37,10 @@ public class CardView implements ResizableDrawable {
     @Override
     public void setLocation(int x, int y) {
         this.location = new Point(x,y);
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        layout.setSettings(size, location).draw(g);
     }
 }
