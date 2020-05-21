@@ -28,8 +28,8 @@ public class CardView implements Drawable {
 
     public CardView(String cardname) {
         this(
-            new Dimension(400,400),
-            new Point(100,100),
+            new Dimension(300,400),
+            new Point(0,0),
             cardname
         );
     }
