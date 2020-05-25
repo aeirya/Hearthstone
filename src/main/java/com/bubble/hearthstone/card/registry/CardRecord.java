@@ -34,6 +34,9 @@ public class CardRecord extends Card
     @SerializedName("type")
     private static final String ITEM_TYPE = "card";
 
+    @SerializedName("type")
+    private static final String ITEM_TYPE = "card";
+
     public CardRecord copy() {
         return new CardFactory().build(name, manaCost, type, heroClass, rarity, abilities, description);
     }
