@@ -29,9 +29,7 @@ public class MainMenuManager implements IInterpreter {
         Map <String, Runnable> map =
             Map.of(
                 "Start",
-                () -> {
-                    
-                }
+                () -> sendEvent(new ChangeMenuEvent(MenuType.ARENA))
                 ,
                 "See Decks",
                 () -> sendEvent(new ChangeMenuEvent(MenuType.DECKS))
@@ -40,7 +38,7 @@ public class MainMenuManager implements IInterpreter {
                 () -> {}
                 ,            
                 "Settings",
-                () -> {}
+                () -> sendEvent(new ChangeMenuEvent(MenuType.SETTINGS))
                 ,
                 "Logout",
                 () -> sendEvent(new LogoutEvent())

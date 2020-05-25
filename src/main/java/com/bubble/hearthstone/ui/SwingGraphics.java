@@ -1,9 +1,11 @@
 package com.bubble.hearthstone.ui;
 
+import com.bubble.hearthstone.ui.gui.panels.ArenaPanel;
 import com.bubble.hearthstone.ui.gui.panels.DecksPanel;
 import com.bubble.hearthstone.ui.gui.panels.LoginPanel;
 import com.bubble.hearthstone.ui.gui.panels.MainMenuPanel;
 import com.bubble.hearthstone.ui.gui.panels.Panel;
+import com.bubble.hearthstone.ui.gui.panels.SettingsPanel;
 import com.bubble.hearthstone.ui.gui.panels.ShopPanel;
 
 import java.awt.BorderLayout;
@@ -52,7 +54,10 @@ public class SwingGraphics implements IGameGraphics {
     }
 
     public void update() {
-        currentPanel.update(null); //pass drawables here
+        if (currentPanel != null)
+            currentPanel.update(
+                null
+            ); //pass drawables here
         repaint();
     }
 
@@ -95,6 +100,8 @@ public class SwingGraphics implements IGameGraphics {
             mapper.put(MenuType.MAIN, MainMenuPanel.class);
             mapper.put(MenuType.DECKS, DecksPanel.class);
             mapper.put(MenuType.SHOP, ShopPanel.class);
+            mapper.put(MenuType.SETTINGS, SettingsPanel.class);
+            mapper.put(MenuType.ARENA, ArenaPanel.class);
         }
 
         private void run(IMenu menu) {

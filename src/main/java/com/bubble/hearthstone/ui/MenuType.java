@@ -4,5 +4,7 @@ public enum MenuType {
     LOGIN,
     MAIN,
     DECKS,
-    SHOP
+    SHOP,
+    SETTINGS,
+    ARENA
 }
