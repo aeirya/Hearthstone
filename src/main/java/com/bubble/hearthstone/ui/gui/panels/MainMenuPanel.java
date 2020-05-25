@@ -43,6 +43,7 @@ public class MainMenuPanel extends Panel {
         centerPanel = new CenterPanel(frame);
         pane.add(commandTextBox, BorderLayout.NORTH);
         pane.add(centerPanel, BorderLayout.CENTER);
+        setBackgroundImage("dragon_landscape");
     }
 
     private Box buttonsBox() {
@@ -70,7 +71,7 @@ public class MainMenuPanel extends Panel {
 
         private void setup(JFrame frame) {
             this.setPreferredSize(new Dimension(300, 600));
-            this.setBackground(pane.getBackground());
+            this.setBackground(new Color(0,0,0,0));
             this.setLayout(new GridBagLayout());
             this.setPreferredSize(frame.getSize());
             this.add(buttonsBox());
@@ -87,7 +88,8 @@ public class MainMenuPanel extends Panel {
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            if (hasBackgroundImage) drawBackgroundImage(g);
+            // if (hasBackgroundImage) drawBackgroundImage(g);
+            
         }
     }
 
