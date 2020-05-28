@@ -1,5 +1,6 @@
 package com.bubble.hearthstone.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bubble.hearthstone.card.monster.Monster;
@@ -21,6 +22,7 @@ public class Player {
     }
 
     public List<Monster> getMonsters() {
-        return null;
+        // implement this
+        return new ArrayList<>();
     }
 }

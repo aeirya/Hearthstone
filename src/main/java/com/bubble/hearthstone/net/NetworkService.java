@@ -1,5 +1,8 @@
 package com.bubble.hearthstone.net;
 
+import com.bubble.hearthstone.controller.Arena;
+import com.bubble.hearthstone.controller.GameSession;
+import com.bubble.hearthstone.controller.GameSession.GameMode;
 import com.bubble.hearthstone.model.shop.Shop;
 import com.bubble.hearthstone.net.event.DummyNetworkEventQueue;
 import com.bubble.hearthstone.net.event.IGameEvent;
@@ -8,9 +11,11 @@ import com.bubble.hearthstone.net.user.User;
 import com.bubble.hearthstone.util.resource.ResourceManager;
 
 public class NetworkService implements INetworkService {
-    
-    private final Shop shop; // the shop located at the "server"
+
     private final INetworkEventQueue queue;
+    private final Shop shop; // the shop located at the "server"
+    private GameSession session; //session running at the "server"
+
     private User me;
 
     /** dummy network service */
@@ -20,10 +25,23 @@ public class NetworkService implements INetworkService {
         this.queue = new DummyNetworkEventQueue();
     }
 
+    public GameSession startGameSession() {
+        // moved from game manager, needs to change
+        if (session == null)
+            session = new GameSession(getMe(), GameMode.OFFLINE);
+        else {
+            // a session is already running
+        }
+        return session;
+    }
+
     public Shop getShop() {
         return shop;
     }
 
+    public Arena getArena() {
+        return session.getArena();
+    }
 
     public User getMe() {
         return me;
@@ -35,7 +53,7 @@ public class NetworkService implements INetworkService {
 
     @Override
     public INetworkService connect() {
-        //we can set the queue now..
+        // we can set the queue now..
         return this;
     }
 

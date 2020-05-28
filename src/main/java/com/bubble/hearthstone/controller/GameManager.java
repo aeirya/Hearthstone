@@ -30,11 +30,7 @@ public class GameManager {
     }
 
     public void startGameSession() {
-        if (currentSession == null)
-            currentSession = new GameSession(userManager.getUser(), GameMode.OFFLINE);
-        else {
-            // a session is already running
-        }
+        currentSession = network.startGameSession();
     }
 
     public boolean login(String username, String password) {

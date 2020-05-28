@@ -35,7 +35,7 @@ public class GameSession {
         arena.handleEvent(event);
     }
 
-    enum GameMode {
+    public enum GameMode {
         ONLINE, OFFLINE, AI
     }
 }
