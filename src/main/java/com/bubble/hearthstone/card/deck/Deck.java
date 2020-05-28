@@ -28,12 +28,6 @@ public class Deck {
         this.name = name;
     }
 
-    public List<String> listCardNames() {
-        final List<String> names = new ArrayList<>();
-        cards.forEach(card -> names.add(card.getName()));
-        return names;
-    }
-
     public void addCard(CardRecord card) {
         cards.add(card);
     }
@@ -46,27 +40,8 @@ public class Deck {
         return this.cards;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        listCardNames().forEach(cardname -> builder.append("\n" + cardname));
-        return builder.toString();
-    }
-
     public String getName() {
         return name;
-    }
-
-    public String toTable() {
-        return Deck.makeTable(this);
-    }
-
-    public static String makeTable(Deck deck) {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("card\t\t\tmana\ttype\tclass\trarity\t\tdescription\n");
-        builder.append("-------------------------------------------------------\n");
-        deck.cards.forEach(card -> builder.append(card.makeRecord() + "\n"));
-        return builder.toString();
     }
 
     public static final CardRecord sampleCard = new CardFactory().build("hi", 1, CardType.MINION, HeroClass.MAGE,

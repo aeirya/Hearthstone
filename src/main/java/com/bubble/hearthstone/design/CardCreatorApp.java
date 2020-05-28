@@ -20,6 +20,7 @@ import com.bubble.hearthstone.card.Ability.AbilityType;
 import com.bubble.hearthstone.card.Card.CardRarity;
 import com.bubble.hearthstone.card.Card.CardType;
 import com.bubble.hearthstone.card.deck.Deck;
+import com.bubble.hearthstone.card.deck.DeckCliView;
 import com.bubble.hearthstone.card.registry.CardFactory;
 import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.model.hero.Hero.HeroClass;
@@ -61,7 +62,7 @@ public class CardCreatorApp implements Runnable {
      */
     @Deprecated
     private void print(Deck deck) {
-        out.println(Deck.makeTable(deck));
+        out.println(DeckCliView.makeTable(deck));
     }
 
     private void printf(Deck deck) {

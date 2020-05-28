@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.bubble.hearthstone.card.deck.Deck;
+import com.bubble.hearthstone.card.deck.DeckCliView;
 import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.card.registry.CardRegistry;
 import com.bubble.hearthstone.net.user.UserInventory;
@@ -46,7 +47,7 @@ public class Shop {
 
     public List<String> listDecks() {
         final List<String> list = new ArrayList<>();
-        decks.forEach(deck -> list.add(Deck.makeTable(deck)));
+        decks.forEach(deck -> list.add(DeckCliView.makeTable(deck)));
         return list;
     }
 }
