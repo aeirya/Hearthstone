@@ -3,20 +3,20 @@ package com.bubble.hearthstone.card.registry;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 import com.bubble.hearthstone.card.Ability;
-import com.bubble.hearthstone.card.AbilityImpl;
 import com.bubble.hearthstone.card.Card;
 import com.bubble.hearthstone.card.CardView;
-import com.bubble.hearthstone.card.Ability.AbilityArgument;
-import com.bubble.hearthstone.card.Ability.AbilityType;
 import com.bubble.hearthstone.interfaces.Cloneable;
 import com.bubble.hearthstone.interfaces.ResizableDrawable;
 import com.bubble.hearthstone.model.hero.Hero.HeroClass;
 import com.bubble.hearthstone.model.shop.Purchasable;
-import com.bubble.hearthstone.util.serialize.GsonSerializer;
+import com.bubble.hearthstone.util.serialize.CardSerializer;
+import java.util.function.Supplier;
 import com.google.gson.InstanceCreator;
 import com.google.gson.annotations.SerializedName;
 
@@ -25,14 +25,21 @@ public class CardRecord extends Card
         implements ResizableDrawable, Cloneable<Card>, Purchasable, InstanceCreator<Purchasable>, Serializable {
 
     private final transient CardView view;
+    // private final transient Map<String, String> fields = Map.of(
+    //         "name", getName(),
+    //         "description", getDescription()
+    //     );
+
+    private final transient Map<String, Supplier<String>> fieldGetter;
 
     public CardRecord() {
-        view = new CardView("a");
-        // here is the bug3
+        fieldGetter = Map.of(
+            "name", this::getName,
+            "description", this::getDescription
+        );
+        view = new CardView("a", this);
+        // here is the bug
     }
-
-    @SerializedName("type")
-    private static final String ITEM_TYPE = "card";
 
     @SerializedName("type")
     private static final String ITEM_TYPE = "card";
@@ -77,13 +84,19 @@ public class CardRecord extends Card
     }
 
     public String toString() {
-        GsonSerializer gson = new GsonSerializer(Ability.class,
-                new AbilityImpl(AbilityType.DRAW, new AbilityArgument()));
-        return gson.serialize(this);
+        // GsonSerializer gson = new GsonSerializer(Ability.class,
+        //         new AbilityImpl(AbilityType.DRAW, new AbilityArgument()));
+        // return gson.serialize(this);
+        CardSerializer ser = new CardSerializer();
+        return ser.serialize(this, CardRecord.class);
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String makeRecord() {
@@ -97,6 +110,33 @@ public class CardRecord extends Card
 
     public static String[] getRecordTitle() {
         return new String[] { "card", "mana", "type", "class", "rarity", "description" };
+    }
+
+    //could've also used a map instead
+    //doesn't work, switching to maps
+    /** @deprecated */
+    @Deprecated
+    public String getField(String property) {
+        final Field field;
+        try {
+            field = this.getClass().getDeclaredField(property);
+        } catch (NoSuchFieldException | SecurityException e1) {
+            return null;
+        }
+        try {
+            return (String) field.get(this);
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            return null;
+        }
+    }
+
+    public String getProperty(String property) {
+        // return fields.get(property);
+        final Supplier<String> getter = fieldGetter.getOrDefault(property, () -> null);
+        if (getter != null) {
+            return getter.get();
+        }
+        else return null;
     }
 
     // gonna add pricing later

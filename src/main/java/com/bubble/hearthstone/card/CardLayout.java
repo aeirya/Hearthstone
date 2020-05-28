@@ -1,24 +1,31 @@
 package com.bubble.hearthstone.card;
 
+import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.interfaces.Drawable;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Point;
+import java.util.Map;
 
 public class CardLayout implements Drawable {
 
     private final String name;
+    private final CardStylo stylo;
     private Dimension size;
     private Point location;
     private Image image;
+    //values are normalized between 1 - 10
+    private final Map<String, Point> coordinates = Map.of(
+        "name", new Point(5,5),
+        "description" , new Point(5, 7)
+    );
 
-    public CardLayout(String name) {
+    public CardLayout(String name, CardRecord record) {
         this.name = name;
+        this.stylo = new CardStylo(record, coordinates, this);
     }
 
     public CardLayout setSettings(Dimension size, Point location) {
@@ -50,23 +57,14 @@ public class CardLayout implements Drawable {
     }
 
     private void drawTexts(Graphics g) {
-        final Font font = new Font("SansSerif", Font.BOLD, 36);
-        g.setFont(
-            font
-        );
-        final String text = "O";
-        drawTextAt(g, location.x, location.y, font, text);
-    }
-    
-    private void drawTextAt(Graphics g, int x, int y, Font font, String text) {
-        final FontMetrics metric = g.getFontMetrics(font);
-        g.drawString(
-            text, x - metric.stringWidth(text) / 2 , 
-            y - metric.getHeight() / 2 + metric.getAscent()
-        );
+        stylo.drawTexts(g);
     }
 
-    private Dimension getCenter() {
-        return new Dimension(size.width / 2, size.height / 2);
+    public Dimension getSize() {
+        return this.size;
+    }
+
+    public Point getLocation() {
+        return this.location;
     }
 }

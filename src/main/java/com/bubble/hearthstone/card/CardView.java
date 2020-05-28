@@ -1,5 +1,6 @@
 package com.bubble.hearthstone.card;
 
+import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.interfaces.ResizableDrawable;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -11,21 +12,22 @@ public class CardView implements ResizableDrawable {
     private Dimension size;
     private Point location;
 
-    CardView(Dimension size, Point location, String cardname) {
+    CardView(Dimension size, Point location, String cardname, CardRecord record) {
         this.size = size;
         this.location = location;
-        this.layout = new CardLayout(cardname);
+        this.layout = new CardLayout(cardname, record);
     }
 
-    CardView() {
-        this(new Dimension(), new Point(), null);
+    CardView(CardRecord record) {
+        this(new Dimension(), new Point(), null, record);
     }
 
-    public CardView(String cardname) {
+    public CardView(String cardname, CardRecord record) {
         this(
             new Dimension(300,400),
             new Point(0,0),
-            cardname
+            cardname, 
+            record
         );
     }
 
