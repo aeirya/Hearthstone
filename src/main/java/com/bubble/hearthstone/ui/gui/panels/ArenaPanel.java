@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import java.awt.Graphics;
 
+import com.bubble.hearthstone.controller.Arena;
 import com.bubble.hearthstone.controller.ArenaMenuController;
 import com.bubble.hearthstone.interfaces.Drawable;
 import com.bubble.hearthstone.model.arena.ArenaPanelConfig;
@@ -11,6 +12,7 @@ import com.bubble.hearthstone.model.arena.BoardView;
 import com.bubble.hearthstone.model.arena.HandView;
 import com.bubble.hearthstone.ui.gui.DrawList;
 import com.bubble.hearthstone.ui.gui.components.Frame;
+import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class ArenaPanel extends Panel {
     
@@ -21,9 +23,9 @@ public class ArenaPanel extends Panel {
     private final BoardView boardView;
 
     // what if i pass every panel its controller (here Arena) by the graphcis.lunch(clazz, controller)
-    public ArenaPanel(JFrame frame, ArenaMenuController arena) {
+    public ArenaPanel(JFrame frame) {
         super(frame);
-        this.arena = arena; 
+        arena = new ArenaMenuController(getArena());
         config = new ArenaPanelConfig(new Frame(frame));
         handPanel = new HandPanel();
         handView = new HandView(
@@ -42,6 +44,10 @@ public class ArenaPanel extends Panel {
                 .add(handView)
                 .add(boardView)
         );
+    }
+
+    private Arena getArena() {
+        return ServiceLocator.getNetworkService().getArena();
     }
 
     private class HandPanel implements Drawable {
