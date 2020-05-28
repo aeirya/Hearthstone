@@ -13,7 +13,7 @@ public class ArenaPanelConfig {
     }
 
     private int getHandOffsetY(Dimension handPanelSize, Dimension cardSize) {
-        return (-1) * handPanelSize.height * 2 /10;
+        return (-1) * handPanelSize.height * 5 /10;
     }
 
     private int getHandSpawnY(Dimension screenSize, Dimension cardSize) {

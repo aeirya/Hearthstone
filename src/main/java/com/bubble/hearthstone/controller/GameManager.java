@@ -1,11 +1,13 @@
 package com.bubble.hearthstone.controller;
 
+import com.bubble.hearthstone.controller.GameSession.GameMode;
 import com.bubble.hearthstone.net.INetworkService;
 import com.bubble.hearthstone.net.event.EventHandler;
 import com.bubble.hearthstone.net.event.GameEventHandler;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
 import com.bubble.hearthstone.net.event.events.IClientEvent;
+import com.bubble.hearthstone.net.event.events.arena.ArenaEvent;
 import com.bubble.hearthstone.net.user.UserManager;
 import com.bubble.hearthstone.ui.IGameGraphics;
 import com.bubble.hearthstone.ui.MenuType;
@@ -18,12 +20,21 @@ public class GameManager {
     private final EventHandler eventHandler;
     private final INetworkService network;
     private final IGameGraphics graphics;
+    private GameSession currentSession;
 
     public GameManager(IGameGraphics graphics) {
         this.network = ServiceLocator.getNetworkService().connect();
         this.userManager = new UserManager(this);
         this.eventHandler = new GameEventHandler(this, userManager).start();
         this.graphics = graphics;
+    }
+
+    public void startGameSession() {
+        if (currentSession == null)
+            currentSession = new GameSession(userManager.getUser(), GameMode.OFFLINE);
+        else {
+            // a session is already running
+        }
     }
 
     public boolean login(String username, String password) {
@@ -64,30 +75,13 @@ public class GameManager {
         if (e instanceof IClientEvent) this.clientPush(e);
         else this.networkPush(e);
 
-        //خود این کد واضحه
-        //این خوبه؟
         // if (e instanceof IClientEvent) userManager.handle(e);
-
 
         // map / Enumeration
         // enum -> handler
 
-        
-
-
         //redirect کنم دستورا رو
         //به عاملان مخصوص خودش
-
-        
-        
-        //همین الانم همین کار رو میکنم...
-        //ولی یه لول بالاترش رو میخوام
-
-        //که 
-
-
-
-        //
 
         // else networkPush(e);
     }
@@ -115,5 +109,9 @@ public class GameManager {
 
     public IGameGraphics getGraphics() {
         return graphics;
+    }
+
+    public void handleArenaEvent(ArenaEvent event) {
+        currentSession.handleArenaEvent(event);
     }
 }
