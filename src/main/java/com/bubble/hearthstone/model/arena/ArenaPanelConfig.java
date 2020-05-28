@@ -1,10 +1,22 @@
 package com.bubble.hearthstone.model.arena;
 
 import java.awt.Dimension;
+
+import com.bubble.hearthstone.stl.Point;
+import com.bubble.hearthstone.ui.gui.components.Frame;
+
 import java.awt.Color;
 
 public class ArenaPanelConfig {
     
+    private final Frame frame;
+    private final BoardViewConfig boardViewConfig;
+
+    public ArenaPanelConfig(Frame frame) {
+        this.frame = frame;
+        this.boardViewConfig = new BoardViewConfig();
+    }
+
     //graphics
     public Dimension getHandPanelSize(Dimension screenSize) {
         return new Dimension(
@@ -58,4 +70,28 @@ public class ArenaPanelConfig {
 	public Color getHandPanelColor() {
 		return getArenaBackgroundColor().darker();
 	}
+
+	public BoardViewConfig getBoardViewConfig() {
+        return boardViewConfig;
+    }
+    
+    class BoardViewConfig {
+        
+        public Point getLocation() {
+            final com.bubble.hearthstone.stl.Dimension frameSize = frame.getSize().scaled(0.2);
+            return new Point(frameSize.width, frameSize.height);
+        }
+
+        public com.bubble.hearthstone.stl.Dimension getMonsterSize() {
+            return getBoardSize().scaled(0.2); //implement this later
+        }
+
+        public int getSpacingX() {
+            return (getBoardSize().width / 21);
+        }
+
+        private com.bubble.hearthstone.stl.Dimension getBoardSize() {
+            return frame.getSize().scaled(0.7);
+        }
+    }
 }

@@ -4,20 +4,31 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import java.awt.Graphics;
 
-import com.bubble.hearthstone.card.registry.CardRecord;
+import com.bubble.hearthstone.controller.ArenaMenuController;
 import com.bubble.hearthstone.interfaces.Drawable;
 import com.bubble.hearthstone.model.arena.ArenaPanelConfig;
+import com.bubble.hearthstone.model.arena.BoardView;
+import com.bubble.hearthstone.model.arena.HandView;
 import com.bubble.hearthstone.ui.gui.DrawList;
+import com.bubble.hearthstone.ui.gui.components.Frame;
 
 public class ArenaPanel extends Panel {
     
+    private final ArenaMenuController arena;
     private final ArenaPanelConfig config;
     private final HandPanel handPanel;
+    private final HandView handView;
+    private final BoardView boardView;
 
-    public ArenaPanel(JFrame frame) {
+    // what if i pass every panel its controller (here Arena) by the graphcis.lunch(clazz, controller)
+    public ArenaPanel(JFrame frame, ArenaMenuController arena) {
         super(frame);
+        this.arena = arena; 
+        config = new ArenaPanelConfig(new Frame(frame));
         handPanel = new HandPanel();
-        config = new ArenaPanelConfig();
+        handView = new HandView(
+            arena.getPlayerHand(), config, frame.getSize());
+        boardView = new BoardView(arena.getBoard(), config.getBoardViewConfig());
         setup();
     }
 
@@ -25,13 +36,11 @@ public class ArenaPanel extends Panel {
         pane.setBackground(
             config.getArenaBackgroundColor()
         );
-        final CardRecord card = new CardRecord();
-        card.setLocation(
-            100, config.getHandSpawnY(frame.getSize(), 3));
-        card.setSize(
-            config.getCardSize(frame.getSize(), 3));
         this.update(
-            new DrawList().add(handPanel).add(card)
+            new DrawList()
+                .add(handPanel)
+                .add(handView)
+                .add(boardView)
         );
     }
 
