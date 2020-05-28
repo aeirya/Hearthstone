@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class SwingGraphics implements IGameGraphics {
 
     protected final JFrame frame;
-    private final  MenuLuncher luncher;
+    private final MenuLuncher luncher;
     private Panel currentPanel;
 
     public SwingGraphics() {
@@ -43,8 +43,8 @@ public class SwingGraphics implements IGameGraphics {
     }
 
     static Dimension getWindowSize() {
-        return new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width * 4 / 5,
-                Toolkit.getDefaultToolkit().getScreenSize().height * 4 /5);
+        return new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width,
+                Toolkit.getDefaultToolkit().getScreenSize().height);
     }
 
     public void load(Panel panel) {

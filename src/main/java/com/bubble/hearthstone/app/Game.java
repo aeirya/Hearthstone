@@ -14,7 +14,7 @@ public class Game implements IGame {
     private final IGameGraphics graphics;
     private final GameManager manager;
     private final IInput input;
-    
+
     Game(GraphicsMode graphicsMode) {
         graphics = initiateGraphics(graphicsMode);
         manager = new GameManager(graphics);
@@ -33,7 +33,7 @@ public class Game implements IGame {
 
     void update() {
         manager.update();
-        // graphics.update();s
+        // graphics.update();
         Waiter.sleep();
         /*
          * player input

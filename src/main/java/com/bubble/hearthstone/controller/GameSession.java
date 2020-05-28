@@ -15,15 +15,20 @@ public class GameSession {
         if (mode == GameMode.OFFLINE) {
             // do sth about the player 2
         }
+        start();
     }
 
-    public void start() {
+    private void start() {
         arena.start();
     }
 
     private Player loadPlayer(User user) {
         final UserSave save = ServiceLocator.getResources().loadSave(user);
         return new Player(save);
+    }
+
+    public Arena getArena() {
+        return arena;
     }
 
     public void handleArenaEvent(ArenaEvent event) {

@@ -29,7 +29,7 @@ public class Hearthstone implements Runnable {
 
     public void run()
     {
-        new Initializer().initialize();
+        new ServiceInitializer().initialize();
         /*
         * fixed bug: GameEventHandler needs to register a logger upon initializations
         */
@@ -45,10 +45,11 @@ public class Hearthstone implements Runnable {
         System.exit(0);
     }
     
-    private class Initializer {
+    private class ServiceInitializer {
         private void initialize() {
             final GameLogger logger = new ColoredGameLogger();
             final Properties resourceConfig = findConfig(config);
+            //dependency here should be inversed
             final ResourceManager resourceManager = new ResourceManager(resourceConfig);
             final INetworkService networkService = new NetworkService(resourceManager);
             initiateServiceLocator(logger, resourceManager, networkService);   
