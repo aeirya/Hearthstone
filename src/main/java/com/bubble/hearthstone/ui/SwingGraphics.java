@@ -1,5 +1,7 @@
 package com.bubble.hearthstone.ui;
 
+import com.bubble.hearthstone.input.IGameInput;
+import com.bubble.hearthstone.ui.gui.components.Frame;
 import com.bubble.hearthstone.ui.gui.panels.ArenaPanel;
 import com.bubble.hearthstone.ui.gui.panels.DecksPanel;
 import com.bubble.hearthstone.ui.gui.panels.LoginPanel;
@@ -27,12 +29,8 @@ public class SwingGraphics implements IGameGraphics {
         frame = initiateFrame();
         luncher = new SwingLuncher();
     }
-
-    /**
-     * this is a test for
-     * lunching  main menu / login menu
-     */
     
+    // TODO : replace jframe with frame later
     protected JFrame initiateFrame() {
         final JFrame f = new JFrame();
         f.setLayout(new BorderLayout());
@@ -84,7 +82,7 @@ public class SwingGraphics implements IGameGraphics {
     /////////////
 
     @Override
-    public void lunch(MenuType menu) {
+    public void launch(MenuType menu) {
         luncher.lunch(menu);
     }
 
@@ -148,5 +146,13 @@ public class SwingGraphics implements IGameGraphics {
     @Override
     public IMenu getCurrentMenu() {
         return currentPanel;
+    }
+
+    @Override
+    public void bind(IGameInput input) {
+        //reminder: swap with the Frame
+        input.bind(
+            new Frame(frame)
+        );
     }
 }

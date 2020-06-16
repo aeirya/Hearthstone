@@ -10,6 +10,11 @@ public class Point {
         this.y = y;
     }
 
+    public Point(java.awt.Point point) {
+        this.x = (int) point.getX();
+        this.y = (int) point.getY();
+    }
+
     public static Point sum(Point a, Point b) {
         return new Point(
             a.x + b.x, a.y + b.y

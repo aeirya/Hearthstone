@@ -1,8 +1,8 @@
 package com.bubble.hearthstone.app;
 
-import com.bubble.hearthstone.app.Game.GraphicsMode;
 import com.bubble.hearthstone.net.INetworkService;
 import com.bubble.hearthstone.net.NetworkService;
+import com.bubble.hearthstone.ui.GraphicsMode;
 import com.bubble.hearthstone.util.config.ConfigLoader;
 import com.bubble.hearthstone.util.log.ColoredGameLogger;
 import com.bubble.hearthstone.util.log.GameLogger;

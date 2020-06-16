@@ -1,12 +1,14 @@
 package com.bubble.hearthstone.app;
 
 import com.bubble.hearthstone.controller.GameManager;
+import com.bubble.hearthstone.controller.GuiManager;
 import com.bubble.hearthstone.input.CliInput;
 import com.bubble.hearthstone.input.IInput;
 import com.bubble.hearthstone.interfaces.IGame;
-import com.bubble.hearthstone.ui.Cli;
+import com.bubble.hearthstone.ui.GraphicsMode;
 import com.bubble.hearthstone.ui.IGameGraphics;
-import com.bubble.hearthstone.ui.SwingGraphics;
+import com.bubble.hearthstone.util.services.ModuleLocator;
+import com.bubble.hearthstone.util.services.ModuleManager;
 import com.bubble.hearthstone.util.time.Waiter;
 
 public class Game implements IGame {
@@ -14,17 +16,17 @@ public class Game implements IGame {
     private final IGameGraphics graphics;
     private final GameManager manager;
     private final IInput input;
+    private final ModuleManager moduleManager;
+    private final GuiManager guiManager;
 
     Game(GraphicsMode graphicsMode) {
-        graphics = initiateGraphics(graphicsMode);
+        moduleManager = new ModuleManager(graphicsMode);
+        graphics = ModuleLocator.getGraphics();
         manager = new GameManager(graphics);
         input = new CliInput(manager, graphics);
-    }
-
-    private IGameGraphics initiateGraphics(GraphicsMode graphicsMode) {
-        if(graphicsMode == GraphicsMode.CLI) {
-            return new Cli(); //not using manager
-        } else return new SwingGraphics(); //passing the manager to subclasses for now..
+        guiManager = new GuiManager(
+            ModuleLocator.getGameInput(),
+            ModuleLocator.getGraphics());
     }
 
     void start() {
@@ -42,9 +44,5 @@ public class Game implements IGame {
          * exit checks
          * wait
          */
-    }
-
-    enum GraphicsMode {
-        CLI, SWING
     }
 }
