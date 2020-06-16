@@ -2,7 +2,6 @@ package com.bubble.hearthstone.card;
 
 import com.bubble.hearthstone.model.hero.Hero.HeroClass;
 import com.bubble.hearthstone.util.serialize.Serializable;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class Card implements Serializable {
     protected String description;
 
     public enum CardType {
-        SPELL, MINION
+        SPELL, MINION, WEAPON, QUEST
     }
 
     public enum CardRarity {
