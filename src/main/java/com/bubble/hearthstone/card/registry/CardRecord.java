@@ -35,7 +35,8 @@ public class CardRecord extends Card
     public CardRecord() {
         fieldGetter = Map.of(
             "name", this::getName,
-            "description", this::getDescription
+            "description", this::getDescription,
+            "mana", this::getManaCost
         );
         view = new CardView("a", this);
         // here is the bug
@@ -93,6 +94,10 @@ public class CardRecord extends Card
 
     public String getName() {
         return name;
+    }
+
+    public String getManaCost() {
+        return String.valueOf(manaCost);
     }
 
     public String getDescription() {

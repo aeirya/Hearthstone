@@ -8,7 +8,6 @@ import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.util.Map;
 
 public class CardLayout implements Drawable {
 
@@ -17,15 +16,10 @@ public class CardLayout implements Drawable {
     private Dimension size;
     private Point location;
     private Image image;
-    //values are normalized between 1 - 10
-    private final Map<String, Point> coordinates = Map.of(
-        "name", new Point(5,5),
-        "description" , new Point(5, 7)
-    );
 
-    public CardLayout(String name, CardRecord record) {
+    public CardLayout(String name, CardRecord record, CardLayoutConfig config) {
         this.name = name;
-        this.stylo = new CardStylo(record, coordinates, this);
+        this.stylo = new CardStylo(record, config, this);
     }
 
     public CardLayout setSettings(Dimension size, Point location) {

@@ -15,7 +15,7 @@ public class CardView implements ResizableDrawable {
     CardView(Dimension size, Point location, String cardname, CardRecord record) {
         this.size = size;
         this.location = location;
-        this.layout = new CardLayout(cardname, record);
+        this.layout = new CardLayoutSample(cardname, record);
     }
 
     CardView(CardRecord record) {

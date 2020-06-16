@@ -14,37 +14,37 @@ import java.util.Map;
 
 public class CardStylo {
     
-    private static final String DEFAULT_FONT = "default";
-    private final Map<String, Font> styles = Map.of(
-        DEFAULT_FONT , new Font("SansSerif", Font.BOLD, 36)
-    );
+    private static final String DEFAULT_KEY = "default";
+    private final Map<String, Font> styles;
 
+    //todo: replace strings with num
+    // private final List<CardField> fields = List.of(CardField.values())
     private final List<String> fields = Arrays.asList("name", "mana", "type", "heroClass", "rarity", "description");
-
     private final Map<String, Point> coordinates;
     private final CardRecord record;
     private final CardLayout layout;
 
-    public CardStylo(CardRecord record, Map<String, Point> coordinates, CardLayout layout) {
+    public CardStylo(CardRecord record, CardLayoutConfig config, CardLayout layout) {
         this.record = record; //replace this with an udpate method
-        this.coordinates = coordinates;
         this.layout = layout;
+        this.coordinates = config.getCoordinates();
+        this.styles = config.getStyles();
     }
 
     private Font getFont(String key) {
         return styles.getOrDefault(
             key, 
-            styles.get(DEFAULT_FONT)
+            styles.get(DEFAULT_KEY)
         );
     }
 
     public void drawTexts(Graphics g) {
-        final Font font = getFont(DEFAULT_FONT);
         fields.forEach(
             field -> {
                 if (coordinates.containsKey(field)) {
                     final Point location = getPropertyAbsoluteLocaiton(field);
                     final String text = record.getProperty(field);
+                    final Font font = getFont(field);
                     if (text != null) 
                         drawTextAt(g, location.x, location.y, font, text);
                     else
