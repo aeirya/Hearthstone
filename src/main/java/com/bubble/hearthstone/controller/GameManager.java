@@ -1,6 +1,5 @@
 package com.bubble.hearthstone.controller;
 
-import com.bubble.hearthstone.controller.GameSession.GameMode;
 import com.bubble.hearthstone.net.INetworkService;
 import com.bubble.hearthstone.net.event.EventHandler;
 import com.bubble.hearthstone.net.event.GameEventHandler;
@@ -71,7 +70,7 @@ public class GameManager {
         if (e instanceof IClientEvent) this.clientPush(e);
         else this.networkPush(e);
 
-        // if (e instanceof IClientEvent) userManager.handle(e);
+        // if e instanceof IClientEvent userManager.handle(e)
 
         // map / Enumeration
         // enum -> handler
@@ -79,7 +78,7 @@ public class GameManager {
         //redirect کنم دستورا رو
         //به عاملان مخصوص خودش
 
-        // else networkPush(e);
+        // else networkPush(e)
     }
 
     public void networkPush(IGameEvent event) {
@@ -94,8 +93,8 @@ public class GameManager {
         graphics.message(message);
     }
 
-    public void lunch(MenuType menu) {
-        graphics.lunch(menu);
+    public void launch(MenuType menu) {
+        graphics.launch(menu);
     }
 
     //The part I really hate: getter, setters

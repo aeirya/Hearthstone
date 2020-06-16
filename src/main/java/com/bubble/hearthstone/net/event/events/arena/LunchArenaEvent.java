@@ -13,6 +13,6 @@ public class LunchArenaEvent extends ChangeMenuEvent {
     @Override
     public void process(GameManager manager) {
         manager.startGameSession();
-        manager.getGraphics().lunch(menu);
+        manager.getGraphics().launch(menu);
     }
 }

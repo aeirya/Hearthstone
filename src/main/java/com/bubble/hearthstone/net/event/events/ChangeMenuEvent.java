@@ -13,7 +13,7 @@ public class ChangeMenuEvent implements IClientEvent {
 
     @Override
     public void process(GameManager manager) {
-        manager.getGraphics().lunch(menu);
+        manager.getGraphics().launch(menu);
     }
     
 }
