@@ -18,7 +18,7 @@ public abstract class Monster implements Drawable {
         return this.card.attack;
     }
 
-    private int getDefenceValue() {
+    private int getDefenseValue() {
         return this.card.defense;
     }
 

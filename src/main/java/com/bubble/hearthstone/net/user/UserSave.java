@@ -36,6 +36,10 @@ public class UserSave implements Serializable {
         return deck;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public String getPrintedVersion() {
         return 
             "\nusername: " + user.getUsername() + "\n" + 

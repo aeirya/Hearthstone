@@ -240,7 +240,7 @@ public class CardCreatorApp implements Runnable {
         /**
          * @deprecated
          */
-        @Deprecated
+        @Deprecated(since = "phase1")
         private String getTitleFormat() {
             final String block = "|%s";
             final StringBuilder builder = new StringBuilder();

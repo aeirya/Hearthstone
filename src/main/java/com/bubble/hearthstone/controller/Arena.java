@@ -32,6 +32,14 @@ public class Arena {
     public void handleBattlegroundEvent(BattlegroundEvent event) {
         combatMaster.handleEvent(event);
     }
+    
+    public Player getPlayer(String name) {
+        // change this later, maybe use array list for players
+        if (player.getName().equals(name)) return player;
+        else {
+            return null;
+        }
+    }
 
     Player getPlayer() {
         return player;
