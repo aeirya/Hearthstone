@@ -16,7 +16,7 @@ public class EventLogger implements IEventLogger {
         this.logger = logger;
         this.userManager = userManager;
         this.logPath = ServiceLocator.getResources().getLogPath();
-        writer = new MyFileWriter();
+        this.writer = new MyFileWriter();
     }
 
     private String getWritePath(User user) {

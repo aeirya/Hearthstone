@@ -1,5 +1,6 @@
 package com.bubble.hearthstone.ui;
 
+import com.bubble.hearthstone.input.IGameInput;
 import com.bubble.hearthstone.interfaces.Updatable;
 
 public interface IGameGraphics extends Updatable {
@@ -11,6 +12,9 @@ public interface IGameGraphics extends Updatable {
     void error(String message);
 
     IMenu getCurrentMenu();
-    void lunch(MenuType menu);
-	void showHelp();
+    void launch(MenuType menu);
+    void showHelp();
+    
+    //
+    void bind(IGameInput input);
 }

@@ -14,7 +14,7 @@ public class LogoutEvent implements IGameEvent {
 
     @Override
     public void process(GameManager manager) {
-        manager.lunch(MenuType.LOGIN);
+        manager.launch(MenuType.LOGIN);
         manager.logout();
     }
     

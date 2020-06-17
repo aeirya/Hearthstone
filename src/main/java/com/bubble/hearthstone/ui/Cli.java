@@ -2,6 +2,8 @@ package com.bubble.hearthstone.ui;
 
 import java.lang.reflect.InvocationTargetException;
 
+import com.bubble.hearthstone.input.GameInput;
+import com.bubble.hearthstone.input.IGameInput;
 import com.bubble.hearthstone.ui.cli.CliLoginMenu;
 import com.bubble.hearthstone.ui.cli.CliMainMenu;
 import com.bubble.hearthstone.ui.cli.CliMenu;
@@ -18,7 +20,7 @@ public class Cli implements IGameGraphics {
     public Cli() {
         logger = ServiceLocator.getLogger();
         luncher = new CliMenuLuncher();
-        this.lunch(MenuType.LOGIN);
+        this.launch(MenuType.LOGIN);
     }
 
     public void update() {
@@ -33,7 +35,7 @@ public class Cli implements IGameGraphics {
         logger.warning(message);
     }
 
-    public void lunch(MenuType menu) {
+    public void launch(MenuType menu) {
         luncher.lunch(menu);
     }
 
@@ -83,5 +85,11 @@ public class Cli implements IGameGraphics {
     @Override
     public IMenu getCurrentMenu() {
         return currentMenu;
+    }
+
+    @Override
+    public void bind(IGameInput graphics) {
+        // TODO Auto-generated method stub
+
     }
 }

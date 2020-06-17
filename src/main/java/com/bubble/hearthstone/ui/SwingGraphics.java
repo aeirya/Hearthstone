@@ -1,9 +1,15 @@
 package com.bubble.hearthstone.ui;
 
-import com.bubble.hearthstone.controller.GameManager;
+import com.bubble.hearthstone.input.IGameInput;
+import com.bubble.hearthstone.ui.gui.components.Frame;
+import com.bubble.hearthstone.ui.gui.panels.ArenaPanel;
+import com.bubble.hearthstone.ui.gui.panels.DecksPanel;
 import com.bubble.hearthstone.ui.gui.panels.LoginPanel;
 import com.bubble.hearthstone.ui.gui.panels.MainMenuPanel;
 import com.bubble.hearthstone.ui.gui.panels.Panel;
+import com.bubble.hearthstone.ui.gui.panels.SettingsPanel;
+import com.bubble.hearthstone.ui.gui.panels.ShopPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -16,19 +22,15 @@ import javax.swing.JOptionPane;
 public class SwingGraphics implements IGameGraphics {
 
     protected final JFrame frame;
-    private final  MenuLuncher luncher;
+    private final MenuLuncher luncher;
     private Panel currentPanel;
 
     public SwingGraphics() {
         frame = initiateFrame();
         luncher = new SwingLuncher();
     }
-
-    /**
-     * this is a test for
-     * lunching  main menu / login menu
-     */
     
+    // TODO : replace jframe with frame later
     protected JFrame initiateFrame() {
         final JFrame f = new JFrame();
         f.setLayout(new BorderLayout());
@@ -39,8 +41,8 @@ public class SwingGraphics implements IGameGraphics {
     }
 
     static Dimension getWindowSize() {
-        return new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width / 3,
-                Toolkit.getDefaultToolkit().getScreenSize().height / 2);
+        return new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width,
+                Toolkit.getDefaultToolkit().getScreenSize().height);
     }
 
     public void load(Panel panel) {
@@ -50,7 +52,10 @@ public class SwingGraphics implements IGameGraphics {
     }
 
     public void update() {
-        currentPanel.update(null); //pass drawables here
+        if (currentPanel != null)
+            currentPanel.update(
+                null
+            ); //pass drawables here
         repaint();
     }
 
@@ -77,7 +82,7 @@ public class SwingGraphics implements IGameGraphics {
     /////////////
 
     @Override
-    public void lunch(MenuType menu) {
+    public void launch(MenuType menu) {
         luncher.lunch(menu);
     }
 
@@ -91,6 +96,10 @@ public class SwingGraphics implements IGameGraphics {
         private void init() {
             mapper.put(MenuType.LOGIN, LoginPanel.class);
             mapper.put(MenuType.MAIN, MainMenuPanel.class);
+            mapper.put(MenuType.DECKS, DecksPanel.class);
+            mapper.put(MenuType.SHOP, ShopPanel.class);
+            mapper.put(MenuType.SETTINGS, SettingsPanel.class);
+            mapper.put(MenuType.ARENA, ArenaPanel.class);
         }
 
         private void run(IMenu menu) {
@@ -137,5 +146,13 @@ public class SwingGraphics implements IGameGraphics {
     @Override
     public IMenu getCurrentMenu() {
         return currentPanel;
+    }
+
+    @Override
+    public void bind(IGameInput input) {
+        //reminder: swap with the Frame
+        input.bind(
+            new Frame(frame)
+        );
     }
 }

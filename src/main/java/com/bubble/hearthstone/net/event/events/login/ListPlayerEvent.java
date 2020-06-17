@@ -5,6 +5,7 @@ import com.bubble.hearthstone.net.event.events.IClientEvent;
 
 public class ListPlayerEvent implements IClientEvent {
 
+    // used by the cli
     @Override
     public void process(GameManager manager) {
         final StringBuilder builder = new StringBuilder();

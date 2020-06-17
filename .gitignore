@@ -32,6 +32,9 @@ data/settings
 data/assets
 data/logs
 data/save
+
+#my notes
+documents
 events.md
-notes.txt
-notes.txt
+mynotes.txt
+

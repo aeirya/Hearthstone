@@ -19,7 +19,7 @@ public class LoginEvent implements IGameEvent {
         boolean result = manager.login(username, password);
         message = setMessage(result);
         //you can lunch main menu now :p
-        if (result) manager.lunch(MenuType.MAIN);
+        if (result) manager.launch(MenuType.MAIN);
     }
     
     private String setMessage(boolean isSuccessful) {

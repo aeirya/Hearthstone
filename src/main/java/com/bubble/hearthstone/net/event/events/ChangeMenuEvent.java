@@ -5,7 +5,7 @@ import com.bubble.hearthstone.ui.MenuType;
 
 public class ChangeMenuEvent implements IClientEvent {
 
-    private final MenuType menu;
+    protected final MenuType menu;
 
     public ChangeMenuEvent(MenuType menu) {
         this.menu = menu;
@@ -13,7 +13,7 @@ public class ChangeMenuEvent implements IClientEvent {
 
     @Override
     public void process(GameManager manager) {
-        manager.getGraphics().lunch(menu);
+        manager.getGraphics().launch(menu);
     }
     
 }

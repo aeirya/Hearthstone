@@ -1,6 +1,7 @@
 package com.bubble.hearthstone.net.user;
 
 import com.bubble.hearthstone.card.deck.Deck;
+import com.bubble.hearthstone.card.deck.DeckCliView;
 import com.bubble.hearthstone.model.shop.Wallet;
 import com.bubble.hearthstone.util.serialize.Serializable;
 
@@ -31,11 +32,19 @@ public class UserSave implements Serializable {
         //returning deck for now, will have more options later
     }
 
+    public Deck getCurrentDeck() {
+        return deck;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
     public String getPrintedVersion() {
         return 
             "\nusername: " + user.getUsername() + "\n" + 
             "remaning gems: " + wallet.getGems() + "\n" +
             "\ncurrent deck: \n" + deck.getName() + "\n" +
-            Deck.makeTable(deck);
+            DeckCliView.makeTable(deck);
     }       
 }

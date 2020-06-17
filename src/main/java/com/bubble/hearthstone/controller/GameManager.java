@@ -6,6 +6,7 @@ import com.bubble.hearthstone.net.event.GameEventHandler;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
 import com.bubble.hearthstone.net.event.events.IClientEvent;
+import com.bubble.hearthstone.net.event.events.arena.ArenaEvent;
 import com.bubble.hearthstone.net.user.UserManager;
 import com.bubble.hearthstone.ui.IGameGraphics;
 import com.bubble.hearthstone.ui.MenuType;
@@ -18,12 +19,17 @@ public class GameManager {
     private final EventHandler eventHandler;
     private final INetworkService network;
     private final IGameGraphics graphics;
+    private GameSession currentSession;
 
     public GameManager(IGameGraphics graphics) {
         this.network = ServiceLocator.getNetworkService().connect();
         this.userManager = new UserManager(this);
         this.eventHandler = new GameEventHandler(this, userManager).start();
         this.graphics = graphics;
+    }
+
+    public void startGameSession() {
+        currentSession = network.startGameSession();
     }
 
     public boolean login(String username, String password) {
@@ -64,32 +70,15 @@ public class GameManager {
         if (e instanceof IClientEvent) this.clientPush(e);
         else this.networkPush(e);
 
-        //خود این کد واضحه
-        //این خوبه؟
-        // if (e instanceof IClientEvent) userManager.handle(e);
-
+        // if e instanceof IClientEvent userManager.handle(e)
 
         // map / Enumeration
         // enum -> handler
 
-        
-
-
         //redirect کنم دستورا رو
         //به عاملان مخصوص خودش
 
-        
-        
-        //همین الانم همین کار رو میکنم...
-        //ولی یه لول بالاترش رو میخوام
-
-        //که 
-
-
-
-        //
-
-        // else networkPush(e);
+        // else networkPush(e)
     }
 
     public void networkPush(IGameEvent event) {
@@ -104,8 +93,8 @@ public class GameManager {
         graphics.message(message);
     }
 
-    public void lunch(MenuType menu) {
-        graphics.lunch(menu);
+    public void launch(MenuType menu) {
+        graphics.launch(menu);
     }
 
     //The part I really hate: getter, setters
@@ -115,5 +104,9 @@ public class GameManager {
 
     public IGameGraphics getGraphics() {
         return graphics;
+    }
+
+    public void handleArenaEvent(ArenaEvent event) {
+        currentSession.handleArenaEvent(event);
     }
 }
