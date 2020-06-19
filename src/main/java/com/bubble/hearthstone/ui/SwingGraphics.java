@@ -22,12 +22,12 @@ import javax.swing.JOptionPane;
 public class SwingGraphics implements IGameGraphics {
 
     protected final JFrame frame;
-    private final MenuLuncher luncher;
+    private final MenuLauncher launcher;
     private Panel currentPanel;
 
     public SwingGraphics() {
         frame = initiateFrame();
-        luncher = new SwingLuncher();
+        launcher = new SwingLauncher();
     }
     
     // TODO : replace jframe with frame later
@@ -83,12 +83,12 @@ public class SwingGraphics implements IGameGraphics {
 
     @Override
     public void launch(MenuType menu) {
-        luncher.lunch(menu);
+        launcher.launch(menu);
     }
 
-    private final class SwingLuncher extends MenuLuncher {
+    private final class SwingLauncher extends MenuLauncher {
 
-        SwingLuncher() {
+        SwingLauncher() {
             super();
             init();
         }
@@ -103,11 +103,11 @@ public class SwingGraphics implements IGameGraphics {
         }
 
         private void run(IMenu menu) {
-            menu.lunch(SwingGraphics.this);
+            menu.launch(SwingGraphics.this);
         }
 
         @Override
-        protected void lunch(Class<? extends IMenu> clazz) {
+        protected void launch(Class<? extends IMenu> clazz) {
             final IMenu menu = make(clazz);
             if (menu != null) run(menu);
         }

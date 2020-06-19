@@ -3,10 +3,10 @@ package com.bubble.hearthstone.ui;
 import java.util.EnumMap;
 import java.util.Map;
 
-public abstract class MenuLuncher {
+public abstract class MenuLauncher {
     protected final Map<MenuType, Class<? extends IMenu>> mapper;
 
-    MenuLuncher() {
+    MenuLauncher() {
         mapper = new EnumMap<>(MenuType.class);
     }
     
@@ -14,9 +14,9 @@ public abstract class MenuLuncher {
         return mapper.get(menuType);
     }
 
-    void lunch(MenuType menu) {
-        lunch(get(menu));
+    void launch(MenuType menu) {
+        launch(get(menu));
     }
 
-	protected abstract void lunch(Class<? extends IMenu> menu);
+	protected abstract void launch(Class<? extends IMenu> menu);
 }
