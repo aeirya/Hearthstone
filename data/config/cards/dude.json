@@ -1,0 +1,9 @@
+{
+  "name": "dude",
+  "manaCost": 10,
+  "type": "MINION",
+  "heroClass": "MAGE",
+  "rarity": "LEGENDARY",
+  "abilities": [],
+  "description": "hi"
+}

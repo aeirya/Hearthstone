@@ -2,7 +2,7 @@ package com.bubble.hearthstone.ui;
 
 import com.bubble.hearthstone.input.IGameInput;
 import com.bubble.hearthstone.ui.gui.components.Frame;
-import com.bubble.hearthstone.ui.gui.panels.ArenaPanel;
+// import com.bubble.hearthstone.ui.gui.panels.ArenaPanel;
 import com.bubble.hearthstone.ui.gui.panels.DecksPanel;
 import com.bubble.hearthstone.ui.gui.panels.LoginPanel;
 import com.bubble.hearthstone.ui.gui.panels.MainMenuPanel;
@@ -99,7 +99,7 @@ public class SwingGraphics implements IGameGraphics {
             mapper.put(MenuType.DECKS, DecksPanel.class);
             mapper.put(MenuType.SHOP, ShopPanel.class);
             mapper.put(MenuType.SETTINGS, SettingsPanel.class);
-            mapper.put(MenuType.ARENA, ArenaPanel.class);
+            // mapper.put(MenuType.ARENA, ArenaPanel.class);
         }
 
         private void run(IMenu menu) {

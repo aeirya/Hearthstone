@@ -6,7 +6,7 @@ public class Response implements IResponse {
     private final Object data;
     private int id;
 
-    private Response(Object object) {
+    protected Response(Object object) {
         this.data = object;
     }
 
@@ -28,4 +28,6 @@ public class Response implements IResponse {
     public Object getData() {
         return data;
     }
+
+    public static final IResponse fail = new Response(false);
 }

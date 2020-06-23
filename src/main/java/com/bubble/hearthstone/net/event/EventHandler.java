@@ -1,16 +1,15 @@
 package com.bubble.hearthstone.net.event;
 
-import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class EventHandler {
     private final EventQueue queue;
-    protected final GameManager manager;
+    protected final IEventProcessor processor;
     private static final int WAIT_TIME = 10;
 
-    public EventHandler(GameManager manager) {
+    public EventHandler(IEventProcessor processor) {
         this.queue = new EventQueue();
-        this.manager = manager;
+        this.processor = processor;
     }
 
     public EventHandler start() {
@@ -44,7 +43,7 @@ public class EventHandler {
     }
 
     protected void process(IGameEvent event) {
-        event.process(manager);
+        event.process(processor);
     }
 
     private void goIdle() {

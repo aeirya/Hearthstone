@@ -62,6 +62,10 @@ public class NetworkService implements INetworkService {
         return queue.get();
     }
 
+    public boolean hasNext() {
+        return queue.hasNext();
+    }
+
     @Override
     public void push(IGameEvent event) {
         queue.push(event);

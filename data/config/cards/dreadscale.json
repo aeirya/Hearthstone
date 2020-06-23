@@ -1,0 +1,9 @@
+{
+  "name": "dreadscale",
+  "manaCost": 2,
+  "type": "MINION",
+  "heroClass": "WARLOCK",
+  "rarity": "STARTER",
+  "abilities": [],
+  "description": "zues\u0027 favorite minion"
+}

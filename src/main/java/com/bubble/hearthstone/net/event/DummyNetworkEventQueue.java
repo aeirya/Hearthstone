@@ -18,6 +18,10 @@ public class DummyNetworkEventQueue implements INetworkEventQueue {
         }
     }
 
+    public boolean hasNext() {
+        return ! queue.isFree();
+    }
+
     public void push(IGameEvent event) {
         this.queue.push(event);
     }

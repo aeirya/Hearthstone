@@ -1,10 +1,9 @@
 package com.bubble.hearthstone.net.event;
 
-import com.bubble.hearthstone.controller.GameManager;
-
 public interface IGameEvent {
-    void process(GameManager manager);
-    
+
+    void process(IEventProcessor processor);
+
     default String getMessage() {
         return null;
     }

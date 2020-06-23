@@ -1,22 +1,22 @@
 package com.bubble.hearthstone.net.event.events;
 
-import com.bubble.hearthstone.controller.GameManager;
+import com.bubble.hearthstone.net.client.GameClient;
 
 public class ActionEvent implements IClientEvent {
-    private final GameManagerAction action;
+    private final GameAction action;
 
-    public ActionEvent(GameManagerAction action) {
+    public ActionEvent(GameAction action) {
         this.action = action;
     }
 
     @FunctionalInterface
-    public interface GameManagerAction{
-        void act(GameManager manager);
+    public interface GameAction{
+        void act(GameClient client);
     }
     //coud've been replaced with a Cunsumer<GameManager>
 
     @Override
-    public void process(GameManager manager) {
-        action.act(manager);
+    public void process(GameClient client) {
+        action.act(client);
     }
 }

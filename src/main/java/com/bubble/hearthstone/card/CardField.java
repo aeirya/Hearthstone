@@ -7,5 +7,6 @@ public enum CardField {
     TYPE,
     HERO_CLASS,
     RARITY,
-    DESCRIPTION
+    DESCRIPTION,
+    ABILITIES
 }

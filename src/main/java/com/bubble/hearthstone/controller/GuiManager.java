@@ -1,8 +1,11 @@
 package com.bubble.hearthstone.controller;
 
 import com.bubble.hearthstone.input.IGameInput;
+import com.bubble.hearthstone.net.event.events.IGuiEvent;
 import com.bubble.hearthstone.stl.Point;
 import com.bubble.hearthstone.ui.IGameGraphics;
+import com.bubble.hearthstone.ui.IMenu;
+import com.bubble.hearthstone.ui.MenuType;
 
 public class GuiManager implements Runnable {
     
@@ -26,6 +29,14 @@ public class GuiManager implements Runnable {
             //
             break;
         }
+    }
+
+    public void handleEvent(IGuiEvent event) {
+        event.process(this);
+    }
+
+    public void launch(MenuType menu) {
+        graphics.launch(menu);
     }
 
     private Point getMouseLocation() {

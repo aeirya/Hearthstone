@@ -16,5 +16,6 @@ public interface INetworkService {
     void login(User user);
 
     IGameEvent get();
+    boolean hasNext();
     void push(IGameEvent event);
 }

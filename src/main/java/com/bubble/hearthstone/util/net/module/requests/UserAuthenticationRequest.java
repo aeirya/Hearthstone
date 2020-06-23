@@ -1,11 +1,11 @@
 package com.bubble.hearthstone.util.net.module.requests;
 
-import com.bubble.hearthstone.net.server.IGameServer;
-import com.bubble.hearthstone.util.net.module.IRequest;
+import com.bubble.hearthstone.net.server.IRequestHandler;
+import com.bubble.hearthstone.util.net.module.IRequestAction;
 import com.bubble.hearthstone.util.net.module.IResponse;
-import com.bubble.hearthstone.util.net.module.Request;
 
-public class UserAuthenticationRequest extends Request {
+//TODO: use this
+public class UserAuthenticationRequest implements IRequestAction {
     
     private final String username;
     private final String password;
@@ -16,15 +16,13 @@ public class UserAuthenticationRequest extends Request {
     }
     
     @Override
-    public void process(IGameServer server) {
-        final boolean result;
-        server.handleUserEvent(
+    public IResponse process(IRequestHandler server) {
+        return server.handleUserRequest(
             u -> {
-                result = u.authenticate(username, password);
+                final Boolean result = u.authenticate(username, password);
+                return getResponse(result);
             }
         );
-        final IResponse response = getResponse(result); 
-        server.respond(response);
     }
 
     private IResponse getResponse(boolean result) {

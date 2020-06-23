@@ -2,6 +2,8 @@ package com.bubble.hearthstone.app;
 
 import com.bubble.hearthstone.net.INetworkService;
 import com.bubble.hearthstone.net.NetworkService;
+import com.bubble.hearthstone.net.client.GameClient;
+import com.bubble.hearthstone.net.server.GameServer;
 import com.bubble.hearthstone.ui.GraphicsMode;
 import com.bubble.hearthstone.util.config.ConfigLoader;
 import com.bubble.hearthstone.util.log.ColoredGameLogger;
@@ -33,11 +35,18 @@ public class Hearthstone implements Runnable {
         /*
         * fixed bug: GameEventHandler needs to register a logger upon initializations
         */
-        final Game game = new Game(GraphicsMode.SWING);
+        final GameServer server = new GameServer();
+        final GameClient game = new GameClient(GraphicsMode.SWING);
         EventQueue.invokeLater(
-            game::start
-            );
-        while (!quit) game.update();
+            () -> {
+                server.start();
+                game.start();
+                while (true) game.update();
+            }
+        );
+        while (!quit) {
+            server.update();
+        }
     }
     
     public static void quit() {

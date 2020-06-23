@@ -11,7 +11,7 @@ public class User {
         this.password = password;
     }
 
-    boolean authenticate(String password) {
+    public boolean authenticate(String password) {
         return this.password.equals(password);
     }
 

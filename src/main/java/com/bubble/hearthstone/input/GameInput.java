@@ -1,13 +1,13 @@
 package com.bubble.hearthstone.input;
 
-import com.bubble.hearthstone.controller.GameManager;
+import com.bubble.hearthstone.net.client.GameClient;
 import com.bubble.hearthstone.net.event.IGameEvent;
 import com.bubble.hearthstone.ui.IGameGraphics;
 import com.bubble.hearthstone.ui.gui.components.Frame;
 
 public class GameInput implements IGameInput {
 
-    private GameManager manager;
+    private GameClient client;
     private MouseInput mouseInput;
 
     // public GameInput(GameManager manager, IGameGraphics) {
@@ -27,7 +27,7 @@ public class GameInput implements IGameInput {
     }
     
     private void sendEvent(IGameEvent event) {
-        manager.handleEvent(event);
+        client.handleEvent(event);
     }
 
     @Override

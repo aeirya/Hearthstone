@@ -1,22 +1,23 @@
 package com.bubble.hearthstone.net.event.events;
 
-import com.bubble.hearthstone.controller.GameManager;
-import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.net.user.User;
+import com.bubble.hearthstone.net.user.registry.IUserManager;
 
-public class DeleteUserEvent implements IGameEvent {
+public class DeleteUserEvent extends UserEvent {
 
-    private final String username;
-    private final String password;
     private String message;
 
+    public DeleteUserEvent(User user) {
+        super(user);
+    }
+
     public DeleteUserEvent(String username, String password) {
-        this.username = username;
-        this.password = password;
+        super(username, password);
     }
 
     @Override
-    public void process(GameManager manager) {
-        final boolean result = manager.deleteUser(username, password);
+    public void process(IUserManager manager) {
+        final boolean result = manager.delete(username, password);
         message = setMessage(result);
     }
 
