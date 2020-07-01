@@ -1,7 +1,7 @@
-package com.bubble.hearthstone.network;
+// package com.bubble.hearthstone.network;
 
-import com.bubble.hearthstone.client.service.event.IEventDispatcher;
+// import com.bubble.hearthstone.client.service.event.IEventDispatcher;
 
-public interface INetworkConnection extends IEventDispatcher {
-    void start();
-}
+// public interface INetworkConnection extends IEventDispatcher {
+//     void start();
+// }
