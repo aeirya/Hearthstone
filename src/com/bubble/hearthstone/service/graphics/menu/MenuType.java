@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.client.service.graphics.menu;
+package com.bubble.hearthstone.service.graphics.menu;
 
 public enum MenuType {
     LOGIN,

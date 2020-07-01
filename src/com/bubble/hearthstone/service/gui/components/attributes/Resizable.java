@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.client.service.gui.components.attributes;
+package com.bubble.hearthstone.service.gui.components.attributes;
 
 import com.bubble.hearthstone.stl.Dimension;
 

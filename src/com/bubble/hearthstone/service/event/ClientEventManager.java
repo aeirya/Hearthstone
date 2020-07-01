@@ -1,6 +1,6 @@
-package com.bubble.hearthstone.client.service.event;
+package com.bubble.hearthstone.service.event;
 
-import com.bubble.hearthstone.client.service.module.ModuleLocator;
+import com.bubble.hearthstone.service.module.ModuleLocator;
 
 public class ClientEventManager extends EventManager {
 

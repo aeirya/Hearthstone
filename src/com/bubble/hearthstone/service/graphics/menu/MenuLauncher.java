@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.client.service.graphics.menu;
+package com.bubble.hearthstone.service.graphics.menu;
 
 import java.util.EnumMap;
 import java.util.Map;

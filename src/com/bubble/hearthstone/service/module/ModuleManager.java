@@ -1,10 +1,10 @@
-package com.bubble.hearthstone.client.service.module;
+package com.bubble.hearthstone.service.module;
 
-import com.bubble.hearthstone.client.framework.input.IInput;
-import com.bubble.hearthstone.client.framework.network.INetwork;
-import com.bubble.hearthstone.client.service.gui.GuiManager;
-import com.bubble.hearthstone.client.service.render.IRenderer;
-import com.bubble.hearthstone.client.service.render.lwjgl.LwjglRenderer;
+import com.bubble.hearthstone.framework.input.IInput;
+import com.bubble.hearthstone.framework.network.INetwork;
+import com.bubble.hearthstone.service.gui.GuiManager;
+import com.bubble.hearthstone.framework.render.IRenderer;
+import com.bubble.hearthstone.framework.render.lwjgl.LwjglRenderer;
 import com.bubble.hearthstone.message.MessageBus;
 
 public class ModuleManager {

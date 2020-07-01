@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.client.framework;
+package com.bubble.hearthstone.framework;
 
 import com.bubble.hearthstone.message.IMessageHandler;
 

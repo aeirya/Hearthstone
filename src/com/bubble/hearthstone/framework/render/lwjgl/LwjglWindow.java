@@ -1,8 +1,8 @@
-package com.bubble.hearthstone.client.service.render.lwjgl;
+package com.bubble.hearthstone.framework.render.lwjgl;
 
 import java.nio.IntBuffer;
 
-import com.bubble.hearthstone.client.service.gui.components.IFrame;
+import com.bubble.hearthstone.service.gui.components.IFrame;
 import com.bubble.hearthstone.stl.Dimension;
 
 import org.lwjgl.BufferUtils;

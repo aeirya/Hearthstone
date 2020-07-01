@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.client.service.event;
+package com.bubble.hearthstone.service.event;
 
 public interface IEventDispatcher {
     void dispatch(IEvent event);

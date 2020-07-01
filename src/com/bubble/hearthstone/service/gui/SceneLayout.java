@@ -1,9 +1,9 @@
-package com.bubble.hearthstone.client.service.gui;
+package com.bubble.hearthstone.service.gui;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.bubble.hearthstone.client.service.gui.components.IComponent;
+import com.bubble.hearthstone.service.gui.components.IComponent;
 import com.bubble.hearthstone.stl.Point;
 
 public class SceneLayout {

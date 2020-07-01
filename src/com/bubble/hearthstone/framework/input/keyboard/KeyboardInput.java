@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.client.framework.input.keyboard;
+package com.bubble.hearthstone.framework.input.keyboard;
 
 import com.bubble.hearthstone.message.IMessage;
 

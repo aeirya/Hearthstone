@@ -1,7 +1,7 @@
-package com.bubble.hearthstone.client.service.render.lwjgl;
+package com.bubble.hearthstone.framework.render.lwjgl;
 
-import com.bubble.hearthstone.client.service.gui.components.IComponent;
-import com.bubble.hearthstone.client.service.render.IRenderer;
+import com.bubble.hearthstone.service.gui.components.IComponent;
+import com.bubble.hearthstone.framework.render.IRenderer;
 import com.bubble.hearthstone.message.IMessage;
 import com.bubble.hearthstone.stl.Dimension;
 

@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.client.framework.draw;
+package com.bubble.hearthstone.framework.draw;
 
 public interface Drawable {
     

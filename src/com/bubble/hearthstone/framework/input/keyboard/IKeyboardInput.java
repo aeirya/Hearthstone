@@ -1,6 +1,6 @@
-package com.bubble.hearthstone.client.framework.input.keyboard;
+package com.bubble.hearthstone.framework.input.keyboard;
 
-import com.bubble.hearthstone.client.framework.input.IInput;
+import com.bubble.hearthstone.framework.input.IInput;
 
 public interface IKeyboardInput extends IInput {
     

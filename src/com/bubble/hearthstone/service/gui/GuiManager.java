@@ -1,6 +1,6 @@
-package com.bubble.hearthstone.client.service.gui;
+package com.bubble.hearthstone.service.gui;
 
-import com.bubble.hearthstone.client.framework.IFramework;
+import com.bubble.hearthstone.framework.IFramework;
 import com.bubble.hearthstone.message.IMessage;
 
 public class GuiManager implements IFramework {

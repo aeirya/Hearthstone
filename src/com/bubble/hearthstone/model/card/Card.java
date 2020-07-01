@@ -2,7 +2,7 @@ package com.bubble.hearthstone.model.card;
 
 import java.util.List;
 
-import com.bubble.hearthstone.client.framework.util.serialize.Serializable;
+import com.bubble.hearthstone.util.serialize.Serializable;
 import com.bubble.hearthstone.model.card.ability.Ability;
 import com.bubble.hearthstone.model.hero.HeroClass;
 

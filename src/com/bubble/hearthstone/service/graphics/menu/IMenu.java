@@ -1,6 +1,6 @@
-package com.bubble.hearthstone.client.service.graphics.menu;
+package com.bubble.hearthstone.service.graphics.menu;
 
-import com.bubble.hearthstone.client.service.graphics.IGraphics;
+import com.bubble.hearthstone.service.graphics.IGraphics;
 
 public interface IMenu {
     void launch(IGraphics graphics);

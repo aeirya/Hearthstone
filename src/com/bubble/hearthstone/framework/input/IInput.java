@@ -1,7 +1,6 @@
-package com.bubble.hearthstone.client.framework.input;
+package com.bubble.hearthstone.framework.input;
 
-import com.bubble.hearthstone.client.framework.IFramework;
-import com.bubble.hearthstone.client.framework.input.mouse.IMouseInput;
+import com.bubble.hearthstone.framework.IFramework;
 
 public interface IInput extends IFramework {
 }

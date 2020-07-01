@@ -1,6 +1,6 @@
-package com.bubble.hearthstone.client.framework.network;
+package com.bubble.hearthstone.framework.network;
 
-import com.bubble.hearthstone.client.framework.IFramework;
+import com.bubble.hearthstone.framework.IFramework;
 
 public interface INetwork extends IFramework {
     

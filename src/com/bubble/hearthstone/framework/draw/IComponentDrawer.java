@@ -1,6 +1,6 @@
-package com.bubble.hearthstone.client.framework.draw;
+package com.bubble.hearthstone.framework.draw;
 
-import com.bubble.hearthstone.client.service.gui.components.IComponent;
+import com.bubble.hearthstone.service.gui.components.IComponent;
 
 public interface IComponentDrawer {
     void draw(IComponent component);

@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.client.framework.input.mouse;
+package com.bubble.hearthstone.framework.input.mouse;
 
 public interface IMouseInput {
     

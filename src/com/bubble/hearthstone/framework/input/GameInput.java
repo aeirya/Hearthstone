@@ -1,6 +1,6 @@
-package com.bubble.hearthstone.client.framework.input;
+package com.bubble.hearthstone.framework.input;
 
-import com.bubble.hearthstone.client.framework.input.mouse.IMouseInput;
+import com.bubble.hearthstone.framework.input.mouse.IMouseInput;
 import com.bubble.hearthstone.message.IMessage;
 
 public class GameInput implements IInput {
@@ -32,11 +32,4 @@ public class GameInput implements IInput {
         // TODO Auto-generated method stub
 
     }
-
-    @Override
-    public void send(IMessage message) {
-        // TODO Auto-generated method stub
-
-    }
-    
 }
