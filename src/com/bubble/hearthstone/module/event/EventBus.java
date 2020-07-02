@@ -1,27 +1,36 @@
 package com.bubble.hearthstone.module.event;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EventBus {
-    private final IMessageHandler logic;
-    private final List<IMessageReceiver> receivers;
+    private final IEventDispatcher sender;
+    private final List<IEventHandler> receivers;
 
-    public EventBus() {
-        logic = null;
+    public EventBus(IEventDispatcher sender) {
+        this.sender = sender;
         receivers = new ArrayList<>();
     }
 
-    public void receive(IMessage message, IMessageSender sender) {
-        if (sender.equals(logic)) broadcast(message);
-        // else sendToLogic(message);
+    public void addReceiver(IEventHandler... handlers) {
+        Arrays.asList(handlers).forEach(
+            handler -> {
+                registerListener(handler);
+                // potential code: handler.setDispatcher
+            }
+        );
     }
 
-    private void broadcast(IMessage message) {
-        receivers.forEach(r -> r.receive(message));
+    private void registerListener(IEventHandler handler) {
+        receivers.add(handler);
     }
 
-    // private void sendToLogic(IMessage message) {
-    //     logic.receive(message);
-    // }
+    public void broadcast(IEvent event) {
+        receivers.forEach(r -> r.handle(event));
+    }
+
+    public void receive(IEvent event) {
+        sender.dispatch(event);
+    }
 }

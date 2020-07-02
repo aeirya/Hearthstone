@@ -1,15 +1,14 @@
 package com.bubble.hearthstone.module.logic.arena;
 
 import com.bubble.hearthstone.module.event.IEvent;
-import com.bubble.hearthstone.module.event.IEventDispatcher;
 import com.bubble.hearthstone.module.event.IEventHandler;
 
 public class ArenaEventHandler implements IEventHandler {
 
     private final Arena arena;
 
-    public ArenaEventHandler() {
-
+    public ArenaEventHandler(Arena arena) {
+        this.arena = arena;
     }
 
     @Override

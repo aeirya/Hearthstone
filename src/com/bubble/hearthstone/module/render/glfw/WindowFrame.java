@@ -3,6 +3,7 @@ package com.bubble.hearthstone.module.render.glfw;
 import java.nio.IntBuffer;
 
 import com.bubble.hearthstone.module.gui.components.IFrame;
+import com.bubble.hearthstone.module.input.mouse.glfw.GlfwMouseInput;
 import com.bubble.hearthstone.stl.Dimension;
 
 import org.lwjgl.BufferUtils;
@@ -11,11 +12,11 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryUtil;
 
-public class LwjglWindow implements IFrame {
+public class WindowFrame implements IFrame {
 
     private final long window;
 
-    public LwjglWindow() {
+    public WindowFrame() {
         this.window = createWindow();
     }
 
@@ -61,5 +62,9 @@ public class LwjglWindow implements IFrame {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
         GLFW.glfwSwapBuffers(window);
         GLFW.glfwPollEvents();
+    }
+
+    public void bind(GlfwMouseInput input) {
+        input.bind(window);
     }
 }

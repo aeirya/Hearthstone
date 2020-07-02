@@ -1,10 +1,10 @@
 package com.bubble.hearthstone.module.event;
 
-public class EventOperator {
+public class EventQueueOperator {
     private final EventManager manager;
     private final Thread thread;
 
-    public EventOperator(EventManager manager) {
+    public EventQueueOperator(EventManager manager) {
         this.manager = manager;
         thread = new Thread(this::loop);
     }

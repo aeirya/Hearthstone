@@ -8,8 +8,16 @@ public class Arena implements IEventHandler, IEventDispatcher {
 
     private final IEventDispatcher eventSystem;
 
+    public Arena(IEventDispatcher eventSystem) {
+        this.eventSystem = eventSystem;
+    }
+
     public Arena() {
-        
+        eventSystem = null;
+    }
+
+    public void startSession() {
+        //
     }
 
     @Override
