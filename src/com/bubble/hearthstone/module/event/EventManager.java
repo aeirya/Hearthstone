@@ -7,10 +7,10 @@ public class EventManager {
     private final Queue<IEvent> eventQueue;
     private final EventOperator operator;
 
-    public EventManager(IEventHandler handler) {
+    public EventManager() {
         eventQueue = new Queue<>();
         operator = new EventOperator(this);
-        this.handler = handler;
+        handler = new EventHandler();
     }
 
     public void start() {

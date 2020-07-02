@@ -2,11 +2,11 @@ package com.bubble.hearthstone.module.event;
 
 import java.util.EnumMap;
 
-public class ClientEventHandler implements IClientEventHandler {
+public class EventHandler implements IGameEventHandler {
 
     private final EnumMap<HandlerType, IEventHandler> handlers;
 
-    public ClientEventHandler() {
+    public EventHandler() {
         handlers = new EnumMap<>(HandlerType.class);
     }
 
@@ -21,10 +21,10 @@ public class ClientEventHandler implements IClientEventHandler {
     }
 
     @Override
-    public void handleNetworkEvent(IEvent event) {
-       get(HandlerType.NETWORK).handle(event);
+    public void handleGameEvent(IEvent event) {
+        get(HandlerType.LOGIC).handle(event);
     }
-    
+
     private IEventHandler get(HandlerType type) {
         return handlers.get(type);
     }

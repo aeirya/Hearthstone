@@ -3,11 +3,11 @@ package com.bubble.hearthstone.message;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageBus {
+public class EventBus {
     private final IMessageHandler logic;
     private final List<IMessageReceiver> receivers;
 
-    public MessageBus() {
+    public EventBus() {
         logic = null;
         receivers = new ArrayList<>();
     }
