@@ -1,19 +1,17 @@
 package com.bubble.hearthstone.module.management;
 
 import com.bubble.hearthstone.module.input.IInput;
-import com.bubble.hearthstone.module.network.INetwork;
 import com.bubble.hearthstone.module.gui.GuiManager;
 import com.bubble.hearthstone.module.render.IRenderer;
 import com.bubble.hearthstone.module.render.opengl.Renderer;
-import com.bubble.hearthstone.message.MessageBus;
+import com.bubble.hearthstone.message.EventBus;
 
 public class ModuleManager {
     
-    private final MessageBus messageBus;
+    private final EventBus messageBus;
 
     private final IInput input;
     private final IRenderer renderer;
-    private final INetwork network;
     
     private final GuiManager gui;
     private final ModuleLocator locator;
@@ -24,7 +22,6 @@ public class ModuleManager {
         
         input = initiateInput();
         renderer = initiateRenderer();
-        network = initiateNetwork();
 
         gui = initiateGuiManager();
         locator = initiateModuleLocator();
@@ -32,11 +29,11 @@ public class ModuleManager {
 
     private final ModuleLocator initiateModuleLocator() {
         return new ModuleLocator()
-                    .provideNetwork(network);
+                    .provideGui(gui);
     }
 
-    private final MessageBus initiateMessageBus() {
-        return new MessageBus();
+    private final EventBus initiateMessageBus() {
+        return new EventBus();
     }
 
     private final IRenderer initiateRenderer() {
@@ -44,10 +41,6 @@ public class ModuleManager {
     }
 
     private final IInput initiateInput() {
-        return null;
-    }
-
-    private final INetwork initiateNetwork() {
         return null;
     }
 
