@@ -3,8 +3,8 @@ package com.bubble.hearthstone.service.module;
 import com.bubble.hearthstone.framework.input.IInput;
 import com.bubble.hearthstone.framework.network.INetwork;
 import com.bubble.hearthstone.service.gui.GuiManager;
-import com.bubble.hearthstone.framework.render.IRenderer;
-import com.bubble.hearthstone.framework.render.lwjgl.LwjglRenderer;
+import com.bubble.hearthstone.module.render.IRenderer;
+import com.bubble.hearthstone.module.render.opengl.Renderer;
 import com.bubble.hearthstone.message.MessageBus;
 
 public class ModuleManager {
@@ -40,7 +40,7 @@ public class ModuleManager {
     }
 
     private final IRenderer initiateRenderer() {
-        return new LwjglRenderer();
+        return new Renderer();
     }
 
     private final IInput initiateInput() {

@@ -1,6 +1,6 @@
 package com.bubble.hearthstone.service.module;
 
-import com.bubble.hearthstone.framework.render.IRenderer;
+import com.bubble.hearthstone.module.render.IRenderer;
 import com.bubble.hearthstone.framework.network.INetwork;
 import com.bubble.hearthstone.service.gui.GuiManager;
 

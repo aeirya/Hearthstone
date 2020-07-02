@@ -1,17 +1,18 @@
-package com.bubble.hearthstone.framework.render.lwjgl;
+package com.bubble.hearthstone.module.render.opengl;
 
 import com.bubble.hearthstone.service.gui.components.IComponent;
-import com.bubble.hearthstone.framework.render.IRenderer;
 import com.bubble.hearthstone.message.IMessage;
+import com.bubble.hearthstone.module.render.IRenderer;
+import com.bubble.hearthstone.module.render.glfw.LwjglWindow;
 import com.bubble.hearthstone.stl.Dimension;
 
 import org.lwjgl.glfw.GLFW;
 
-public class LwjglRenderer implements IRenderer {
+public class Renderer implements IRenderer {
 
     private LwjglWindow frame;
 
-    public LwjglRenderer() {
+    public Renderer() {
         //
     }
 

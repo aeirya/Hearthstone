@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.framework.render.lwjgl;
+package com.bubble.hearthstone.module.render.glfw;
 
 import java.nio.IntBuffer;
 
@@ -15,7 +15,7 @@ public class LwjglWindow implements IFrame {
 
     private final long window;
 
-    LwjglWindow() {
+    public LwjglWindow() {
         this.window = createWindow();
     }
 

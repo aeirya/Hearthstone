@@ -16,6 +16,6 @@ public class Hearthstone implements Runnable {
     }
 
     public void run() {
-        //
+        new Game().start();
     }
 }

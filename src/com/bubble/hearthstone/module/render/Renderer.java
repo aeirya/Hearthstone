@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.framework.render;
+package com.bubble.hearthstone.module.render;
 
 import com.bubble.hearthstone.service.gui.components.IComponent;
 
