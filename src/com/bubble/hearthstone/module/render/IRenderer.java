@@ -1,7 +1,7 @@
 package com.bubble.hearthstone.module.render;
 
-import com.bubble.hearthstone.framework.IFramework;
-import com.bubble.hearthstone.service.gui.components.IComponent;
+import com.bubble.hearthstone.module.IFramework;
+import com.bubble.hearthstone.module.gui.components.IComponent;
 
 public interface IRenderer extends IFramework { 
     void render(IComponent component);

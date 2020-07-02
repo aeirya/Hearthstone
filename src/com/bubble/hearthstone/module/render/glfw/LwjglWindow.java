@@ -2,7 +2,7 @@ package com.bubble.hearthstone.module.render.glfw;
 
 import java.nio.IntBuffer;
 
-import com.bubble.hearthstone.service.gui.components.IFrame;
+import com.bubble.hearthstone.module.gui.components.IFrame;
 import com.bubble.hearthstone.stl.Dimension;
 
 import org.lwjgl.BufferUtils;

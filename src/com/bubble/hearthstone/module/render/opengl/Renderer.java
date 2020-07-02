@@ -1,6 +1,6 @@
 package com.bubble.hearthstone.module.render.opengl;
 
-import com.bubble.hearthstone.service.gui.components.IComponent;
+import com.bubble.hearthstone.module.gui.components.IComponent;
 import com.bubble.hearthstone.message.IMessage;
 import com.bubble.hearthstone.module.render.IRenderer;
 import com.bubble.hearthstone.module.render.glfw.LwjglWindow;

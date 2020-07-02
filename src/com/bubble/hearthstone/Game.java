@@ -1,6 +1,6 @@
 package com.bubble.hearthstone;
 
-import com.bubble.hearthstone.service.module.ModuleManager;
+import com.bubble.hearthstone.module.management.ModuleManager;
 
 public class Game {
     
@@ -12,5 +12,6 @@ public class Game {
 
     public void start() {
         modules.start();
+//        new Renderer().start();
     }
 }
