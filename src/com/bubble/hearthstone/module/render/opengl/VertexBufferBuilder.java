@@ -15,11 +15,11 @@ public class VertexBufferBuilder {
         indices = MemoryUtil.memAllocInt(BUFFER_SIZE * 3 / 2);
     }
 
-    public int[] getIndices() {
-        return null;
+    public IntBuffer getIndices() {
+        return indices;
     } 
 
-    public int[] geVertices() {
-        return null;
+    public FloatBuffer geVertices() {
+        return vertices;
     }
 }

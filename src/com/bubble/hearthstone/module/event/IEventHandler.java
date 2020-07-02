@@ -1,5 +1,7 @@
 package com.bubble.hearthstone.module.event;
 
 public interface IEventHandler {
-    void handle(IEvent event);
+    default void handle(IEvent event) {
+        event.process(this);
+    }
 }

@@ -1,6 +1,10 @@
 package com.bubble.hearthstone.module.management;
 
 import com.bubble.hearthstone.module.input.IInput;
+import com.bubble.hearthstone.module.event.EventManager;
+import com.bubble.hearthstone.module.event.EventSystem;
+import com.bubble.hearthstone.module.graphics.IGraphics;
+import com.bubble.hearthstone.module.graphics.OpenGlGraphics;
 import com.bubble.hearthstone.module.gui.GuiManager;
 import com.bubble.hearthstone.module.render.IRenderer;
 import com.bubble.hearthstone.module.render.opengl.Renderer;
@@ -12,28 +16,39 @@ public class ModuleManager {
 
     private final IInput input;
     private final IRenderer renderer;
-    
+    private final IGraphics graphics;
+
+    private final EventManager eventManager;
+    private final EventSystem eventSystem;
+
     private final GuiManager gui;
     private final ModuleLocator locator;
 
     public ModuleManager() {
-        messageBus = initiateMessageBus();
+        messageBus = initiateEventBus();
         // use an event system file instead?
         
-        input = initiateInput();
         renderer = initiateRenderer();
+        input = initiateInput();
+        graphics = initiateGraphics();
 
         gui = initiateGuiManager();
+        
         locator = initiateModuleLocator();
     }
 
     private final ModuleLocator initiateModuleLocator() {
-        return new ModuleLocator()
-                    .provideGui(gui);
+        return ModuleLocator
+            .provideInstance(new ModuleLocator())
+            .provideGui(gui);
     }
 
-    private final EventBus initiateMessageBus() {
+    private final EventBus initiateEventBus() {
         return new EventBus();
+    }
+
+    private final IGraphics initiateGraphics() {
+        return new OpenGlGraphics();
     }
 
     private final IRenderer initiateRenderer() {
@@ -54,7 +69,6 @@ public class ModuleManager {
 
     public void start() {
         // start components
-        
         // input.start();
         // renderer.start();
         // network.start();

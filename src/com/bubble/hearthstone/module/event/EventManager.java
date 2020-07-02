@@ -28,7 +28,7 @@ public class EventManager {
     }
 
     /** @return null is non existant */
-    public IEvent nextEvent() {
+    IEvent nextEvent() {
         if (eventQueue.hasNext()) {
             return eventQueue.next();
         }

@@ -17,7 +17,7 @@ public class EventHandler implements IGameEventHandler {
 
     @Override
     public void handleGraphicsEvent(IEvent event) {
-        get(HandlerType.GRAPHICS).handle(event);
+        get(H   andlerType.GRAPHICS).handle(event);
     }
 
     @Override

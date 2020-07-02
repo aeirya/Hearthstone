@@ -4,12 +4,12 @@ import com.bubble.hearthstone.module.event.IEvent;
 import com.bubble.hearthstone.module.event.IEventDispatcher;
 import com.bubble.hearthstone.module.event.IEventHandler;
 
-public class Arena implements IEventHandler, IEventDispatcher {
+public class ArenaEventHandler implements IEventHandler {
 
-    private final IEventDispatcher eventSystem;
+    private final Arena arena;
 
-    public Arena() {
-        
+    public ArenaEventHandler() {
+
     }
 
     @Override
@@ -17,12 +17,7 @@ public class Arena implements IEventHandler, IEventDispatcher {
         event.process(this);
     }
 
-    public void handle(IArenaEvent event) {
-        event.process(this);
-    }
-
-    @Override
-    public void dispatch(IEvent event) {
-        eventSystem.dispatch(event);
+    public void onPlayerEnter(IEvent event) {
+        arena.dispatch(event);
     }
 }

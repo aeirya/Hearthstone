@@ -1,16 +1,9 @@
 package com.bubble.hearthstone.module.gui;
 
 import com.bubble.hearthstone.module.IFramework;
-import com.bubble.hearthstone.message.IMessage;
+import com.bubble.hearthstone.module.event.IEvent;
 
 public class GuiManager implements IFramework {
-
-    @Override
-    public void handle(IMessage message) {
-        // TODO Auto-generated method stub
-
-    }
-
 
     @Override
     public void start() {
@@ -25,9 +18,8 @@ public class GuiManager implements IFramework {
     }
 
     @Override
-    public void handleMessage(Object message) {
+    public void handle(IEvent event) {
         // TODO Auto-generated method stub
 
     }
-    
 }

@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.message;
+package com.bubble.hearthstone.module.event;
 
 import java.util.ArrayList;
 import java.util.List;
