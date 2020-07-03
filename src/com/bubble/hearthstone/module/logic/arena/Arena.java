@@ -1,19 +1,18 @@
 package com.bubble.hearthstone.module.logic.arena;
 
+import com.bubble.hearthstone.module.event.EventSystem;
 import com.bubble.hearthstone.module.event.IEvent;
 import com.bubble.hearthstone.module.event.IEventDispatcher;
 import com.bubble.hearthstone.module.event.IEventHandler;
 
 public class Arena implements IEventHandler, IEventDispatcher {
 
-    private final IEventDispatcher eventSystem;
+    private final Player player1;
+    private final Player player2;
 
-    public Arena(IEventDispatcher eventSystem) {
-        this.eventSystem = eventSystem;
-    }
-
-    public Arena() {
-        eventSystem = null;
+    public Arena(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
     public void startSession() {
@@ -31,6 +30,6 @@ public class Arena implements IEventHandler, IEventDispatcher {
 
     @Override
     public void dispatch(IEvent event) {
-        eventSystem.dispatch(event);
+        EventSystem.dispatch(event);
     }
 }

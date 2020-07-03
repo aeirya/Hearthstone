@@ -2,12 +2,12 @@ package com.bubble.hearthstone.model.card.ability;
 
 import com.bubble.hearthstone.util.serialize.Serializable;
 
-public class Ability implements Serializable {
+public abstract class Ability implements Serializable {
     private final AbilityType type;
-    private final String[] args;
 
-    public Ability(AbilityType type, String... args) {
+    public Ability(AbilityType type) {
         this.type = type;
-        this.args = args;
     }
+
+    public abstract void act();
 }

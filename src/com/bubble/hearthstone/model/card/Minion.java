@@ -1,6 +1,9 @@
 package com.bubble.hearthstone.model.card;
 
-public class Minion {
+import com.bubble.hearthstone.util.serialize.CardSerializer;
+import com.bubble.hearthstone.util.serialize.Serializable;
+
+public class Minion implements Serializable {
 
     public final Card card;
     public final int hp;
@@ -12,5 +15,12 @@ public class Minion {
         this.hp = hp;
         this.attack = attack;
         this.defense = defense;
+    }
+
+    public static void main(String[] args) {
+        final String s = new CardSerializer().serialize(
+            new DummyMinion()
+        );
+        System.err.println(s);
     }
 }

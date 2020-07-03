@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bubble.hearthstone.model.card.ability.Ability;
 import com.bubble.hearthstone.model.card.ability.AbilityType;
+import com.bubble.hearthstone.model.card.ability.abilities.AbilityDraw;
 import com.bubble.hearthstone.model.hero.HeroClass;
 
 public class DummyCard extends Card {
@@ -14,7 +15,8 @@ public class DummyCard extends Card {
             CardType.MINION, 
             HeroClass.WARLOCK, 
             CardRarity.EPIC, 
-            List.of(new Ability(AbilityType.DRAW, "arg1", "arg2"), new Ability(AbilityType.HASTE, "args")),
+            // List.of(new Ability(AbilityType.DRAW, "arg1", "arg2"){}, new Ability(AbilityType.HASTE, "args")),
+            List.of(new AbilityDraw(3) ),
             "no description");
     }
     

@@ -5,8 +5,19 @@ import com.bubble.hearthstone.model.card.ability.AbilityType;
 
 public class AbilityDraw extends Ability {
 
-    public AbilityDraw(String[] args) {
-        
+    private final int n;
+
+    public AbilityDraw(int n) {
+        super(AbilityType.DRAW);
+        this.n = n;
     }
-    
+
+    public AbilityDraw(String args) {
+        super(AbilityType.DRAW);
+        n = Integer.parseInt(args);
+    }
+
+    public void act() {
+        //
+    }
 }

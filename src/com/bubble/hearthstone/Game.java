@@ -5,7 +5,12 @@ import com.bubble.hearthstone.module.event.IEventHandler;
 import com.bubble.hearthstone.module.gui.GuiEventHandler;
 import com.bubble.hearthstone.module.gui.events.LaunchEvent;
 import com.bubble.hearthstone.module.logic.arena.Arena;
+import com.bubble.hearthstone.module.logic.arena.Match;
+import com.bubble.hearthstone.module.logic.arena.Player;
 import com.bubble.hearthstone.module.management.ModuleManager;
+import com.bubble.hearthstone.module.service.ServiceLocator;
+import com.bubble.hearthstone.net.user.DummyUser;
+import com.bubble.hearthstone.net.user.User;
 import com.bubble.hearthstone.util.time.Waiter;
 
 public class Game implements IEventHandler {
@@ -48,7 +53,10 @@ public class Game implements IEventHandler {
     }
 
     public void launchArena() {
-        Arena arena = new Arena();
+        Arena arena = new Match(
+            ServiceLocator.getUserManager().getMe(),
+            new DummyUser()
+        ).createArena();
         setEventHandler(arena);
         arena.startSession();
     }

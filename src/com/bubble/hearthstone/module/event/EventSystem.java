@@ -1,6 +1,6 @@
 package com.bubble.hearthstone.module.event;
 
-public class EventSystem  {
+public class EventSystem {
 
     private final EventManager eventManager;
 
