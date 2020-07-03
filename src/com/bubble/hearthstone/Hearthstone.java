@@ -1,6 +1,8 @@
 package com.bubble.hearthstone;
 
-import com.bubble.hearthstone.util.config.ResourceConfig;
+import com.bubble.hearthstone.module.service.ServiceLocator;
+import com.bubble.hearthstone.util.resource.FileManager;
+import com.bubble.hearthstone.util.resource.ResourceManager;
 
 public class Hearthstone implements Runnable {
     
@@ -14,11 +16,18 @@ public class Hearthstone implements Runnable {
         if (args.length > 0) {
             configPath = args[0];
         }
-        else configPath = "config/files.properties";
+        else configPath = FileManager.findInClasspath("config/files.properties");
     }
 
     public void run() {
-        final ResourceConfig config = new ResourceConfig(configPath);
+        initiateServiceLocator();
         new Game().start();
+    }
+
+    private void initiateServiceLocator() {
+        final ResourceManager resourceManager = new ResourceManager(configPath);
+        ServiceLocator
+            .getInstance()
+            .provideResources(resourceManager);
     }
 }

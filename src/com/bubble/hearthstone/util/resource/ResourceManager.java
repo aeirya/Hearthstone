@@ -11,6 +11,12 @@ public class ResourceManager {
    
     private final Map<String, User> users;
 
+    public ResourceManager(String configPath) {
+        this(
+            new ResourceConfig(configPath)
+        );
+    }
+
     public ResourceManager(ResourceConfig config) {
         this.config = config;
         createFoldersIfNeeded();
