@@ -25,6 +25,11 @@ public class GameEventHandler implements IGameEventHandler {
         get(HandlerType.LOGIC).handle(event);
     }
 
+    @Override
+    public void handleUserEvent(IEvent event) {
+        get(HandlerType.USER).handle(event);
+    }
+
     private IEventHandler get(HandlerType type) {
         return handlers.get(type);
     }

@@ -63,11 +63,11 @@ public class ModuleManager {
     }
 
     private final IInput initiateInput() {
-        return new GameInput(gui.getFrame());
+        return new GameInput(gui);
     }
 
     private final GuiManager initiateGuiManager() {
-        return new GuiManager(input);
+        return new GuiManager();
     }
 
     private final EventSystem initiateEventSystem() {

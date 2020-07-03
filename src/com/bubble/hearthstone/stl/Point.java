@@ -21,4 +21,8 @@ public class Point {
             a.x + b.x, a.y + b.y
         );
     }
+
+    public String toString() {
+        return x + ", " + y;
+    }
 }

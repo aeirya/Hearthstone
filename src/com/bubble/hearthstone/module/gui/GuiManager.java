@@ -8,11 +8,9 @@ import com.bubble.hearthstone.module.render.glfw.WindowManager;
 public class GuiManager implements IFramework {
 
     private final WindowManager windowManager;
-    private final IFrame window;
 
     public GuiManager() {
         windowManager = new WindowManager();
-        window = windowManager.getFrame();
     }
 
     @Override
@@ -23,7 +21,6 @@ public class GuiManager implements IFramework {
     @Override
     public void stop() {
         // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -32,6 +29,10 @@ public class GuiManager implements IFramework {
     }
 
     public IFrame getFrame() {
-        return window;
+        return windowManager.getFrame();
+    }
+
+    public void update() {
+        windowManager.update();
     }
 }

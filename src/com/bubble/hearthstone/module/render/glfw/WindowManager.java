@@ -1,6 +1,7 @@
 package com.bubble.hearthstone.module.render.glfw;
 
 import com.bubble.hearthstone.module.IFramework;
+import com.bubble.hearthstone.module.event.EventSystem;
 import com.bubble.hearthstone.module.gui.components.IFrame;
 import com.bubble.hearthstone.stl.Dimension;
 
@@ -13,17 +14,21 @@ public class WindowManager implements IFramework {
     @Override
     public void start() {
         GLFW.glfwInit();
-        run();
+        createWindow();
     }
 
     private void run() {
-        createWindow();
-        while (!frame.checkForClose()) {
-            update();
+        if (!frame.checkForClose()) {
+            frame.refresh();
+        } else {
+            EventSystem.dispatch(
+                //quit event
+                null
+            );
         }
     }
 
-    public void createWindow() {
+    private void createWindow() {
         frame = new WindowFrame();
     }
 
@@ -32,15 +37,15 @@ public class WindowManager implements IFramework {
         GLFW.glfwTerminate();
     }
 
-    private void update() {
-        frame.refresh();
-    }
-
     public void setWindowSize(Dimension size) {
         frame.setSize(size);
     }
 
     public IFrame getFrame() {
         return frame;
+    }
+
+    public void update() {
+        run();
     }
 }

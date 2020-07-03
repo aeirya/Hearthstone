@@ -10,17 +10,18 @@ public class EventManager {
     private final IEventHandler handler;
     private final EventBus eventBus;
 
-    public EventManager(ModuleLocator locator, EventBus eventBus) {
+    public EventManager(ModuleLocator modules, EventBus eventBus) {
         queue = new Queue<>();
         operator = new EventQueueOperator(this);
-        handler = initiateEventHandler(locator);
+        handler = initiateEventHandler(modules);
         this.eventBus = eventBus;
     }
 
-    private GameEventHandler initiateEventHandler(ModuleLocator locator) {
+    private GameEventHandler initiateEventHandler(ModuleLocator modules) {
         final GameEventHandler h = new GameEventHandler();
-        h.register(HandlerType.GRAPHICS, locator.getGraphics());
-        h.register(HandlerType.LOGIC, locator.getLogic());
+        h.register(HandlerType.GRAPHICS, modules.getGraphics());
+        h.register(HandlerType.LOGIC, modules.getLogic());
+        // h.register(HandlerType.USER, services.getUserManager());
         return h;
     }
 

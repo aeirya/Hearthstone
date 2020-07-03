@@ -12,4 +12,8 @@ public class SceneLayout {
     public SceneLayout() {
         layout = new HashMap<>();
     }
+
+    public void load(String layout) {
+        // implement this
+    }
 }

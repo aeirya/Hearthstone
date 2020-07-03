@@ -19,7 +19,7 @@ public class MouseInput implements IMouseInput {
 
     @Override
     public void onMouseMove(MouseState mouse) {
-        System.out.println(mouse.location);
+        System.out.println(mouse.location.toString());
     }
 
     @Override

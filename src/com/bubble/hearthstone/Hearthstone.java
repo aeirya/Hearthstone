@@ -1,8 +1,10 @@
 package com.bubble.hearthstone;
 
+import com.bubble.hearthstone.util.config.ResourceConfig;
+
 public class Hearthstone implements Runnable {
     
-    private final String config;
+    private final String configPath;
 
     public static void main(String... args) {
         new Hearthstone(args).run();
@@ -10,12 +12,13 @@ public class Hearthstone implements Runnable {
 
     public Hearthstone(String[] args) {
         if (args.length > 0) {
-            config = args[0];
+            configPath = args[0];
         }
-        else config = "config/files.properties";
+        else configPath = "config/files.properties";
     }
 
     public void run() {
+        final ResourceConfig config = new ResourceConfig(configPath);
         new Game().start();
     }
 }
