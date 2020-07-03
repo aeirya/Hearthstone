@@ -8,5 +8,5 @@ public interface IArenaEvent extends IEvent {
         handler.handle(this);
     }
 
-    void process(Arena arena);
+    void process(ArenaEventHandler arena);
 }

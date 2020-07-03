@@ -1,7 +1,7 @@
 package com.bubble.hearthstone.module.logic.arena;
 
 public interface IBattleEvent extends IArenaEvent {
-    default void process(Arena arena) {
+    default void process(ArenaEventHandler arena) {
         arena.handleBattleEvent(this);
     }
     

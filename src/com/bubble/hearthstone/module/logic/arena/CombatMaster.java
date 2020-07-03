@@ -2,6 +2,7 @@ package com.bubble.hearthstone.module.logic.arena;
 
 import com.bubble.hearthstone.model.card.ability.abilities.AttackEvent;
 import com.bubble.hearthstone.model.card.monster.Monster;
+import com.bubble.hearthstone.module.event.IEvent;
 import com.bubble.hearthstone.module.event.IEventHandler;
 
 public class CombatMaster implements IEventHandler {
@@ -11,6 +12,15 @@ public class CombatMaster implements IEventHandler {
     public CombatMaster() {
         // could load combat rules here
         this.ruleBook = new RuleBook();
+    }
+
+    @Override
+    public void handle(IEvent event) {
+        handleBattleEvent((IBattleEvent) event);
+    }
+
+    public void handleBattleEvent(IBattleEvent event) {
+        event.process(this);
     }
 
     public void attack(AttackEvent event) {

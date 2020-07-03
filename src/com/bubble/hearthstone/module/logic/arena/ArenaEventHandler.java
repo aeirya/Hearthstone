@@ -13,10 +13,20 @@ public class ArenaEventHandler implements IEventHandler {
 
     @Override
     public void handle(IEvent event) {
+        if (event instanceof IArenaEvent) {
+            handle((IArenaEvent) event);
+        }
+    }
+
+    public void handle(IArenaEvent event) {
         event.process(this);
     }
 
+    public void handleBattleEvent(IBattleEvent event) {
+        arena.handleBattleEvent(event);
+    }
+
     public void onPlayerEnter(IEvent event) {
-        arena.dispatch(event);
+        arena.dispatch(event); // ?
     }
 }
