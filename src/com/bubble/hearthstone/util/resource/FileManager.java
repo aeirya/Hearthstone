@@ -28,6 +28,7 @@ public class FileManager {
     }   
 
     public static String findInClasspath(String path) {
-        return FileManager.class.getClassLoader().getResource(path).getFile();
+        // return FileManager.class.getClassLoader().getResource(path).getFile();
+        return path;
     }
 }

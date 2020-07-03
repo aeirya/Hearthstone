@@ -24,6 +24,11 @@ public class ServiceLocator {
         return getInstance().resourceManager;
     }
 
+    public ServiceLocator provideUserManager(IUserManager userManager) {
+        this.userManager = userManager;
+        return this;
+    }
+
     public static IUserManager getUserManager() {
         return getInstance().userManager;
     }

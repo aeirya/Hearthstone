@@ -1,36 +1,41 @@
 package com.bubble.hearthstone.model.card.monster;
 
-import java.awt.Graphics;
 
 import com.bubble.hearthstone.model.card.Minion;
 
 public abstract class Monster {
 
     private final Minion card;
+    private int hp;
+    private int attack;
+    private int defense;
 
     public Monster(Minion card) {
         this.card = card;
+        attack = card.attack;
+        defense = card.defense;
     }
 
     private int getDamageValue() {
-        return this.card.attack;
+        return attack;
     }
 
     private int getDefenseValue() {
-        return this.card.defense;
+        return defense;
     }
 
     public void attack(Monster other) {
         onAttack(other);
-        other.getAttacked(this);
+        other.getAttacked(this, attack);
     }
 
-    public void getAttacked(Monster from) {
+    public void getAttacked(Monster from, int damage) {
         onGettingDamage(from);
+        reduceHealth(damage);
     }
 
     private void reduceHealth(int value) {
-        //
+        hp -= value;
     }
 
     protected abstract void onSummon();

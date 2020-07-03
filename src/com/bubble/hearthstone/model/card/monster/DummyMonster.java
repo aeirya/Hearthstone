@@ -1,13 +1,13 @@
 package com.bubble.hearthstone.model.card.monster;
 
-import com.bubble.hearthstone.model.card.Minion;
+import com.bubble.hearthstone.model.card.DummyMinion;
 
 public class DummyMonster extends Monster {
 
     private final GameLogger logger;
 
-    public DummyMonster(Minion card) {
-        super(card);
+    public DummyMonster() {
+        super(new DummyMinion());
         logger = new GameLogger();
     }
 

@@ -1,16 +1,16 @@
 package com.bubble.hearthstone;
 
-import com.bubble.hearthstone.module.event.EventSystem;
+import com.bubble.hearthstone.model.card.ability.abilities.AttackEvent;
+import com.bubble.hearthstone.model.card.monster.DummyMonster;
+import com.bubble.hearthstone.module.event.IEvent;
 import com.bubble.hearthstone.module.event.IEventHandler;
 import com.bubble.hearthstone.module.gui.GuiEventHandler;
 import com.bubble.hearthstone.module.gui.events.LaunchEvent;
 import com.bubble.hearthstone.module.logic.arena.Arena;
 import com.bubble.hearthstone.module.logic.arena.Match;
-import com.bubble.hearthstone.module.logic.arena.Player;
 import com.bubble.hearthstone.module.management.ModuleManager;
 import com.bubble.hearthstone.module.service.ServiceLocator;
 import com.bubble.hearthstone.net.user.DummyUser;
-import com.bubble.hearthstone.net.user.User;
 import com.bubble.hearthstone.util.time.Waiter;
 
 public class Game implements IEventHandler {
@@ -22,6 +22,7 @@ public class Game implements IEventHandler {
     public Game() {
         isRunning = true;
         modules = new ModuleManager(this);
+        launchArena();
     }
 
     public void start() {
@@ -52,6 +53,11 @@ public class Game implements IEventHandler {
         new GuiEventHandler().handle(new LaunchEvent());
     }
 
+    @Override
+    public void handle(IEvent event) {
+        eventHandler.handle(event);
+    }
+
     public void launchArena() {
         Arena arena = new Match(
             ServiceLocator.getUserManager().getMe(),
@@ -59,5 +65,9 @@ public class Game implements IEventHandler {
         ).createArena();
         setEventHandler(arena);
         arena.startSession();
+        handle(
+            new AttackEvent(
+                new DummyMonster(), new DummyMonster())
+        );
     }
 }
