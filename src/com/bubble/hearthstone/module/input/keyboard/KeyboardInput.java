@@ -1,34 +1,34 @@
 package com.bubble.hearthstone.module.input.keyboard;
 
 import com.bubble.hearthstone.module.gui.components.IFrame;
-import com.bubble.hearthstone.module.input.mouse.IMouseInput;
+import com.bubble.hearthstone.module.input.keyboard.glfw.GlfwKeyboardInput;
 
 public class KeyboardInput implements IKeyboardInput {
 
-    // private
+    private final IKeyboardInput input;
 
-    @Override
-    public void start() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void stop() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public IMouseInput getMouseInput() {
-        // TODO Auto-generated method stub
-        return null;
+    public KeyboardInput() {
+        input = new GlfwKeyboardInput(this);
     }
 
     @Override
     public void bind(IFrame frame) {
-        // TODO Auto-generated method stub
+        input.bind(frame);
+    }
 
+    @Override
+    public void onKeyPress(IKeyEvent event) {
+        System.out.println("pressed "+ event.getKey());
+    }
+
+    @Override
+    public void onKeyRelease(IKeyEvent event) {
+        System.out.println("released " + event.getKey());
+    }
+
+    @Override
+    public void onKeyHold(IKeyEvent event) {
+        System.out.println("held "+ event.getKey());
     }
     
 }

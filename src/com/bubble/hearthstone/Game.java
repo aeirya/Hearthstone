@@ -13,10 +13,10 @@ import com.bubble.hearthstone.module.service.ServiceLocator;
 import com.bubble.hearthstone.net.user.DummyUser;
 import com.bubble.hearthstone.util.time.Waiter;
 
-public class Game implements IEventHandler {
+public class Game implements IEventHandler <IEvent> {
     
     private final ModuleManager modules;
-    private IEventHandler eventHandler;
+    private IEventHandler<IEvent> eventHandler;
     private boolean isRunning;
     
     public Game() {
@@ -27,8 +27,8 @@ public class Game implements IEventHandler {
 
     public void start() {
         modules.start();
-        launchLoginScreen();
-        // mainLoop();
+        // launchLoginScreen();
+        mainLoop();
     }
 
     public void mainLoop() {
@@ -42,7 +42,7 @@ public class Game implements IEventHandler {
         modules.getModules().getGui().update();
     }
 
-    private void setEventHandler(IEventHandler handler) {
+    private void setEventHandler(IEventHandler<IEvent> handler) {
         this.eventHandler = handler;
     }
 

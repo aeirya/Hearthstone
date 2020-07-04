@@ -3,6 +3,7 @@ package com.bubble.hearthstone.module.render.glfw;
 import java.nio.IntBuffer;
 
 import com.bubble.hearthstone.module.gui.components.IFrame;
+import com.bubble.hearthstone.module.input.keyboard.glfw.GlfwKeyboardInput;
 import com.bubble.hearthstone.module.input.mouse.glfw.GlfwMouseInput;
 import com.bubble.hearthstone.stl.Dimension;
 
@@ -65,6 +66,10 @@ public class WindowFrame implements IFrame {
     }
 
     public void bind(GlfwMouseInput input) {
+        input.bind(window);
+    }
+
+    public void bind(GlfwKeyboardInput input) {
         input.bind(window);
     }
 }
