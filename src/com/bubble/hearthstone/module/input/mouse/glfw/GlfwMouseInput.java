@@ -51,4 +51,9 @@ public class GlfwMouseInput implements IMouseInput {
     public void onMouseClick(MouseState mouse) {
         listener.onMouseClick(mouse);
     }
+
+    @Override
+    public void unbind() {
+        cursorPosCallback.set(0);
+    }
 }

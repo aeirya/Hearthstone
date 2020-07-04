@@ -1,5 +1,6 @@
 package com.bubble.hearthstone.module.input;
 
+import com.bubble.hearthstone.module.IFramework;
 import com.bubble.hearthstone.module.gui.GuiManager;
 import com.bubble.hearthstone.module.gui.components.IFrame;
 import com.bubble.hearthstone.module.input.keyboard.IKeyboardInput;
@@ -7,7 +8,7 @@ import com.bubble.hearthstone.module.input.keyboard.KeyboardInput;
 import com.bubble.hearthstone.module.input.mouse.IMouseInput;
 import com.bubble.hearthstone.module.input.mouse.MouseInput;
 
-public class GameInput implements IInput {
+public class GameInput implements IFramework {
     
     private final IMouseInput mouseInput;
     private final IKeyboardInput keyboardInput;
@@ -34,11 +35,16 @@ public class GameInput implements IInput {
 
     @Override
     public void stop() {
-        // TODO Auto-generated method stub
+        unbind();
     }
 
     public void bind(IFrame frame) {
         getMouseInput().bind(frame);
         getKeyboardInput().bind(frame);
+    }
+
+    private void unbind() {
+        getMouseInput().unbind();
+        getKeyboardInput().unbind();
     }
 }

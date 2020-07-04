@@ -1,7 +1,6 @@
 package com.bubble.hearthstone.module.management;
 
 import com.bubble.hearthstone.module.input.GameInput;
-import com.bubble.hearthstone.module.input.IInput;
 import com.bubble.hearthstone.Game;
 import com.bubble.hearthstone.module.event.EventBus;
 import com.bubble.hearthstone.module.event.EventManager;
@@ -16,7 +15,7 @@ public class ModuleManager {
     
     private final EventBus eventBus;
 
-    private final IInput input;
+    private final GameInput input;
     private final IRenderer renderer;
     private final IGraphics graphics;
 
@@ -62,7 +61,7 @@ public class ModuleManager {
         return new Renderer();
     }
 
-    private final IInput initiateInput() {
+    private final GameInput initiateInput() {
         return new GameInput(gui);
     }
 

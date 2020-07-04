@@ -16,6 +16,10 @@ public class KeyboardInput implements IKeyboardInput {
         input.bind(frame);
     }
 
+    public void unbind() {
+        input.unbind();
+    }
+
     @Override
     public void onKeyPress(IKeyEvent event) {
         System.out.println("pressed "+ event.getKey());

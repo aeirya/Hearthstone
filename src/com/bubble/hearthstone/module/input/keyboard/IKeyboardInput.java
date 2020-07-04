@@ -1,7 +1,6 @@
 package com.bubble.hearthstone.module.input.keyboard;
 
-import com.bubble.hearthstone.module.gui.components.IFrame;
+import com.bubble.hearthstone.module.input.IInput;
 
-public interface IKeyboardInput extends IKeyListener {
-    void bind(IFrame frame);
+public interface IKeyboardInput extends IKeyListener, IInput {
 }

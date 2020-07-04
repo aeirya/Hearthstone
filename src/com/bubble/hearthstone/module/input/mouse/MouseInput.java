@@ -31,4 +31,9 @@ public class MouseInput implements IMouseInput {
     public void bind(IFrame frame) {
         input.bind(frame);
     }
+
+    @Override
+    public void unbind() {
+        input.unbind();
+    }
 }

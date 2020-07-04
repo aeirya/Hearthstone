@@ -1,7 +1,6 @@
 package com.bubble.hearthstone.module.input.mouse;
 
-import com.bubble.hearthstone.module.gui.components.IFrame;
+import com.bubble.hearthstone.module.input.IInput;
 
-public interface IMouseInput extends IMouseListener {
-    void bind(IFrame frame);
+public interface IMouseInput extends IMouseListener, IInput {
 }
