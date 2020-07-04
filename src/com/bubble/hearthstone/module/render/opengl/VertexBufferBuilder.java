@@ -25,7 +25,6 @@ public class VertexBufferBuilder {
     }
 
     // ahhhhhhhh
-
     public IntBuffer getIndices() {
         return indices;
     } 
