@@ -17,7 +17,8 @@ public class Hearthstone implements Runnable {
         if (args.length > 0) {
             configPath = args[0];
         }
-        else configPath = FileManager.findInClasspath("config/files.properties");
+        // else configPath = FileManager.findInClasspath("data/config/file.properties");
+        else configPath = "data/config/file.properties";
     }
 
     public void run() {
@@ -26,10 +27,10 @@ public class Hearthstone implements Runnable {
     }
 
     private void initiateServiceLocator() {
-        // final ResourceManager resourceManager = new ResourceManager(configPath);
+        final ResourceManager resourceManager = new ResourceManager(configPath);
         final ServiceLocator services = ServiceLocator.getInstance();
         services
-            // .provideResources(resourceManager);
+            .provideResources(resourceManager)
             .provideUserManager(new UserManager(services));
     }
 }

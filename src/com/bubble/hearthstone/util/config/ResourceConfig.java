@@ -21,7 +21,7 @@ public class ResourceConfig extends Config {
             case IMAGE:
             return "image";
             case SETTING:
-            return "setting";
+            return "settings";
             case USER:
             return "user";
             default:

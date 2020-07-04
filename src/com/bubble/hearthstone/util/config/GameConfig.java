@@ -4,8 +4,8 @@ import com.bubble.hearthstone.stl.Dimension;
 
 public class GameConfig extends Config {
 
-public GameConfig(ResourceConfig config) {
-        this(config.getSettingsFolder());
+    public GameConfig(ResourceConfig config) {
+        this(config.getSettingsFolder() + "/settings.properties");
     }
 
     public GameConfig(String path) {

@@ -4,6 +4,9 @@ import com.bubble.hearthstone.module.IFramework;
 import com.bubble.hearthstone.module.event.IEvent;
 import com.bubble.hearthstone.module.gui.components.IFrame;
 import com.bubble.hearthstone.module.render.glfw.WindowManager;
+import com.bubble.hearthstone.module.service.ServiceLocator;
+import com.bubble.hearthstone.stl.Dimension;
+import com.bubble.hearthstone.util.config.GameConfig;
 
 public class GuiManager implements IFramework {
 
@@ -16,6 +19,13 @@ public class GuiManager implements IFramework {
     @Override
     public void start() {
         windowManager.start();
+        setFramesize();
+    }
+
+    public void setFramesize() {
+        final GameConfig config = ServiceLocator.getResources().getGameConfig();
+        final Dimension size = config.getResolution();
+        getFrame().setSize(size);
     }
 
     @Override
