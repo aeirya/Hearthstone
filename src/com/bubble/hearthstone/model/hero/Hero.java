@@ -1,5 +1,5 @@
 package com.bubble.hearthstone.model.hero;
 
-public class Hero {
+public interface Hero {
     
 }

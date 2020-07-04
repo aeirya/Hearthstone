@@ -17,6 +17,11 @@ public class Match {
     }
 
     private Player getPlayer(User user) {
-        return new Player();
+        if(player1.getName().equals(user.getUsername())) {
+            return player1;
+        }
+        else {
+            return player2;
+        }
     }
 }

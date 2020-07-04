@@ -7,21 +7,37 @@ import com.bubble.hearthstone.module.event.IEventHandler;
 
 public class Arena implements IEventHandler, IEventDispatcher {
 
-    private final Player player1;
-    private final Player player2;
+    private final Player home;
+    private final Player away;
     private final CombatMaster combatMaster;
     private final Battleground battleground;
     private final ArenaEventHandler eventHandler;
 
-    public Arena(Player player1, Player player2) {
+    private boolean isHomeTurn;
+    private int timer;
+    private final int TPS = 60; // used with timer
+
+    public Arena(Player home, Player away) {
         eventHandler = new ArenaEventHandler(this);
         combatMaster = new CombatMaster();
         battleground = new Battleground();
-        this.player1 = player1;
-        this.player2 = player2;
+        this.home = home;
+        this.away = away;
     }
 
     public void startSession() {
+        //
+    }
+
+    public void updateArena() {
+        timer -= 1;
+        if (timer == 0) {
+            // end turn
+            // reset timer
+        }
+    }
+
+    private void endTurn() {
         //
     }
 

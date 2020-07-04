@@ -1,6 +1,5 @@
 package com.bubble.hearthstone.util.serialize;
 
-import com.bubble.hearthstone.model.card.Card;
 import com.bubble.hearthstone.model.card.DummyCard;
 
 public class CardSerializer extends GsonSerializer {
