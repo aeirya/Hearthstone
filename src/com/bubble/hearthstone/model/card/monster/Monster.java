@@ -1,17 +1,19 @@
 package com.bubble.hearthstone.model.card.monster;
 
-
 import com.bubble.hearthstone.model.card.Minion;
+import com.bubble.hearthstone.module.logic.arena.Player;
 
 public abstract class Monster {
 
+    private final Player player;
     private final Minion card;
     private int hp;
     private int attack;
     private int defense;
 
-    public Monster(Minion card) {
+    public Monster(Minion card, Player player) {
         this.card = card;
+        this.player = player;
         attack = card.attack;
         defense = card.defense;
     }
@@ -22,6 +24,10 @@ public abstract class Monster {
 
     private int getDefenseValue() {
         return defense;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public void attack(Monster other) {
