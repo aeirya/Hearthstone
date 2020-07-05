@@ -4,6 +4,7 @@ import com.bubble.hearthstone.module.event.EventSystem;
 import com.bubble.hearthstone.module.event.IEvent;
 import com.bubble.hearthstone.module.event.IEventDispatcher;
 import com.bubble.hearthstone.module.event.IEventHandler;
+import com.bubble.hearthstone.module.logic.arena.view.ArenaDrawable;
 
 public class Arena implements IEventHandler, IEventDispatcher {
 
@@ -54,5 +55,9 @@ public class Arena implements IEventHandler, IEventDispatcher {
     @Override
     public void dispatch(IEvent event) {
         EventSystem.dispatch(event);
+    }
+
+    public ArenaDrawable getDrawable() {
+        return null;
     }
 }

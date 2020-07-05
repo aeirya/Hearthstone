@@ -17,5 +17,7 @@ public abstract class Panel implements IMenu {
         graphics.load(this);
     }
 
-    protected abstract void onLaunch();
+    protected void onLaunch() {
+        // default : do nothing
+    }
 }
