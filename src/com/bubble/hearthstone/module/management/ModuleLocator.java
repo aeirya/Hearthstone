@@ -17,6 +17,7 @@ public class ModuleLocator {
     private GuiManager gui;
     private IGraphics graphics;
     private EventManager eventManager;
+    private IRenderer renderer;
     private Game game;
 
     ModuleLocator() {
@@ -36,8 +37,13 @@ public class ModuleLocator {
         return InstanceHolder.instance;
     }
 
+    ModuleLocator provideRenderer(IRenderer renderer) {
+        this.renderer = renderer;
+        return this;
+    }
+
     public IRenderer getRenderer() {
-        return null;
+        return getInstance().renderer;
     }
 
     ModuleLocator provideGui(GuiManager gui) {

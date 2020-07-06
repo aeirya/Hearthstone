@@ -1,5 +1,8 @@
 package com.bubble.hearthstone.module.render.opengl;
 
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL30;
@@ -11,6 +14,7 @@ public class VertexBuffer {
     private final int vao;
     
     private int vertexCount;
+    private int indexCount;
     
     public VertexBuffer() {
         vbo = GL15.glGenBuffers();
@@ -18,12 +22,16 @@ public class VertexBuffer {
         vao = GL30.glGenVertexArrays();
     }
 
-    public void upload(VertexBufferBuilder vbb) {
+    public <T extends IVertex> void upload(VertexBufferBuilder<T> vbb) {
         bind();
         vertexCount = vbb.getVertexCount();
+        indexCount = vbb.getIndexCount();
 
-        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vbb.geVertices(), GL15.GL_STATIC_DRAW);
-        GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, vbb.getIndices(), GL15.GL_STATIC_DRAW);   
+        final FloatBuffer vertices = vbb.geVertices().flip();
+        final IntBuffer indices = vbb.getIndices().flip();
+
+        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertices , GL15.GL_STATIC_DRAW);
+        GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indices, GL15.GL_STATIC_DRAW);   
         
         for (VertexAttribute attr : vbb.getVertexAttributes()) {
             attr.enable();
@@ -39,7 +47,8 @@ public class VertexBuffer {
     }
 
     public void draw() {
-        GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, vertexCount);
+        // GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, vertexCount);
+        GL11.glDrawElements(GL11.GL_TRIANGLES, indexCount, GL11.GL_UNSIGNED_INT, 0);
     }
 
     public void unbind() {

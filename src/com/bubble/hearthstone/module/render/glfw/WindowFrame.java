@@ -25,9 +25,15 @@ public class WindowFrame implements IFrame {
         final long w = createWindow(new Dimension(100, 100), "Window");
         GLFW.glfwMakeContextCurrent(w);
         GL.createCapabilities();
-        GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        // GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        GL11.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+        GL11.glClearDepth(1.0f);
         return w;
     }
+    
+    // private void setWindowColor(Color color) {
+    //     //
+    // }
 
     private long createWindow(Dimension size, String title) {
         return GLFW.glfwCreateWindow(size.width, size.height, title, MemoryUtil.NULL, MemoryUtil.NULL);
@@ -60,7 +66,6 @@ public class WindowFrame implements IFrame {
 
     // ?
     public void refresh() {
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
         GLFW.glfwSwapBuffers(window);
         GLFW.glfwPollEvents();
     }

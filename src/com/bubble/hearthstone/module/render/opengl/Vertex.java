@@ -1,5 +1,7 @@
 package com.bubble.hearthstone.module.render.opengl;
 
+import java.nio.FloatBuffer;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vertex implements IVertex {
@@ -15,13 +17,19 @@ public class Vertex implements IVertex {
 
     @Override
     public int getSize() {
-        // TODO Auto-generated method stub
-        return 0;
+        return 3;
     }
 
     @Override
     public List<VertexAttribute> getAttributes() {
-        // TODO Auto-generated method stub
-        return null;
+        return List.of(new VertexAttribute(0, 3, 0));
+    }
+
+    @Override
+    public void append(FloatBuffer vertexBuffer) {
+        vertexBuffer.put(x);
+        vertexBuffer.put(y);
+        vertexBuffer.put(z);
+        
     }
 }

@@ -11,20 +11,24 @@ public class VertexBufferBuilder <T extends IVertex> {
 
     private FloatBuffer vertices;
     private IntBuffer indices;
+    private List<Vertex> v;
+    // private final List<VertexAttribute> vertexAttributes;
+    private T firstVertex = null;
 
-    private final List<VertexAttribute> vertexAttributes;
     private int beginingIndex = -1;
     private int vertexCount = 0;
+    private int indexCount = 0;
 
     public VertexBufferBuilder() {
-        vertexAttributes = new ArrayList<>();
+        // vertexAttributes = new ArrayList<>();
         final int BUFFER_SIZE = 0x4000;
         vertices = MemoryUtil.memAllocFloat(BUFFER_SIZE);
         indices = MemoryUtil.memAllocInt(BUFFER_SIZE * 3 / 2);
     }
 
     public List<VertexAttribute> getVertexAttributes() {
-        return vertexAttributes;
+        // return vertexAttributes;
+        return firstVertex.getAttributes();
     }
     
     // ahhhhhhhh
@@ -40,25 +44,56 @@ public class VertexBufferBuilder <T extends IVertex> {
         return vertexCount;
     }
 
+    public int getIndexCount() {
+        return indexCount;
+    }
+
     public void begin() {
         beginingIndex = getVertexCount();
     }
 
-    public void addVertex(float vertex) {
-        vertices.put(vertex);
+    // public void addVertex(float vertex) {
+    //     vertices.put(vertex);
+    //     vertexCount++;
+    //     if (vertexCount > 0.8 * vertices.capacity()) {
+    //         FloatBuffer f = MemoryUtil.memAllocFloat((int)(1.2 * vertices.capacity()));
+    //         f.put(vertices.array());
+    //         vertices = f;
+    //     }
+    // }
+
+    public void addVertex(T vertex) {
+        if (firstVertex == null) {
+            firstVertex = vertex;
+        }
+        vertex.append(vertices);
         vertexCount++;
-        if (vertexCount > 0.8 * vertices.capacity()) {
+        if (vertexCount * vertex.getSize() > 0.8 * vertices.capacity()) {
             FloatBuffer f = MemoryUtil.memAllocFloat((int)(1.2 * vertices.capacity()));
-            f.put(vertices.array());
+            f.put(vertices.array(), 0, vertexCount * vertex.getSize());
             vertices = f;
         }
     }
 
-    // public void addVertex(T vertex) {
-    //     //
-    // }
+    public void addTriangle(int a, int b, int c) {
+        indices.put(a + beginingIndex);
+        indices.put(b + beginingIndex);
+        indices.put(c + beginingIndex);
+        indexCount += 3;
+        if (indexCount > 0.8 * indices.capacity()) {
+            IntBuffer f = MemoryUtil.memAllocInt((int)(1.2 * indices.capacity()));
+            f.put(indices.array(), 0, vertexCount);
+            indices = f;
+        }
+    }
 
-    // public void append() {}
+    public boolean isEmpty() {
+        return vertexCount == 0;
+    }
+
+    public void append() {
+        //
+    }
 
     public void end() {
         beginingIndex = -1;    

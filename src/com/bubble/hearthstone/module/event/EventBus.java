@@ -8,6 +8,9 @@ public class EventBus {
     private final IEventDispatcher sender;
     private final List<IEventHandler> receivers;
 
+    // private final IEventHandler sender;
+    // private final List<IEventDispatcher> receivers;
+
     public EventBus(IEventDispatcher sender) {
         this.sender = sender;
         receivers = new ArrayList<>();

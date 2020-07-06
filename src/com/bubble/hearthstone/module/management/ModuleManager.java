@@ -32,9 +32,9 @@ public class ModuleManager {
         
         eventSystem = initiateEventSystem();
     
-        renderer = initiateRenderer();
         gui = initiateGuiManager();
         input = initiateInput();
+        renderer = initiateRenderer();
         graphics = initiateGraphics();
 
         locator = initiateModuleLocator();
@@ -46,6 +46,7 @@ public class ModuleManager {
         return ModuleLocator
             .provideInstance(new ModuleLocator())
             .provideGui(gui)
+            .provideRenderer(renderer)
             .provideLogic(game);
     }
 
@@ -87,11 +88,11 @@ public class ModuleManager {
 
     public void start() {
         initiateEngine();
-        renderer.start();
         gui.start();
-        graphics.start();
-        // start components
         input.start();
+        graphics.start();
+        renderer.start();
+        // start components
         // network.start();
     }
 }

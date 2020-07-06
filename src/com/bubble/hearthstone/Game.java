@@ -22,7 +22,7 @@ public class Game implements IEventHandler <IEvent> {
     public Game() {
         isRunning = true;
         modules = new ModuleManager(this);
-        launchArena();
+        // launchArena();
     }
 
     public void start() {
@@ -34,12 +34,17 @@ public class Game implements IEventHandler <IEvent> {
     public void mainLoop() {
         while (isRunning) {
             updateGui();
+            updateRenderer();
             Waiter.sleep();
         }
     }
 
     private void updateGui() {
         modules.getModules().getGui().update();
+    }
+
+    private void updateRenderer() {
+        modules.getModules().getRenderer().update();
     }
 
     private void setEventHandler(IEventHandler<IEvent> handler) {
