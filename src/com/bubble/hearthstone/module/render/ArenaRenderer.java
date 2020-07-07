@@ -14,23 +14,32 @@ public class ArenaRenderer {
         handRenderer = new HandRenderer(cardRenderer, buffer);
     }
 
-    private void renderBackground() {
-        //
-    }
+    /** 
+     * to render:
+     *      background
+     *      battle board
+     *      hero
+     *      hand
+     *      other
+     */     
 
-    private void renderBattleboard() {
-        //
-    }
+    // private void renderBackground() {
+    //     //
+    // }
 
-    private void renderHero() {
-        //
-    }
+    // private void renderBattleboard() {
+    //     //
+    // }
 
-    private void renderHand() {
-        //
-    }
+    // private void renderHero() {
+    //     //
+    // }
 
-    private void renderOther() {
-        //
-    }
+    // private void renderHand() {
+    //     //
+    // }
+
+    // private void renderOther() {
+    //     //
+    // }
 }

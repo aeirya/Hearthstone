@@ -40,7 +40,7 @@ public class Shader {
 
         GL20.glAttachShader(program, fragShader);
 
-        // link program
+        // link program ^v^
         GL20.glLinkProgram(program);
         
         GL20.glGetProgramiv(program, GL20.GL_LINK_STATUS, status);

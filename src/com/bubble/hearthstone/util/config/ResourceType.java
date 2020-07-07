@@ -6,5 +6,6 @@ public enum ResourceType {
     USER,
     SAVE,
     LOG,
+    SHADER,
     SETTING,
 }

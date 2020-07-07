@@ -2,7 +2,6 @@ package com.bubble.hearthstone.module.render.opengl;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.system.MemoryUtil;
@@ -11,23 +10,18 @@ public class VertexBufferBuilder <T extends IVertex> {
 
     private FloatBuffer vertices;
     private IntBuffer indices;
-    private List<Vertex> v;
-    // private final List<VertexAttribute> vertexAttributes;
     private T firstVertex = null;
-
     private int beginingIndex = -1;
     private int vertexCount = 0;
     private int indexCount = 0;
 
     public VertexBufferBuilder() {
-        // vertexAttributes = new ArrayList<>();
         final int BUFFER_SIZE = 0x4000;
         vertices = MemoryUtil.memAllocFloat(BUFFER_SIZE);
         indices = MemoryUtil.memAllocInt(BUFFER_SIZE * 3 / 2);
     }
 
     public List<VertexAttribute> getVertexAttributes() {
-        // return vertexAttributes;
         return firstVertex.getAttributes();
     }
     
@@ -51,16 +45,6 @@ public class VertexBufferBuilder <T extends IVertex> {
     public void begin() {
         beginingIndex = getVertexCount();
     }
-
-    // public void addVertex(float vertex) {
-    //     vertices.put(vertex);
-    //     vertexCount++;
-    //     if (vertexCount > 0.8 * vertices.capacity()) {
-    //         FloatBuffer f = MemoryUtil.memAllocFloat((int)(1.2 * vertices.capacity()));
-    //         f.put(vertices.array());
-    //         vertices = f;
-    //     }
-    // }
 
     public void addVertex(T vertex) {
         if (firstVertex == null) {
@@ -91,8 +75,11 @@ public class VertexBufferBuilder <T extends IVertex> {
         return vertexCount == 0;
     }
 
-    public void append() {
-        //
+    public void clear() {
+        vertices.flip();
+        indices.flip();
+        vertexCount = 0;
+        indexCount = 0;
     }
 
     public void end() {

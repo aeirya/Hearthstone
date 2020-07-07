@@ -24,10 +24,12 @@ public class ResourceConfig extends Config {
             return "settings";
             case USER:
             return "user";
+            case SHADER:
+            return "shaders";
             default:
             return "";
         }
-    } 
+    }
 
     public String getImagesFolder() {
         return get(ResourceType.IMAGE);
@@ -43,6 +45,10 @@ public class ResourceConfig extends Config {
 
     public String getUsersFolder() {
         return get(ResourceType.USER);
+    }
+
+    public String getShadersFolder() {
+        return get(ResourceType.SHADER);
     }
 
     public List<String> getAll() {

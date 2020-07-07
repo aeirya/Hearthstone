@@ -1,7 +1,10 @@
 package com.bubble.hearthstone.module.render.opengl;
 
 import com.bubble.hearthstone.module.gui.components.IComponent;
+import com.bubble.hearthstone.module.render.GuiElement;
 import com.bubble.hearthstone.module.render.IRenderer;
+import com.bubble.hearthstone.module.render.GuiElement.GuiElementType;
+import com.bubble.hearthstone.module.service.ServiceLocator;
 
 import org.lwjgl.opengl.GL11;
 
@@ -9,7 +12,6 @@ public class Renderer implements IRenderer {
 
     private VertexBuffer buffer;
     private Shader shader;
-    private static final String SHADER_PATH = "/Users/madscientist/Desktop/Documents/AP/Hearthstone copy 2/data/asset/shader/";
 
     public Renderer() {
         //
@@ -18,7 +20,7 @@ public class Renderer implements IRenderer {
     @Override
     public void render(IComponent component) {
         // TODO Auto-generated method stub
-
+        //
     }
 
     private void renderTest() {
@@ -31,8 +33,12 @@ public class Renderer implements IRenderer {
     @Override
     public void start() {
         buffer = new VertexBuffer();
-        shader = new Shader(SHADER_PATH + "default");
+        shader = new Shader(getShaderFolder() + "default");
         rebuild();
+    }
+
+    private String getShaderFolder() {
+        return ServiceLocator.getResources().getResourceConfig().getShadersFolder();
     }
 
     @Override
@@ -48,8 +54,11 @@ public class Renderer implements IRenderer {
         // VertexBufferBuilder<Vertex> vbb = new VertexBufferBuilder<>();
         Graphics g = new Graphics();
         g.drawRect(-0.5f, -0.5f, 1.0f, 1.0f);
+        g.drawRect(-0.25f + 1.0f, -0.25f, 0.5f, 0.5f);
+        // g.drawTriangle(-0.5f, -0.5f, 1.0f);
+        // g.drawLine(-0.5f, 0.0f, -0.5f, 0.0f);
+        // g.drawHorizontalLine(-0.5f, 0.0f, -0.5f, 0.01f);
         // TODO: iterate and render components
-        // g.getVBB().
         buffer.upload(g.getVBB());
     }
 }

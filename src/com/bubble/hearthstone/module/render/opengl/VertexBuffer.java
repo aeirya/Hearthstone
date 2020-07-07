@@ -13,7 +13,6 @@ public class VertexBuffer {
 
     private final int vao;
     
-    private int vertexCount;
     private int indexCount;
     
     public VertexBuffer() {
@@ -24,7 +23,6 @@ public class VertexBuffer {
 
     public <T extends IVertex> void upload(VertexBufferBuilder<T> vbb) {
         bind();
-        vertexCount = vbb.getVertexCount();
         indexCount = vbb.getIndexCount();
 
         final FloatBuffer vertices = vbb.geVertices().flip();
@@ -47,7 +45,6 @@ public class VertexBuffer {
     }
 
     public void draw() {
-        // GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, vertexCount);
         GL11.glDrawElements(GL11.GL_TRIANGLES, indexCount, GL11.GL_UNSIGNED_INT, 0);
     }
 

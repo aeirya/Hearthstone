@@ -1,7 +1,7 @@
 package com.bubble.hearthstone.module.render.opengl;
 
 import java.nio.FloatBuffer;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Vertex implements IVertex {
@@ -22,7 +22,7 @@ public class Vertex implements IVertex {
 
     @Override
     public List<VertexAttribute> getAttributes() {
-        return List.of(new VertexAttribute(0, 3, 0));
+        return Arrays.asList(new VertexAttribute(0, 3, 0));
     }
 
     @Override
@@ -30,6 +30,5 @@ public class Vertex implements IVertex {
         vertexBuffer.put(x);
         vertexBuffer.put(y);
         vertexBuffer.put(z);
-        
     }
 }

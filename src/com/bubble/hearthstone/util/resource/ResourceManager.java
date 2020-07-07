@@ -61,6 +61,10 @@ public class ResourceManager {
         return cards;
     }
 
+    public ResourceConfig getResourceConfig() {
+        return config;
+    }
+
     private GameConfig loadGameConfig() {
         return new GameConfig(config);
     }

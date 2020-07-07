@@ -2,7 +2,6 @@ package com.bubble.hearthstone;
 
 import com.bubble.hearthstone.module.logic.user.UserManager;
 import com.bubble.hearthstone.module.service.ServiceLocator;
-import com.bubble.hearthstone.util.resource.FileManager;
 import com.bubble.hearthstone.util.resource.ResourceManager;
 
 public class Hearthstone implements Runnable {
@@ -17,7 +16,6 @@ public class Hearthstone implements Runnable {
         if (args.length > 0) {
             configPath = args[0];
         }
-        // else configPath = FileManager.findInClasspath("data/config/file.properties");
         else configPath = "data/config/file.properties";
     }
 
