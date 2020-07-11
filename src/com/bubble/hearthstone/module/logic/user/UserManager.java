@@ -1,5 +1,7 @@
 package com.bubble.hearthstone.module.logic.user;
 
+import com.bubble.hearthstone.module.event.EventSystem;
+import com.bubble.hearthstone.module.event.IEvent;
 import com.bubble.hearthstone.module.service.ServiceLocator;
 import com.bubble.hearthstone.module.service.ServiceManager;
 import com.bubble.hearthstone.net.user.User;
@@ -16,7 +18,7 @@ public class UserManager implements IUserManager {
 
     @Override
     public boolean login(String username, String password) {
-        // TODO Auto-generated method stub
+        // 
         return false;
     }
 
@@ -48,5 +50,9 @@ public class UserManager implements IUserManager {
     public User getMe() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    public void sendEvent(IEvent event) {
+        EventSystem.dispatch(event);
     }
 }

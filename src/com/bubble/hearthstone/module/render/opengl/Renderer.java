@@ -1,6 +1,10 @@
 package com.bubble.hearthstone.module.render.opengl;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.bubble.hearthstone.module.gui.components.IComponent;
+import com.bubble.hearthstone.module.gui.components.Panel;
 import com.bubble.hearthstone.module.render.GuiElement;
 import com.bubble.hearthstone.module.render.IRenderer;
 import com.bubble.hearthstone.module.render.GuiElement.GuiElementType;
@@ -48,6 +52,32 @@ public class Renderer implements IRenderer {
 
     public void update () {
         renderTest();
+    }
+
+    private List<GuiElement> getElements() {
+        return Arrays.asList(
+            new Panel().toGuiElement()
+        );
+    }
+
+    private void drawElements(Graphics g) {
+        getElements().forEach(
+            e -> render(g, e)
+        );
+    }
+
+    private void render(Graphics g, GuiElement e) {
+        switch(e.type) {
+            case PANEL:
+            drawPanel(g, e);
+            break;
+            default:
+            return;
+        }
+    }
+
+    private void drawPanel(Graphics g, GuiElement e) {
+        g.drawRect(e.location.x, e.location.y, e.size.width, e.size.height);
     }
 
     private void rebuild() {

@@ -8,8 +8,8 @@ public class Match {
     private final Player player2;
 
     public Match(User user1, User user2) {
-        player1 = getPlayer(user1);
-        player2 = getPlayer(user2);
+        player1 = new HomePlayer();
+        player2 = new AwayPlayer();
     }
 
     public Arena createArena() {
@@ -23,5 +23,14 @@ public class Match {
         else {
             return player2;
         }
+    }
+
+    private Player loadPlayer(User user) {
+        /**
+         * load save
+         * make player
+         * return it
+         */
+        return null;
     }
 }

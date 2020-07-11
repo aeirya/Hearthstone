@@ -2,10 +2,10 @@ package com.bubble.hearthstone.stl;
 
 public class Point {
     
-    public final int x;
-    public final int y;
+    public final float x;
+    public final float y;
 
-    public Point(int x, int y) {
+    public Point(float x, float y) {
         this.x = x;
         this.y = y;
     }

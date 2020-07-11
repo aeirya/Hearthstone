@@ -26,6 +26,8 @@ public class ResourceConfig extends Config {
             return "user";
             case SHADER:
             return "shaders";
+            case LOG:
+            return "logs";
             default:
             return "";
         }
@@ -49,6 +51,10 @@ public class ResourceConfig extends Config {
 
     public String getShadersFolder() {
         return get(ResourceType.SHADER);
+    }
+
+    public String getLogPath() {
+        return get(ResourceType.LOG);
     }
 
     public List<String> getAll() {

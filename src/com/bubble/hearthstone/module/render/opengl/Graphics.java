@@ -1,11 +1,15 @@
 package com.bubble.hearthstone.module.render.opengl;
 
+import com.bubble.hearthstone.stl.Color;
+
 public class Graphics implements IGraphics {
 
     private final VertexBufferBuilder<Vertex> vbb;
+    private Color color;
 
     public Graphics() {
         vbb = new VertexBufferBuilder<>();
+        color = new Color(0,0,0);
     }
     
     public VertexBufferBuilder<Vertex> getVBB() {
@@ -47,5 +51,10 @@ public class Graphics implements IGraphics {
 
     public void drawHorizontalLine(float x1, float x2, float y, float width) {
         drawRect(x1,y, x2-x1, width);
+    }
+
+    public void setPenColor(Color color) {
+        this.color = color;
+        // do sth about the shader color
     }
 }

@@ -2,6 +2,7 @@ package com.bubble.hearthstone;
 
 import com.bubble.hearthstone.model.card.ability.abilities.AttackEvent;
 import com.bubble.hearthstone.model.card.monster.DummyMonster;
+import com.bubble.hearthstone.module.event.EventSystem;
 import com.bubble.hearthstone.module.event.IEvent;
 import com.bubble.hearthstone.module.event.IEventHandler;
 import com.bubble.hearthstone.module.gui.GuiEventHandler;
@@ -11,6 +12,7 @@ import com.bubble.hearthstone.module.logic.arena.Match;
 import com.bubble.hearthstone.module.management.ModuleManager;
 import com.bubble.hearthstone.module.service.ServiceLocator;
 import com.bubble.hearthstone.net.user.DummyUser;
+import com.bubble.hearthstone.util.log.Log;
 import com.bubble.hearthstone.util.time.Waiter;
 
 public class Game implements IEventHandler <IEvent> {
@@ -22,12 +24,12 @@ public class Game implements IEventHandler <IEvent> {
     public Game() {
         isRunning = true;
         modules = new ModuleManager(this);
-        // launchArena();
+        launchArena();
     }
 
     public void start() {
         modules.start();
-        // launchLoginScreen();
+        launchLoginScreen();
         mainLoop();
     }
 
@@ -55,6 +57,7 @@ public class Game implements IEventHandler <IEvent> {
         // EventSystem.dispatch(
         //     new 
         // );   
+        // EventSystem.dispatch(new LaunchEvent());
         new GuiEventHandler().handle(new LaunchEvent());
     }
 

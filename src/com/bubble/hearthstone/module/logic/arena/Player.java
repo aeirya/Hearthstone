@@ -8,15 +8,19 @@ import com.bubble.hearthstone.model.hero.Hero;
 
 public abstract class Player {
     
-    private final Deck deck;
-    private final Hero hero;
-    private int selectedCardNumber;
-    private final String name = "";
+    protected final Deck deck;
+    protected final Hero hero;
+    protected int selectedCardNumber;
+    protected final String name = "";
     // private final String currentQuest = "";
     
     public Player() {
         deck = null;
         hero = null;
+    }
+
+    public Hero getHero() {
+        return hero;
     }
 
     public int getMana() {

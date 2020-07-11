@@ -38,7 +38,7 @@ public class ModuleManager {
         graphics = initiateGraphics();
 
         locator = initiateModuleLocator();
-        eventBus = initiateEventBus();
+        eventBus = initiateEventBus(game);
         eventManager = initiateEventManager();
     }
 
@@ -50,7 +50,7 @@ public class ModuleManager {
             .provideLogic(game);
     }
 
-    private final EventBus initiateEventBus() {
+    private final EventBus initiateEventBus(Game game) {
         return new EventBus(null);
     }
 

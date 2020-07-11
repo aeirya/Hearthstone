@@ -1,11 +1,13 @@
 package com.bubble.hearthstone.module.service;
 
+import com.bubble.hearthstone.util.log.GameLogger;
 import com.bubble.hearthstone.module.logic.user.IUserManager;
 import com.bubble.hearthstone.util.resource.ResourceManager;
 
 public class ServiceLocator {
     private ResourceManager resourceManager;
     private IUserManager userManager;
+    private GameLogger logger;
 
     private static class InstanceHolder {
         private static final ServiceLocator instance = new ServiceLocator();
@@ -31,5 +33,14 @@ public class ServiceLocator {
 
     public static IUserManager getUserManager() {
         return getInstance().userManager;
+    }
+
+    public ServiceLocator provideLogger(GameLogger logger) {
+        this.logger = logger;
+        return this;
+    }
+
+    public static GameLogger getLogger() {
+        return getInstance().logger;
     }
 }

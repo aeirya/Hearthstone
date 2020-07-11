@@ -2,16 +2,16 @@ package com.bubble.hearthstone.stl;
 
 public class Dimension {
     
-    public final int width;
-    public final int height;
+    public final float width;
+    public final float height;
 
-    public Dimension(int width, int height) {
+    public Dimension(float width, float height) {
         this.width = width;
         this.height = height;
     }
 
     public Dimension scaled(double ratio) {
         return new Dimension(
-            (int) (ratio * width), (int) (ratio * height));
+            (float) (ratio * width), (float) (ratio * height));
     }
 }

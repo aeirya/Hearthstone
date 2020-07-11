@@ -36,7 +36,7 @@ public class WindowFrame implements IFrame {
     // }
 
     private long createWindow(Dimension size, String title) {
-        return GLFW.glfwCreateWindow(size.width, size.height, title, MemoryUtil.NULL, MemoryUtil.NULL);
+        return GLFW.glfwCreateWindow((int) size.width, (int) size.height, title, MemoryUtil.NULL, MemoryUtil.NULL);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class WindowFrame implements IFrame {
 
     @Override
     public void setSize(Dimension size) {
-        GLFW.glfwSetWindowSize(window, size.width, size.height);
+        GLFW.glfwSetWindowSize(window, (int) size.width, (int) size.height);
     }
 
     @Override

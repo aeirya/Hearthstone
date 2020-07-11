@@ -5,6 +5,7 @@ import com.bubble.hearthstone.module.event.IEvent;
 import com.bubble.hearthstone.module.event.IEventDispatcher;
 import com.bubble.hearthstone.module.event.IEventHandler;
 import com.bubble.hearthstone.module.logic.arena.view.ArenaDrawable;
+import com.bubble.hearthstone.util.log.Log;
 
 public class Arena implements IEventHandler, IEventDispatcher {
 
@@ -28,6 +29,7 @@ public class Arena implements IEventHandler, IEventDispatcher {
 
     public void startSession() {
         //
+        Log.msg("started session");
     }
 
     public void updateArena() {
