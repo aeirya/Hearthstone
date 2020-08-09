@@ -1,7 +1,7 @@
-package com.bubble.hearthstone.net.event;
+package com.bubble.hearthstone.net2.event;
 
 import com.bubble.hearthstone.controller.GameManager;
-import com.bubble.hearthstone.net.user.UserManager;
+import com.bubble.hearthstone.net2.user.UserManager;
 import com.bubble.hearthstone.util.log.EventLogger;
 import com.bubble.hearthstone.util.log.IEventLogger;
 import com.bubble.hearthstone.util.services.ServiceLocator;

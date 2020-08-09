@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.net.event;
+package com.bubble.hearthstone.net2.event;
 
 import com.bubble.hearthstone.controller.GameManager;
 import com.bubble.hearthstone.util.services.ServiceLocator;

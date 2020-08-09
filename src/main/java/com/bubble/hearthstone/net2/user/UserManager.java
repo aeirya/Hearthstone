@@ -1,9 +1,9 @@
-package com.bubble.hearthstone.net.user;
+package com.bubble.hearthstone.net2.user;
 
 import com.bubble.hearthstone.controller.GameManager;
-import com.bubble.hearthstone.net.event.events.ChangeMenuEvent;
-import com.bubble.hearthstone.net.event.events.LoginEvent;
-import com.bubble.hearthstone.net.event.events.LogoutEvent;
+import com.bubble.hearthstone.net2.event.events.ChangeMenuEvent;
+import com.bubble.hearthstone.net2.event.events.LoginEvent;
+import com.bubble.hearthstone.net2.event.events.LogoutEvent;
 import com.bubble.hearthstone.ui.MenuType;
 import com.bubble.hearthstone.util.log.EventLogger;
 import com.bubble.hearthstone.util.log.IEventLogger;

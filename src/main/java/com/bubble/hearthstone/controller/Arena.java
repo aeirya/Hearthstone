@@ -3,8 +3,8 @@ package com.bubble.hearthstone.controller;
 import com.bubble.hearthstone.model.Player;
 import com.bubble.hearthstone.model.arena.Battleground;
 import com.bubble.hearthstone.model.arena.CombatMaster;
-import com.bubble.hearthstone.net.event.events.arena.IArenaEvent;
-import com.bubble.hearthstone.net.event.events.arena.battleground.BattlegroundEvent;
+import com.bubble.hearthstone.net2.event.events.arena.ArenaEvent;
+import com.bubble.hearthstone.net2.event.events.arena.battleground.BattlegroundEvent;
 import com.bubble.hearthstone.util.time.ArenaTimer;
 
 public class Arena {
@@ -25,7 +25,7 @@ public class Arena {
         timer.start();
     }
 
-    public void handleEvent(IArenaEvent event) {
+    public void handleEvent(ArenaEvent event) {
         event.process(this);
     }
 

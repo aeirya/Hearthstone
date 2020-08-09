@@ -1,8 +1,8 @@
 package com.bubble.hearthstone.util.resource;
 
 import com.bubble.hearthstone.card.registry.CardRecord;
-import com.bubble.hearthstone.net.user.User;
-import com.bubble.hearthstone.net.user.UserSave;
+import com.bubble.hearthstone.net2.user.User;
+import com.bubble.hearthstone.net2.user.UserSave;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 import java.io.IOException;
 import java.nio.file.Files;

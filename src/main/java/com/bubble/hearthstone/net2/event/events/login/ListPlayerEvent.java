@@ -1,7 +1,7 @@
-package com.bubble.hearthstone.net.event.events.login;
+package com.bubble.hearthstone.net2.event.events.login;
 
 import com.bubble.hearthstone.controller.GameManager;
-import com.bubble.hearthstone.net.event.events.IClientEvent;
+import com.bubble.hearthstone.net2.event.events.IClientEvent;
 
 public class ListPlayerEvent implements IClientEvent {
 

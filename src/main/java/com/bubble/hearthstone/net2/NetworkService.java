@@ -1,13 +1,13 @@
-package com.bubble.hearthstone.net;
+package com.bubble.hearthstone.net2;
 
 import com.bubble.hearthstone.controller.Arena;
 import com.bubble.hearthstone.controller.GameSession;
 import com.bubble.hearthstone.controller.GameSession.GameMode;
 import com.bubble.hearthstone.model.shop.Shop;
-import com.bubble.hearthstone.net.event.DummyNetworkEventQueue;
-import com.bubble.hearthstone.net.event.IGameEvent;
-import com.bubble.hearthstone.net.event.INetworkEventQueue;
-import com.bubble.hearthstone.net.user.User;
+import com.bubble.hearthstone.net2.event.DummyNetworkEventQueue;
+import com.bubble.hearthstone.net2.event.IGameEvent;
+import com.bubble.hearthstone.net2.event.INetworkEventQueue;
+import com.bubble.hearthstone.net2.user.User;
 import com.bubble.hearthstone.util.resource.ResourceManager;
 
 public class NetworkService implements INetworkService {

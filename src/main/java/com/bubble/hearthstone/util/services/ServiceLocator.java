@@ -1,6 +1,6 @@
 package com.bubble.hearthstone.util.services;
 
-import com.bubble.hearthstone.net.INetworkService;
+import com.bubble.hearthstone.net2.INetworkService;
 import com.bubble.hearthstone.util.log.GameLogger;
 import com.bubble.hearthstone.util.resource.ResourceManager;
 

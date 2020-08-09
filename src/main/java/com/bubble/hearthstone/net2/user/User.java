@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.net.user;
+package com.bubble.hearthstone.net2.user;
 
 import com.bubble.hearthstone.util.services.ServiceLocator;
 

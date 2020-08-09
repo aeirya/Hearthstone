@@ -1,8 +1,8 @@
-package com.bubble.hearthstone.net.event.events.arena;
+package com.bubble.hearthstone.net2.event.events.arena;
 
 import com.bubble.hearthstone.controller.Arena;
 import com.bubble.hearthstone.controller.GameManager;
-import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.net2.event.IGameEvent;
 
 public abstract class ArenaEvent implements IGameEvent {
 

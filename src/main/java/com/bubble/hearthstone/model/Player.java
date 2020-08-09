@@ -8,7 +8,7 @@ import com.bubble.hearthstone.card.Minion;
 import com.bubble.hearthstone.card.monster.DummyMonster;
 import com.bubble.hearthstone.card.monster.Monster;
 import com.bubble.hearthstone.model.arena.Hand;
-import com.bubble.hearthstone.net.user.UserSave;
+import com.bubble.hearthstone.net2.user.UserSave;
 
 public class Player {
     

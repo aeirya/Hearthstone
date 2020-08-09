@@ -1,7 +1,7 @@
 package com.bubble.hearthstone.model.arena;
 
 import com.bubble.hearthstone.card.monster.Monster;
-import com.bubble.hearthstone.net.event.events.arena.battleground.BattlegroundEvent;
+import com.bubble.hearthstone.net2.event.events.arena.battleground.BattlegroundEvent;
 
 public class CombatMaster {
     

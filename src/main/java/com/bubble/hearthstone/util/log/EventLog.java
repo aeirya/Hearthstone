@@ -1,6 +1,6 @@
 package com.bubble.hearthstone.util.log;
 
-import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.net2.event.IGameEvent;
 
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    

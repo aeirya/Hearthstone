@@ -1,8 +1,8 @@
 package com.bubble.hearthstone.util.log;
 
-import com.bubble.hearthstone.net.event.IGameEvent;
-import com.bubble.hearthstone.net.user.User;
-import com.bubble.hearthstone.net.user.UserManager;
+import com.bubble.hearthstone.net2.event.IGameEvent;
+import com.bubble.hearthstone.net2.user.User;
+import com.bubble.hearthstone.net2.user.UserManager;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class EventLogger implements IEventLogger {

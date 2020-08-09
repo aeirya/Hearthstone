@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.net.user;
+package com.bubble.hearthstone.net2.user;
 
 import com.bubble.hearthstone.card.deck.Deck;
 import com.bubble.hearthstone.card.deck.DeckCliView;

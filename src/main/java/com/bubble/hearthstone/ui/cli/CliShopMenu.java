@@ -5,11 +5,11 @@ import com.bubble.hearthstone.input.EnumCommands;
 import com.bubble.hearthstone.input.ICommand;
 import com.bubble.hearthstone.model.shop.Purchasable;
 import com.bubble.hearthstone.model.shop.Shop;
-import com.bubble.hearthstone.net.event.IGameEvent;
-import com.bubble.hearthstone.net.event.events.MessageEvent;
-import com.bubble.hearthstone.net.event.events.shop.BuyEvent;
-import com.bubble.hearthstone.net.event.events.shop.SellEvent;
-import com.bubble.hearthstone.net.user.User;
+import com.bubble.hearthstone.net2.event.IGameEvent;
+import com.bubble.hearthstone.net2.event.events.MessageEvent;
+import com.bubble.hearthstone.net2.event.events.shop.BuyEvent;
+import com.bubble.hearthstone.net2.event.events.shop.SellEvent;
+import com.bubble.hearthstone.net2.user.User;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class CliShopMenu extends CliMenu {

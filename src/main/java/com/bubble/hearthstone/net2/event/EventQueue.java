@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.net.event;
+package com.bubble.hearthstone.net2.event;
 
 import java.util.LinkedList;
 

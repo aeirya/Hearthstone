@@ -1,6 +1,6 @@
-package com.bubble.hearthstone.net.event.events.shop;
+package com.bubble.hearthstone.net2.event.events.shop;
 
-import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.net2.event.IGameEvent;
 
 public interface IShopEvent extends IGameEvent {
     //

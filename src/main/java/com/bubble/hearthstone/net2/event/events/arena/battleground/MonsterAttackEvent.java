@@ -1,4 +1,4 @@
-package com.bubble.hearthstone.net.event.events.arena.battleground;
+package com.bubble.hearthstone.net2.event.events.arena.battleground;
 
 import com.bubble.hearthstone.card.monster.Monster;
 import com.bubble.hearthstone.model.arena.CombatMaster;

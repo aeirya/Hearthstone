@@ -1,7 +1,7 @@
 package com.bubble.hearthstone.input;
 
 import com.bubble.hearthstone.controller.GameManager;
-import com.bubble.hearthstone.net.event.IGameEvent;
+import com.bubble.hearthstone.net2.event.IGameEvent;
 import com.bubble.hearthstone.ui.IGameGraphics;
 import com.bubble.hearthstone.ui.cli.CliMenu;
 import java.util.Arrays;

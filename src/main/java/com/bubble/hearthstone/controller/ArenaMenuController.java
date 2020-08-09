@@ -8,8 +8,8 @@ import com.bubble.hearthstone.model.Player;
 import com.bubble.hearthstone.model.arena.Battleground;
 import com.bubble.hearthstone.model.arena.Board;
 import com.bubble.hearthstone.model.arena.Hand;
-import com.bubble.hearthstone.net.event.IGameEvent;
-import com.bubble.hearthstone.net.event.events.arena.SummonEvent;
+import com.bubble.hearthstone.net2.event.IGameEvent;
+import com.bubble.hearthstone.net2.event.events.arena.SummonEvent;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class ArenaMenuController {

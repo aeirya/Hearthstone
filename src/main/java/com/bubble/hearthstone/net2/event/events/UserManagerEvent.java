@@ -1,7 +1,7 @@
-package com.bubble.hearthstone.net.event.events;
+package com.bubble.hearthstone.net2.event.events;
 
 import com.bubble.hearthstone.controller.GameManager;
-import com.bubble.hearthstone.net.user.UserManager;
+import com.bubble.hearthstone.net2.user.UserManager;
 
 /** login menu events will be extending this */
 public abstract class UserManagerEvent implements IClientEvent {

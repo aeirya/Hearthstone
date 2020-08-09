@@ -1,6 +1,6 @@
-package com.bubble.hearthstone.net.event;
+package com.bubble.hearthstone.net2.event;
 
-import com.bubble.hearthstone.net.event.events.IdleEvent;
+import com.bubble.hearthstone.net2.event.events.IdleEvent;
 
 public class DummyNetworkEventQueue implements INetworkEventQueue {
 

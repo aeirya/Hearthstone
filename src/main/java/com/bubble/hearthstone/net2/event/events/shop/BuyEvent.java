@@ -1,7 +1,7 @@
-package com.bubble.hearthstone.net.event.events.shop;
+package com.bubble.hearthstone.net2.event.events.shop;
 
 import com.bubble.hearthstone.model.shop.Purchasable;
-import com.bubble.hearthstone.net.user.User;
+import com.bubble.hearthstone.net2.user.User;
 
 public class BuyEvent extends ShopEvent {
     
