@@ -4,7 +4,7 @@ import com.bubble.hearthstone.card.Card;
 import com.bubble.hearthstone.controller.Arena;
 import com.bubble.hearthstone.model.Player;
 
-public class SummonEvent extends IArenaEvent {
+public class SummonEvent extends ArenaEvent {
 
     private final Card card;
     private final String playerName;

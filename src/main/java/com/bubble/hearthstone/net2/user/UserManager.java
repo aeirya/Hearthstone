@@ -87,6 +87,11 @@ public class UserManager {
         }
     }
 
+    public boolean authenticate(String username, String password) {
+        // TODO: implement this
+        return true;
+    }
+
     private void createUserFile(String username, String password) {
         final User user = new User(username, password);
         SaveManager.createUserFile(user);

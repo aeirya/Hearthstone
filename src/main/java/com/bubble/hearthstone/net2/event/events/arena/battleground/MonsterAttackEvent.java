@@ -3,7 +3,7 @@ package com.bubble.hearthstone.net.event.events.arena.battleground;
 import com.bubble.hearthstone.card.monster.Monster;
 import com.bubble.hearthstone.model.arena.CombatMaster;
 
-public class MonsterAttackEvent extends BattlegroundEvent {
+public class MonsterAttackEvent implements BattlegroundEvent {
 
     private final Monster attacker;
     private final Monster defender;
