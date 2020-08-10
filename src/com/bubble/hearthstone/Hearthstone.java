@@ -1,5 +1,6 @@
 package com.bubble.hearthstone;
 
+import com.bubble.hearthstone.module.logic.user.IUserManager;
 import com.bubble.hearthstone.module.logic.user.UserManager;
 import com.bubble.hearthstone.module.service.ServiceLocator;
 import com.bubble.hearthstone.util.log.ColoredGameLogger;
@@ -30,9 +31,10 @@ public class Hearthstone implements Runnable {
         final ResourceManager resourceManager = new ResourceManager(configPath);
         final GameLogger logger = new ColoredGameLogger();
         final ServiceLocator services = ServiceLocator.getInstance();
+        final IUserManager userManager = new UserManager(services);
         services
             .provideResources(resourceManager)
-            .provideUserManager(new UserManager(services))
+            .provideUserManager(userManager)
             .provideLogger(logger);
     }
 }

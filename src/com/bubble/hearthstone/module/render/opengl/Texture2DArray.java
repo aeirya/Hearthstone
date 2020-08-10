@@ -39,6 +39,6 @@ public class Texture2DArray extends Texture {
         GL11.glTexParameteri(target, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
         GL12.glTexImage3D(target, 0, GL11.GL_RGBA, width, height, layers, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, data);
         GL30.glGenerateMipmap(target);
-        // GL13.glActiveTexture();
+
     }
 }

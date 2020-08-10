@@ -21,7 +21,7 @@ public class VertexBuffer {
         vao = GL30.glGenVertexArrays();
     }
 
-    public <T extends IVertex> void upload(VertexBufferBuilder<T> vbb) {
+public <T extends IVertex> void upload(VertexBufferBuilder<T> vbb) {
         bind();
         indexCount = vbb.getIndexCount();
 

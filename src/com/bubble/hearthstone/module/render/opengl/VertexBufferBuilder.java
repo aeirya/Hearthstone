@@ -53,7 +53,7 @@ public class VertexBufferBuilder <T extends IVertex> {
         vertex.append(vertices);
         vertexCount++;
         if (vertexCount * vertex.getSize() > 0.8 * vertices.capacity()) {
-            FloatBuffer f = MemoryUtil.memAllocFloat((int)(1.2 * vertices.capacity()));
+            FloatBuffer f = MemoryUtil.memAllocFloat((int)(1.25 * vertices.capacity()));
             f.put(vertices.array(), 0, vertexCount * vertex.getSize());
             vertices = f;
         }

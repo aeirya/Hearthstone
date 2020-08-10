@@ -12,17 +12,16 @@ import com.bubble.hearthstone.module.logic.arena.Match;
 import com.bubble.hearthstone.module.management.ModuleManager;
 import com.bubble.hearthstone.module.service.ServiceLocator;
 import com.bubble.hearthstone.net.user.DummyUser;
-import com.bubble.hearthstone.util.log.Log;
 import com.bubble.hearthstone.util.time.Waiter;
 
 public class Game implements IEventHandler <IEvent> {
     
     private final ModuleManager modules;
     private IEventHandler<IEvent> eventHandler;
-    private boolean isRunning;
+    
+    private boolean isRunning = true;
     
     public Game() {
-        isRunning = true;
         modules = new ModuleManager(this);
         launchArena();
     }
