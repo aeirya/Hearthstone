@@ -4,7 +4,6 @@ import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.server.IServerHandler;
 import com.bubble.athena.server.user.IUserManager;
-import com.bubble.athena.server.user.User;
 import com.bubble.net.request.Request;
 import com.bubble.net.response.Response;
 import com.google.gson.Gson;

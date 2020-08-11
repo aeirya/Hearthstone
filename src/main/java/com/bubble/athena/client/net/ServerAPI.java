@@ -1,7 +1,9 @@
 package com.bubble.athena.client.net;
 
 import com.bubble.athena.net.request.GameRequest;
+import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
+import com.bubble.athena.net.user.LogoutRequest;
 import com.bubble.athena.net.user.SignupRequest;
 import com.bubble.net.client.Network;
 import com.bubble.athena.net.request.NetRequest;
@@ -41,13 +43,18 @@ public class ServerAPI {
         log(response);
     }
 
-    // public void logout() {
-    //     net.request(new LogoutRequest(username, password));
-    //     dump();
-    // }
+    public void logout() {
+        net.request(new LogoutRequest(username, password));
+        dump();
+    }
 
     public void singup(String username, String password) {
         net.request(new SignupRequest(username, password));
+        dump();
+    }
+
+    public void removeUser(String username, String password) {
+        net.request(new DeleteRequest(username, password));
         dump();
     }
 

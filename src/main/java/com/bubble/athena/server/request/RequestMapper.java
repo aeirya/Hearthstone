@@ -6,7 +6,9 @@ import java.util.Map;
 
 import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.NetRequest;
+import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
+import com.bubble.athena.net.user.LogoutRequest;
 import com.bubble.athena.net.user.SignupRequest;
 import com.bubble.net.request.Request;
 
@@ -15,8 +17,11 @@ public class RequestMapper {
 
     public RequestMapper() {
         map = new EnumMap<>(NetRequest.class);
+        // user requests
         map.put(NetRequest.LOGIN, LoginRequest.class);
         map.put(NetRequest.REGISTER, SignupRequest.class);
+        map.put(NetRequest.DELETE, DeleteRequest.class);
+        map.put(NetRequest.LOGOUT, LogoutRequest.class);
     }
 
     public GameRequest get(GameRequest request) {
