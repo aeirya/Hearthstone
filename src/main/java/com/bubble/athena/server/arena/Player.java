@@ -15,6 +15,10 @@ public class Player {
         return hero.getHealth() <= 0;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (! (other instanceof Player)) return false;
