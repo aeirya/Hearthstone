@@ -1,6 +1,5 @@
 package com.bubble.athena.net.lobby;
 
-import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.server.lobby.ILobby;
 import com.bubble.net.request.Request;

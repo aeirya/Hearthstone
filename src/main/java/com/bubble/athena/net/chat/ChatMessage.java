@@ -1,4 +1,4 @@
-package com.bubble.athena.net.lobby;
+package com.bubble.athena.net.chat;
 
 import com.bubble.athena.server.lobby.ILobby;
 import com.google.gson.Gson;
@@ -7,11 +7,20 @@ public class ChatMessage {
     private final String from;
     private final String to;
     private final String msg;
+    private final boolean isGlobal;
+
+    public ChatMessage(String from, String msg) {
+        this.from = from;
+        this.msg = msg;
+        to = "";
+        isGlobal = true;
+    }
 
     public ChatMessage(String from, String to, String msg) {
         this.from = from;
         this.to = to;
         this.msg = msg;
+        isGlobal = false;
     }
 
     public ChatMessage(String json) {
@@ -19,22 +28,26 @@ public class ChatMessage {
         this.from = cm.getFrom();
         this.to = cm.getTo();
         this.msg = cm.getMsg();
+        this.isGlobal = cm.getIsGlobal();
     }
 
-    public String getFrom() {
+    private String getFrom() {
         return from;
     }
 
-    public String getTo() {
+    private String getTo() {
         return to;
     }
 
-    public String getMsg() {
+    private String getMsg() {
         return msg;
     }
 
-    public void deliver(ILobby lobby) {
-        lobby.sendMessage(from, to, msg);
+    private boolean getIsGlobal() {
+        return isGlobal;
     }
 
+    public boolean deliver(ILobby lobby) {
+        return lobby.sendMessage(from, to, msg, isGlobal);
+    }
 }

@@ -1,8 +1,12 @@
 package com.bubble.athena.client.net;
 
-import com.bubble.athena.net.lobby.ChatMessage;
-import com.bubble.athena.net.lobby.ChatRequest;
 import com.bubble.athena.net.lobby.FindMatchRequest;
+
+import java.util.List;
+
+import com.bubble.athena.net.chat.ChatMessage;
+import com.bubble.athena.net.chat.ChatRequest;
+import com.bubble.athena.net.chat.GetChatHistoryRequest;
 import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
@@ -12,6 +16,7 @@ import com.bubble.net.client.Network;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.net.response.NetResponse;
 import com.bubble.net.response.Response;
+import com.google.gson.Gson;
 
 public class ServerAPI implements IResponseCatcher {
     private final Network net;
@@ -76,6 +81,22 @@ public class ServerAPI implements IResponseCatcher {
     public void sendMessage(String to, String msg) {
         net.request(new ChatRequest(new ChatMessage(username, to, msg)));
         dump();
+    }
+
+    public void sendMessage(String msg) {
+        net.request(new ChatRequest(new ChatMessage(username, msg)));
+        dump();
+    }
+
+    public List<String> getGlobalChat() {
+        net.request(new GetChatHistoryRequest());
+        final Response r = getResponse();
+        return new Gson().fromJson(r.body, List.class);
+    }
+
+    public List<String> getUserChat() {
+        net.request(new GetChatHistoryRequest(username));
+        return new Gson().fromJson(getResponse().body, List.class);
     }
 
     // public GameState getUpdate() {

@@ -1,5 +1,8 @@
 package com.bubble.athena.server.lobby;
 
+import java.util.List;
+
+import com.bubble.athena.server.lobby.chat.ChatSystem;
 import com.bubble.athena.server.user.IUserManager;
 import com.bubble.net.server.INetwork;
 
@@ -18,8 +21,16 @@ public class Lobby implements ILobby {
     }
 
     @Override
-    public void sendMessage(String from, String to, String msg) {
-        chat.send(from, to, msg);
+    public boolean sendMessage(String from, String to, String msg, boolean isGlobal) {
+        return chat.send(from, to, msg, isGlobal);
     }
     
+    public List<String> getGlobalChat() {
+        return chat.getGlobalChat();
+    }
+
+    @Override
+    public List<String> getUserChat(String user) {
+        return chat.getUserChat(user);
+    }
 }

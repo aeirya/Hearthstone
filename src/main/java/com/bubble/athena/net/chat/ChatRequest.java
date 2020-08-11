@@ -1,5 +1,6 @@
-package com.bubble.athena.net.lobby;
+package com.bubble.athena.net.chat;
 
+import com.bubble.athena.net.lobby.LobbyRequest;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.server.lobby.ILobby;
 import com.bubble.net.request.Request;
@@ -21,8 +22,9 @@ public class ChatRequest extends LobbyRequest {
 
     @Override
     public Response apply(ILobby lobby) {
-        getMessage().deliver(lobby);
-        return Response.OK;
+        return new Response(
+            getMessage().deliver(lobby)
+        );
     }
     
 }

@@ -11,6 +11,8 @@ public enum NetRequest {
     // GET_SCOREBOARD,
 
     GET_UPDATE,
+    GET_CHATS,
+    GET_GLOBAL_CHAT,
     
     // PLAY,
     ATTACK,
