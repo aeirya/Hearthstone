@@ -2,6 +2,7 @@ package com.bubble.net.server;
 
 import java.net.Socket;
 
+import com.bubble.athena.server.user.OnlineUser;
 import com.bubble.net.request.Request;
 import com.bubble.net.response.NetResponse;
 import com.bubble.net.response.Response;
@@ -47,7 +48,7 @@ public class Network implements INetwork, IClientRequestHandler, IClientAcceptor
         clients.bye(client);
     }
     //
-    
+
     // handling input data
     @Override
     public void request(Client client, String data) {
@@ -63,5 +64,11 @@ public class Network implements INetwork, IClientRequestHandler, IClientAcceptor
 
     public void respond(String response, String auth) {
         clients.find(auth).send(response);
+    }
+
+    // refactor this out
+    @Override
+    public void respond(Response response, OnlineUser user) {
+        respond(response.toString(), user.getAuth());
     }
 }

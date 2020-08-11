@@ -30,4 +30,8 @@ public class Response {
     public String toString() {
         return new Gson().toJson(this);
     }
+
+    public static final Response OK = new Response(true);
+    public static final Response ERROR = new Response(false);
+
 }

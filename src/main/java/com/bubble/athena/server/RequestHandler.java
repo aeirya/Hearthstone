@@ -1,6 +1,8 @@
 package com.bubble.athena.server;
 
+import com.bubble.athena.net.lobby.ILobbyRequest;
 import com.bubble.athena.net.request.GameRequest;
+import com.bubble.athena.net.request.IGameRequest;
 import com.bubble.athena.net.user.IUserRequest;
 import com.bubble.athena.server.request.RequestMapper;
 import com.bubble.net.request.Request;
@@ -25,12 +27,12 @@ public class RequestHandler implements IRequestHandler, IServerHandler {
         respond(apply(convert(request)), request.getAuth());
     }
 
-    private GameRequest convert(Request request) {
-        return mapper.get(new GameRequest(request));
-    }
-    
     private Response apply(GameRequest request) {
         return mapper.get(request).apply(this);
+    }
+        
+    private GameRequest convert(Request request) {
+        return mapper.get(new GameRequest(request));
     }
 
     public Response handleUserRequest(GameRequest request) {
@@ -39,6 +41,14 @@ public class RequestHandler implements IRequestHandler, IServerHandler {
 
     private IUserRequest getUserRequest(GameRequest request) {
         return (IUserRequest) request;
+    }
+
+    public Response handleLobbyRequest(IGameRequest request) {
+        return getLobbyRequest(request).apply(services.getLobby());
+    }
+
+    private ILobbyRequest getLobbyRequest(IGameRequest request) {
+        return (ILobbyRequest) request;
     }
 
     public synchronized void respond(Response response, String auth) {

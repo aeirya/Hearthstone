@@ -1,5 +1,6 @@
 package com.bubble.athena.server;
 
+import com.bubble.athena.server.lobby.Lobby;
 import com.bubble.athena.server.user.UserManager;
 import com.bubble.net.request.Request;
 import com.bubble.net.server.INetwork;
@@ -22,6 +23,8 @@ public class GameServer implements IRequestHandler {
         final ServiceLocator ser = new ServiceLocator();
         final UserManager usermanager = new UserManager();
         ser.provideUserManager(usermanager);
+        final Lobby lobby = new Lobby(usermanager, net);
+        ser.provideLobby(lobby);
         return ser;
     }
 

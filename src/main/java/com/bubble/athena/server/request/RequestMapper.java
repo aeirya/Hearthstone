@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.EnumMap;
 import java.util.Map;
 
+import com.bubble.athena.net.lobby.FindMatchRequest;
 import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.net.user.DeleteRequest;
@@ -22,6 +23,8 @@ public class RequestMapper {
         map.put(NetRequest.REGISTER, SignupRequest.class);
         map.put(NetRequest.DELETE, DeleteRequest.class);
         map.put(NetRequest.LOGOUT, LogoutRequest.class);
+        // lobby requests
+        map.put(NetRequest.FIND_MATCH, FindMatchRequest.class);
     }
 
     public GameRequest get(GameRequest request) {

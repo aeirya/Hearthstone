@@ -14,7 +14,6 @@ public class LoginTest {
     public static void main(String[] args) {
         GameServer server = new GameServer(8000);
         server.run();
-    
         final GameClient client = new GameClient("localhost", 8000);
         client.run();
         ServerAPI api = client.get();

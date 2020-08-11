@@ -40,7 +40,7 @@ public class NetworkListener {
     }
 
     public void listen() {
-        new Thread(this::run).start();
+        new Thread(this::run, "ClientAcceptor").start();
     }
 
     private void run() {

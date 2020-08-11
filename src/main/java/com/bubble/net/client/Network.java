@@ -9,7 +9,7 @@ import com.bubble.net.request.Request;
 import com.bubble.net.response.NetResponse;
 import com.bubble.net.response.Response;
 
-public class Network {
+public class Network implements INetwork {
 
     private final INetworkService server;
     private String auth;

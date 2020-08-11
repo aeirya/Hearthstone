@@ -1,5 +1,6 @@
 package com.bubble.athena.client.net;
 
+import com.bubble.athena.net.lobby.FindMatchRequest;
 import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
@@ -59,7 +60,7 @@ public class ServerAPI {
     }
 
     public void findMatch() {
-        net.request(new GameRequest(NetRequest.FIND_MATCH, username));
+        net.request(new FindMatchRequest(username));
         dump();
     }
 

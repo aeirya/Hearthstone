@@ -6,7 +6,7 @@ import com.bubble.net.response.NetResponse;
 import com.bubble.net.response.Response;
 import com.google.gson.Gson;
 
-public class GameRequest extends Request implements IRequest {
+public class GameRequest extends Request implements IGameRequest {
     
     public GameRequest(NetRequest type, String body) {
         super(type.toString(), body);
