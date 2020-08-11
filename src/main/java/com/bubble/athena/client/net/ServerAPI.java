@@ -11,7 +11,7 @@ import com.bubble.athena.net.request.NetRequest;
 import com.bubble.net.response.NetResponse;
 import com.bubble.net.response.Response;
 
-public class ServerAPI {
+public class ServerAPI implements IResponseCatcher {
     private final Network net;
     private String username;
     private String password; // this could be removed
@@ -31,7 +31,10 @@ public class ServerAPI {
     }
 
     private void dump() {
-        net.getResponse();
+        Response r = net.getResponse();
+        if(!r.isOK()) {
+            System.out.println(r.toString());
+        }
     }
 
     public void login(String username, String password) {
@@ -63,11 +66,6 @@ public class ServerAPI {
         net.request(new FindMatchRequest(username));
         dump();
     }
-
-    // public void play(int x, int y) {
-    //     net.request(new PlayRequest(x + "," + y));
-    //     log();
-    // }
 
     public synchronized Response getResponse() {
         return net.getResponse();

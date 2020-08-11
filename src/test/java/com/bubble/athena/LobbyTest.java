@@ -3,6 +3,7 @@ package com.bubble.athena;
 import static org.junit.Assert.assertTrue;
 
 import com.bubble.athena.client.GameClient;
+import com.bubble.athena.client.net.ResponseWait;
 import com.bubble.athena.client.net.ServerAPI;
 import com.bubble.athena.server.GameServer;
 import com.bubble.net.response.Response;
@@ -25,6 +26,7 @@ public class LobbyTest {
         api.login("a", "a");
         api.findMatch();
         Response res;
+        new ResponseWait(api, r -> System.out.println(r.toString())).start();
         if ((res = api.getResponse()) == Response.OK) {
             success = true;
         }

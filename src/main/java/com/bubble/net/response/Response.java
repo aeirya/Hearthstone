@@ -31,6 +31,10 @@ public class Response {
         return new Gson().toJson(this);
     }
 
+    public boolean isOK() {
+        return type != NetResponse.ERROR;
+    }
+
     public static final Response OK = new Response(true);
     public static final Response ERROR = new Response(false);
 
