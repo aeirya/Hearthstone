@@ -2,6 +2,7 @@ package com.bubble.athena.server.lobby;
 
 import java.util.LinkedList;
 
+import com.bubble.athena.server.arena.Game;
 import com.bubble.athena.server.arena.GameBuilder;
 import com.bubble.athena.server.user.IUserManager;
 import com.bubble.athena.server.user.OnlineUser;
@@ -50,10 +51,28 @@ public class MatchFinder {
     public void match() {
         final OnlineUser u1 = pick();
         final OnlineUser u2 = pick();
-        gameBuilder.newGame(u1, u2);
+        resetInQueue(u1, u2);
+        setInMatch(u1, u2);
+        final Game game = gameBuilder.newGame(u1, u2);
+        setGame(u1, u2, game);
         // ("match started")
         System.out.println("match started");
         notifyClients(u1, u2);
+    }
+
+    private void resetInQueue(OnlineUser u1, OnlineUser u2) {
+        u1.setInQueue(false);
+        u2.setInQueue(false);
+    }
+
+    private void setInMatch(OnlineUser user1, OnlineUser user2) {
+        user1.setInMatch(true);
+        user2.setInMatch(true);
+    }
+
+    private void setGame(OnlineUser u1, OnlineUser u2, Game game) {
+        u1.startMatch(game);
+        u2.startMatch(game);
     }
 
     private void notifyClients(OnlineUser u1, OnlineUser u2) {

@@ -15,6 +15,7 @@ public class ChatSystem {
         this.users = users;
     }
 
+    // todo: merge this into game state we send
     public void send(String from, String to, String msg) {
         if (users.isOnline(to)) {
             net.respond(

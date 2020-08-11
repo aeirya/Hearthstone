@@ -2,6 +2,8 @@ package com.bubble.net.response;
 
 import com.google.gson.Gson;
 
+// this can be split into two classes 
+
 public class Response {
     public final NetResponse type;
     public final String body;

@@ -8,11 +8,13 @@ public enum NetRequest {
     
     FIND_MATCH,
     CHAT_MESSAGE,
-    GET_SCOREBOARD,
+    // GET_SCOREBOARD,
 
-    PLAY,
     GET_UPDATE,
     
-    MATCH_FINISH,
-    REPLAY,
+    // PLAY,
+    ATTACK,
+
+    // MATCH_FINISH,
+    // REPLAY,
 }

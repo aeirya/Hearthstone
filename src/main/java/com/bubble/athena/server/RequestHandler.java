@@ -1,5 +1,6 @@
 package com.bubble.athena.server;
 
+import com.bubble.athena.net.arena.IArenaRequest;
 import com.bubble.athena.net.lobby.ILobbyRequest;
 import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.IGameRequest;
@@ -49,6 +50,14 @@ public class RequestHandler implements IRequestHandler, IServerHandler {
 
     private ILobbyRequest getLobbyRequest(IGameRequest request) {
         return (ILobbyRequest) request;
+    }
+
+    public Response handleArenaRequest(IGameRequest request) {
+        return getArenaRequest(request).apply(services.getArena());
+    }
+
+    private IArenaRequest getArenaRequest(IGameRequest request) {
+        return (IArenaRequest) request;
     }
 
     public synchronized void respond(Response response, String auth) {

@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.EnumMap;
 import java.util.Map;
 
+import com.bubble.athena.net.arena.AttackRequest;
 import com.bubble.athena.net.lobby.ChatRequest;
 import com.bubble.athena.net.lobby.FindMatchRequest;
 import com.bubble.athena.net.request.GameRequest;
@@ -27,6 +28,8 @@ public class RequestMapper {
         // lobby requests
         map.put(NetRequest.FIND_MATCH, FindMatchRequest.class);
         map.put(NetRequest.CHAT_MESSAGE, ChatRequest.class);
+        //arena requests
+        // map.put(NetRequest.ATTACK, AttackRequest.class);
     }
 
     public GameRequest get(GameRequest request) {

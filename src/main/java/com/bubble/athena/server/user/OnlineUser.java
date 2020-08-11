@@ -1,14 +1,14 @@
 package com.bubble.athena.server.user;
 
-// import xoxo.game.Game;
-// import xoxo.game.Player;
+import com.bubble.athena.server.arena.Game;
+import com.bubble.athena.server.arena.Player;
 
 public class OnlineUser {
     private final String username;
     private boolean isInMatch = false;
     private boolean isInQueue = false; 
-    // private Game match = null;
-    // private Player player = null;
+    private Game match = null;
+    private Player player = null;
     private String auth;
     
     public OnlineUser(String username) {
@@ -40,20 +40,17 @@ public class OnlineUser {
         return isInMatch;
     }
 
-    // public void startMatch(Game game, Player player) {
-    //     this.setInQueue(false);
-    //     this.setInMatch(true);
-    //     this.player = player;
-    //     this.match = game;
-    // }
+    public void startMatch(Game game) {
+        this.match = game;
+    }
 
-    // public Game getMatch() {
-    //     return match;
-    // }
+    public Game getMatch() {
+        return match;
+    }
 
-    // public Player getPlayer() {
-    //     return player;
-    // }
+    public Player getPlayer() {
+        return player;
+    }
 
     public void setAuth(String auth) {
         this.auth = auth;
