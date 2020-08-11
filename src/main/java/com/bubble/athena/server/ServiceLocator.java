@@ -3,6 +3,7 @@ package com.bubble.athena.server;
 import com.bubble.athena.server.arena.IArena;
 import com.bubble.athena.server.lobby.ILobby;
 import com.bubble.athena.server.user.IUserManager;
+import com.bubble.util.log.IGameLogger;
 import com.bubble.util.resource.IResourceManager;
 
 public class ServiceLocator {
@@ -10,6 +11,7 @@ public class ServiceLocator {
     private ILobby lobby;
     private IResourceManager resourceManager;
     private IArena arena;
+    private IGameLogger logger;
     
     // becareful how you use this
     private static class InstanceHolder {
@@ -55,4 +57,14 @@ public class ServiceLocator {
     public IArena getArena() {
         return arena;
     }
+    
+    public ServiceLocator provideLogger(IGameLogger logger) {
+        this.logger = logger;
+        return this;
+    }
+
+    public static IGameLogger getLogger() {
+        return getInstance().logger;
+    }
+
 }
