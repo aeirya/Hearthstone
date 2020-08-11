@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 
 import com.bubble.athena.server.user.User;
 
-public class UserLoader extends IResourceLoader<User> {
+public class UserLoader implements IResourceLoader<User> {
 
     public User loadFile(String path) {
         final FileLoader fileLoader = new FileLoader();

@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class IResourceLoader<T> {
+public interface IResourceLoader<T> {
 
-    public Map<String, T> loadDir(String dir) {
+    public default Map<String, T> loadDir(String dir) {
         final Map<String, T> map = new HashMap<>();
         listFiles(dir).forEach(
             file -> map.put(getFileName(file), loadFile(file.getPath()))

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class FileLoader extends IResourceLoader<String> {
+public class FileLoader implements IResourceLoader<String> {
 
     /** loads the file in a whole text */
     public String loadFile(String path) {
