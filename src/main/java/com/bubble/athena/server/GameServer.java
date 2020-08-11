@@ -6,6 +6,8 @@ import com.bubble.net.request.Request;
 import com.bubble.net.server.INetwork;
 import com.bubble.net.server.IRequestHandler;
 import com.bubble.net.server.Network;
+import com.bubble.util.log.ColoredGameLogger;
+import com.bubble.util.log.IGameLogger;
 
 public class GameServer implements IRequestHandler {
 
@@ -25,6 +27,8 @@ public class GameServer implements IRequestHandler {
         ser.provideUserManager(usermanager);
         final Lobby lobby = new Lobby(usermanager, net);
         ser.provideLobby(lobby);
+        final IGameLogger logger = new ColoredGameLogger();
+        ser.provideLogger(logger);
         return ser;
     }
 
