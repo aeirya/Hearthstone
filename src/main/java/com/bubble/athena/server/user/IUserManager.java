@@ -8,8 +8,12 @@ public interface IUserManager {
     boolean delete(String username, String password);
     boolean authenticate(String username, String password);
     boolean logout(String username, String password);
-    OnlineUser getOnlineUser(String username);
+    
     OnlineUser findUserWithAuth(String auth);
+    
+    OnlineUser getOnlineUser(String username);
+    boolean isOnline(String username);
+    
     Map<String, Boolean> getOnlineStatus();
     Map<String, String> getUsersLobbyStatus();
 }

@@ -7,6 +7,7 @@ public enum NetRequest {
     LOGOUT,
     
     FIND_MATCH,
+    CHAT_MESSAGE,
     GET_SCOREBOARD,
 
     PLAY,

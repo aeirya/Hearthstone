@@ -8,12 +8,20 @@ import com.bubble.net.response.Response;
 
 public abstract class LobbyRequest extends GameRequest implements ILobbyRequest {
 
+    public LobbyRequest(NetRequest type, Object obj) {
+        super(type, obj);
+    }
+
     public LobbyRequest(NetRequest type, String user) {
         super(type, user);
     }
 
     public LobbyRequest(Request request) {
         super(request);
+    }
+
+    protected String getUser() {
+        return body;
     }
 
     @Override

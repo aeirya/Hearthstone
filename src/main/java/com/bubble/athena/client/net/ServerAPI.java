@@ -1,5 +1,7 @@
 package com.bubble.athena.client.net;
 
+import com.bubble.athena.net.lobby.ChatMessage;
+import com.bubble.athena.net.lobby.ChatRequest;
 import com.bubble.athena.net.lobby.FindMatchRequest;
 import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.user.DeleteRequest;
@@ -69,6 +71,11 @@ public class ServerAPI implements IResponseCatcher {
 
     public synchronized Response getResponse() {
         return net.getResponse();
+    }
+
+    public void sendMessage(String to, String msg) {
+        net.request(new ChatRequest(new ChatMessage(username, to, msg)));
+        dump();
     }
 
     // public GameState getUpdate() {
