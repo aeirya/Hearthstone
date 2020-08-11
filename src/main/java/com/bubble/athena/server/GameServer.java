@@ -14,8 +14,8 @@ public class GameServer implements IRequestHandler {
     private final ServiceLocator services;
 
     public GameServer(int port) {
-        services = initiateServices();
         net = new Network(port, this);
+        services = initiateServices();
         core = new RequestHandler(net, services);
     }
 

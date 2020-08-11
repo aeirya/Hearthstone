@@ -24,7 +24,7 @@ public class ServerAPI implements IResponseCatcher {
         System.out.println(response.body);
     }
 
-    private void log() {
+    public void log() {
         System.out.println(
             net.getResponse()
         );
