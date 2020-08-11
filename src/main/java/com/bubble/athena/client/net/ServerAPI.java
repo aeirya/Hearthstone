@@ -12,27 +12,33 @@ import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
 import com.bubble.athena.net.user.LogoutRequest;
 import com.bubble.athena.net.user.SignupRequest;
+import com.bubble.athena.server.ServiceLocator;
 import com.bubble.net.client.Network;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.net.response.NetResponse;
 import com.bubble.net.response.Response;
+import com.bubble.util.log.ColoredGameLogger;
+import com.bubble.util.log.IGameLogger;
+import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
 public class ServerAPI implements IResponseCatcher {
     private final Network net;
     private String username;
     private String password; // this could be removed
-    
+    private IGameLogger logger;
+
     public ServerAPI(Network net) {
         this.net = net;
+        logger = new ColoredGameLogger();
     }
 
     private void log(Response response) {
-        System.out.println(response.body);
+        logger.log(response.body);
     }
 
     public void log() {
-        System.out.println(
+        log(
             net.getResponse()
         );
     }
@@ -40,7 +46,7 @@ public class ServerAPI implements IResponseCatcher {
     private void dump() {
         Response r = net.getResponse();
         if(!r.isOK()) {
-            System.out.println(r.toString());
+            logger.warning(r.toString());
         }
     }
 
@@ -96,7 +102,8 @@ public class ServerAPI implements IResponseCatcher {
 
     public List<String> getUserChat() {
         net.request(new GetChatHistoryRequest(username));
-        return new Gson().fromJson(getResponse().body, List.class);
+        final Gson gson = new Gson();
+        return gson.fromJson(getResponse().body, new TypeToken<List<String>>(){}.getType());
     }
 
     // public GameState getUpdate() {
