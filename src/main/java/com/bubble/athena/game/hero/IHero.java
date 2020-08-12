@@ -1,4 +1,4 @@
-package com.bubble.athena.server.arena;
+package com.bubble.athena.game.hero;
 
 public interface IHero {
     int getHealth();

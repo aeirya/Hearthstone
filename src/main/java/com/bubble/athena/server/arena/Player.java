@@ -1,5 +1,7 @@
 package com.bubble.athena.server.arena;
 
+import com.bubble.athena.game.hero.IHero;
+
 public class Player {
     private final String name;
     private final IDeck deck;

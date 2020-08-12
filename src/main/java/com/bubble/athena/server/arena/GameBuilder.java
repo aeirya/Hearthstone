@@ -1,5 +1,6 @@
 package com.bubble.athena.server.arena;
 
+import com.bubble.athena.game.hero.IHero;
 import com.bubble.athena.server.ServiceLocator;
 import com.bubble.athena.server.user.OnlineUser;
 
