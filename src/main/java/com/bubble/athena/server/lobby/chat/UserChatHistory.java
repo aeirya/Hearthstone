@@ -5,14 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class ChatHistory {
+class UserChatHistory {
     private final LinkedList<ChatCommit> chats;
     private static final int LIMIT = 30;
 
     private List<String> globalCache;
     private boolean isGlobalCachedFlag = false;
 
-    ChatHistory() {
+    UserChatHistory() {
         chats = new LinkedList<>();
         globalCache = new ArrayList<>();
     }
@@ -29,7 +29,7 @@ class ChatHistory {
     List<String> getAllOfUserChat(String user) {
         return chats.stream()
             .filter(c -> owns(user, c))
-            .map(ChatCommit::toString)
+            .map(c -> c.toString(user))
             .collect(Collectors.toList());
     }
 

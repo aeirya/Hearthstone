@@ -2,7 +2,9 @@ package com.bubble.athena.server.user;
 
 import java.util.Map;
 
-public interface IUserManager {
+import com.bubble.athena.server.lobby.IOnlineUserQuery;
+
+public interface IUserManager extends IOnlineUserQuery {
     boolean login(String username, String password);
     boolean signup(String username, String password);
     boolean delete(String username, String password);

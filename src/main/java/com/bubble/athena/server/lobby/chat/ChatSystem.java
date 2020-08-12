@@ -2,18 +2,15 @@ package com.bubble.athena.server.lobby.chat;
 
 import java.util.List;
 
-import com.bubble.athena.server.user.IUserManager;
-import com.bubble.net.server.INetwork;
+import com.bubble.athena.server.lobby.IOnlineUserQuery;
 
 public class ChatSystem {
-    private final INetwork net;
-    private final IUserManager users;
-    private final ChatHistory history;
+    private final IOnlineUserQuery users;
+    private final UserChatHistory history;
 
-    public ChatSystem(IUserManager users, INetwork net) {
-        this.net = net;
+    public ChatSystem(IOnlineUserQuery users) {
         this.users = users;
-        history = new ChatHistory();
+        history = new UserChatHistory();
     }
 
     public boolean send(String from, String to, String msg, boolean isGlobal) {

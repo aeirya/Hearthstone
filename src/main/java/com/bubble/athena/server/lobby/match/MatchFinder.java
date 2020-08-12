@@ -1,11 +1,11 @@
-package com.bubble.athena.server.lobby;
+package com.bubble.athena.server.lobby.match;
 
 import java.util.LinkedList;
 
 import com.bubble.athena.server.ServiceLocator;
 import com.bubble.athena.server.arena.Game;
 import com.bubble.athena.server.arena.GameBuilder;
-import com.bubble.athena.server.user.IUserManager;
+import com.bubble.athena.server.lobby.IOnlineUserQuery;
 import com.bubble.athena.server.user.OnlineUser;
 import com.bubble.net.response.Response;
 import com.bubble.net.server.INetwork;
@@ -13,13 +13,13 @@ import com.bubble.util.log.IGameLogger;
 
 public class MatchFinder {
     private final LinkedList<OnlineUser> inQueue;
-    private final IUserManager usermanager;
+    private final IOnlineUserQuery usermanager;
     private final INetwork net;
     private final GameBuilder gameBuilder;
     private final IGameLogger logger;
     private boolean isAlive = true;
 
-    public MatchFinder(IUserManager usermanager, INetwork net) {
+    public MatchFinder(IOnlineUserQuery usermanager, INetwork net) {
         this.net = net;
         this.usermanager = usermanager;
         logger = ServiceLocator.getLogger();
@@ -51,9 +51,13 @@ public class MatchFinder {
         return true;
     }
 
-    public void match() {
+    private void match() {
         final OnlineUser u1 = pick();
         final OnlineUser u2 = pick();
+        match(u1, u2);
+    }
+
+    public void match(OnlineUser u1, OnlineUser u2) {
         resetInQueue(u1, u2);
         setInMatch(u1, u2);
         final Game game = gameBuilder.newGame(u1, u2);

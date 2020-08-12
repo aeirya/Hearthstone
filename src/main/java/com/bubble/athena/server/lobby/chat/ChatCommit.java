@@ -32,5 +32,10 @@ public class ChatCommit {
     public String toString() {
         return from + ": " + msg;
     }
+
+    public String toString(String me) {
+        if(me.equals(from)) return "to " + to + ": " + msg;
+        else return toString();
+    }
     
 }
