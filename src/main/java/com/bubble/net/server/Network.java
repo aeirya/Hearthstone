@@ -52,6 +52,7 @@ public class Network implements INetwork, IClientRequestHandler, IClientAcceptor
     // handling input data
     @Override
     public void request(Client client, String data) {
+        // i could change threads here
         final Request request = new Request(data);
         if (authenticate(client, request)) {
             handler.handle(request);

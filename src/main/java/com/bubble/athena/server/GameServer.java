@@ -8,6 +8,7 @@ import com.bubble.net.server.IRequestHandler;
 import com.bubble.net.server.Network;
 import com.bubble.util.log.ColoredGameLogger;
 import com.bubble.util.log.IGameLogger;
+import com.bubble.util.resource.DummyResourceManager;
 
 public class GameServer implements IRequestHandler {
 
@@ -22,13 +23,13 @@ public class GameServer implements IRequestHandler {
     }
 
     private ServiceLocator initiateServices() {
+        final IGameLogger logger = new ColoredGameLogger();
+        ServiceLocator.getInstance().provideLogger(logger).provideResources(new DummyResourceManager());
         final ServiceLocator ser = new ServiceLocator();
         final UserManager usermanager = new UserManager();
         ser.provideUserManager(usermanager);
         final Lobby lobby = new Lobby(usermanager, net);
         ser.provideLobby(lobby);
-        final IGameLogger logger = new ColoredGameLogger();
-        ser.provideLogger(logger);
         return ser;
     }
 

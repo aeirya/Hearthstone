@@ -14,6 +14,8 @@ public enum NetRequest {
     GET_CHATS,
     GET_GLOBAL_CHAT,
     
+    GET_ARENA,
+
     // PLAY,
     ATTACK,
 

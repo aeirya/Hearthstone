@@ -16,11 +16,19 @@ public class NetworkTest {
         assertTrue(new NetworkTest().success);
     }
 
-
     GameServer runServer() {
         GameServer server = new GameServer(8000);
         server.run();
+        // sleep(500);
         return server;
+    }
+
+    void sleep(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     GameClient runClient() {

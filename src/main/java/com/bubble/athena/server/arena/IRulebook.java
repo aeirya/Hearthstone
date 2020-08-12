@@ -6,5 +6,5 @@ public interface IRulebook {
     int getMaxMana();
     int getMaxCardsInHand();
     int getMaxMinionsOnBoard();
-    
+        
 }

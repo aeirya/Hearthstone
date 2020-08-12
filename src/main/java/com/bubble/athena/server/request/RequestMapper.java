@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import com.bubble.athena.net.arena.AttackRequest;
+import com.bubble.athena.net.arena.GetArenaRequest;
 import com.bubble.athena.net.lobby.FindMatchRequest;
 import com.bubble.athena.net.chat.ChatRequest;
 import com.bubble.athena.net.chat.GetChatHistoryRequest;
@@ -33,7 +34,8 @@ public class RequestMapper {
         map.put(NetRequest.GET_GLOBAL_CHAT, GetChatHistoryRequest.class);
         map.put(NetRequest.GET_CHATS, GetChatHistoryRequest.class);
         //arena requests
-        // map.put(NetRequest.ATTACK, AttackRequest.class);
+        map.put(NetRequest.GET_ARENA, GetArenaRequest.class);
+        map.put(NetRequest.ATTACK, AttackRequest.class);
     }
 
     public GameRequest get(GameRequest request) {

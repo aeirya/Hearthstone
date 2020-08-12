@@ -10,7 +10,6 @@ import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import com.bubble.util.resource.UserLoader;
 import com.google.gson.Gson;
 
 public class UserManager implements IUserManager {

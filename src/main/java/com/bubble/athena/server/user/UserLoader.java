@@ -1,8 +1,8 @@
-package com.bubble.util.resource;
+package com.bubble.athena.server.user;
 
+import com.bubble.util.resource.FileLoader;
+import com.bubble.util.resource.IResourceLoader;
 import com.google.gson.Gson;
-
-import com.bubble.athena.server.user.User;
 
 public class UserLoader implements IResourceLoader<User> {
 

@@ -2,23 +2,27 @@ package com.bubble.athena.server.lobby;
 
 import java.util.LinkedList;
 
+import com.bubble.athena.server.ServiceLocator;
 import com.bubble.athena.server.arena.Game;
 import com.bubble.athena.server.arena.GameBuilder;
 import com.bubble.athena.server.user.IUserManager;
 import com.bubble.athena.server.user.OnlineUser;
 import com.bubble.net.response.Response;
 import com.bubble.net.server.INetwork;
+import com.bubble.util.log.IGameLogger;
 
 public class MatchFinder {
     private final LinkedList<OnlineUser> inQueue;
     private final IUserManager usermanager;
     private final INetwork net;
     private final GameBuilder gameBuilder;
+    private final IGameLogger logger;
     private boolean isAlive = true;
 
     public MatchFinder(IUserManager usermanager, INetwork net) {
         this.net = net;
         this.usermanager = usermanager;
+        logger = ServiceLocator.getLogger();
         gameBuilder = new GameBuilder();
         inQueue = new LinkedList<>();
         new Thread(this::run, "MatchFinder").start();
@@ -41,8 +45,7 @@ public class MatchFinder {
     public boolean queue(String username) {
         final OnlineUser player = usermanager.getOnlineUser(username);
         if (player == null) return false;
-        // ("queueing for " + username)
-        System.out.println("queueing for " + username);
+        logger.log("queueing for " + username);
         inQueue.add(player);
         player.setInMatch(false);
         return true;
@@ -55,8 +58,7 @@ public class MatchFinder {
         setInMatch(u1, u2);
         final Game game = gameBuilder.newGame(u1, u2);
         setGame(u1, u2, game);
-        // ("match started")
-        System.out.println("match started");
+        logger.log("match started");
         notifyClients(u1, u2);
     }
 

@@ -4,10 +4,11 @@ import com.bubble.athena.net.lobby.FindMatchRequest;
 
 import java.util.List;
 
+import com.bubble.athena.net.arena.AttackEvent;
+import com.bubble.athena.net.arena.AttackRequest;
 import com.bubble.athena.net.chat.ChatMessage;
 import com.bubble.athena.net.chat.ChatRequest;
 import com.bubble.athena.net.chat.GetChatHistoryRequest;
-import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
 import com.bubble.athena.net.user.LogoutRequest;
@@ -138,4 +139,11 @@ public class ServerAPI implements IResponseCatcher {
     //         return new Save(r.body);
     //     } else return null;
     // }
+
+    public void attack() {
+        net.request(
+            new AttackRequest(new AttackEvent("attacker"))
+        );
+        log();
+    }
 }

@@ -10,7 +10,7 @@ public class ServiceLocator {
     private IUserManager userManager;
     private ILobby lobby;
     private IResourceManager resourceManager;
-    private IArena arena;
+    private IArena arena; // remove this
     private IGameLogger logger;
     
     // becareful how you use this

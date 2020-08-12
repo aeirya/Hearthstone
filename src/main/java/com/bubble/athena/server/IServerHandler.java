@@ -7,4 +7,5 @@ import com.bubble.net.response.Response;
 public interface IServerHandler {
     Response handleUserRequest(GameRequest request);
     Response handleLobbyRequest(IGameRequest request);
+    Response handleArenaRequest(IGameRequest request);
 }

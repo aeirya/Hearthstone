@@ -5,7 +5,9 @@ import com.bubble.athena.net.lobby.ILobbyRequest;
 import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.IGameRequest;
 import com.bubble.athena.net.user.IUserRequest;
+import com.bubble.athena.server.arena.IArena;
 import com.bubble.athena.server.request.RequestMapper;
+import com.bubble.athena.server.user.OnlineUser;
 import com.bubble.net.request.Request;
 import com.bubble.net.response.Response;
 import com.bubble.net.server.INetwork;
@@ -53,11 +55,23 @@ public class RequestHandler implements IRequestHandler, IServerHandler {
     }
 
     public Response handleArenaRequest(IGameRequest request) {
-        return getArenaRequest(request).apply(services.getArena());
+        return getArenaRequest(request).apply(getArena(findUser(request)));
     }
 
     private IArenaRequest getArenaRequest(IGameRequest request) {
         return (IArenaRequest) request;
+    }
+
+    private IArena getArena(OnlineUser user) {
+        return user.getMatch().getArena();
+    }
+
+    private OnlineUser findUser(IGameRequest request) {
+        return services.getUserManager().findUserWithAuth(getAuth(request));
+    }
+
+    private String getAuth(IGameRequest request) {
+        return ((Request) request).getAuth();
     }
 
     public synchronized void respond(Response response, String auth) {

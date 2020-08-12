@@ -17,7 +17,7 @@ public class Game {
         return null;
     }
 
-    private Player getPlayer(String name) {
+    public Player getPlayer(String name) {
         if(home.getName().equals(name)) return home;
         else if(away.getName().equals(name)) return away;
         else return null;
@@ -38,5 +38,9 @@ public class Game {
 
     public boolean isFinished() {
         return getWinner() == null;
+    }
+
+    public IArena getArena() {
+        return arena;
     }
 }
