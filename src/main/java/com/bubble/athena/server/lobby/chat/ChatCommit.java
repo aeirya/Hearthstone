@@ -34,7 +34,7 @@ public class ChatCommit {
     }
 
     public String toString(String me) {
-        if(me.equals(from)) return "to " + to + ": " + msg;
+        if(me.equals(from) && !isGlobal) return "to " + to + ": " + msg;
         else return toString();
     }
     

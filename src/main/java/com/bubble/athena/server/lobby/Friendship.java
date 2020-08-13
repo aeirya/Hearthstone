@@ -6,19 +6,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.bubble.athena.server.ServiceLocator;
+import com.bubble.util.log.IGameLogger;
+
 // TODO: test friendship system
 class Friendship {
     private final Map<String, List<String>> friendsList;
     private final IOnlineUserQuery usermanager;
-
+    private final IGameLogger logger;
+    
     Friendship(IOnlineUserQuery usermanager) {
         this.usermanager = usermanager;
         friendsList = new HashMap<>();
+        logger = ServiceLocator.getLogger();
     }
 
     public void addFriend(String user1, String user2) {
         add(user1, user2);
         add(user2, user1);
+        logger.log(user1 + " and " + user2 + " are now friends");
     }
 
     private void add(String to, String user) {

@@ -9,6 +9,7 @@ import com.bubble.athena.net.arena.GetArenaRequest;
 import com.bubble.athena.net.lobby.FindMatchRequest;
 import com.bubble.athena.net.chat.ChatRequest;
 import com.bubble.athena.net.chat.GetChatHistoryRequest;
+import com.bubble.athena.net.friendship.AddFriendRequest;
 import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.net.user.DeleteRequest;
@@ -29,6 +30,8 @@ public class RequestMapper {
         map.put(NetRequest.LOGOUT, LogoutRequest.class);
         // lobby requests
         map.put(NetRequest.FIND_MATCH, FindMatchRequest.class);
+        //friendship
+        map.put(NetRequest.ADD_FRIEND, AddFriendRequest.class);
         //chat
         map.put(NetRequest.CHAT_MESSAGE, ChatRequest.class);
         map.put(NetRequest.GET_GLOBAL_CHAT, GetChatHistoryRequest.class);
@@ -36,6 +39,8 @@ public class RequestMapper {
         //arena requests
         map.put(NetRequest.GET_ARENA, GetArenaRequest.class);
         map.put(NetRequest.ATTACK, AttackRequest.class);
+
+
     }
 
     public GameRequest get(GameRequest request) {

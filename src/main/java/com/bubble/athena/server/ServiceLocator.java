@@ -3,6 +3,7 @@ package com.bubble.athena.server;
 import com.bubble.athena.server.arena.IArena;
 import com.bubble.athena.server.lobby.ILobby;
 import com.bubble.athena.server.user.IUserManager;
+import com.bubble.util.log.ColoredGameLogger;
 import com.bubble.util.log.IGameLogger;
 import com.bubble.util.resource.IResourceManager;
 
@@ -64,7 +65,8 @@ public class ServiceLocator {
     }
 
     public static IGameLogger getLogger() {
-        return getInstance().logger;
+        if(getInstance().logger != null) return getInstance().logger;
+        else return new ColoredGameLogger();
     }
 
 }

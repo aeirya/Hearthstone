@@ -19,6 +19,9 @@ public enum NetRequest {
     // PLAY,
     ATTACK,
 
+
+    ADD_FRIEND,
+
     // MATCH_FINISH,
     // REPLAY,
 }

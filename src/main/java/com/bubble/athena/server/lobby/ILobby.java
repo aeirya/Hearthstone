@@ -7,4 +7,6 @@ public interface ILobby {
     boolean sendMessage(String from, String to, String msg, boolean isGlobal);
     List<String> getGlobalChat();
     List<String> getUserChat(String user);
+
+    void addFriend(String me, String user);
 }

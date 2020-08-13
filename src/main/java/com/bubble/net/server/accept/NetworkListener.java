@@ -27,6 +27,7 @@ public class NetworkListener {
     }
 
     private void connectLocal(int port) {
+        // bonus: implement listening on a specific socket
         final String ip = "localhost";
         connect(ip, port);
     }
@@ -45,7 +46,6 @@ public class NetworkListener {
 
     private void run() {
         isRunning = true;
-        // TODO: replace this
         connectLocal(port);
         while(isRunning) {
             try {
