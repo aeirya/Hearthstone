@@ -17,7 +17,7 @@ public class LoginTest {
         final GameClient client = new GameClient("localhost", 8000);
         client.run();
         ServerAPI api = client.get();
-        // api.singup("a", "a");
+        api.singup("a", "a");
         api.login("a", "a");
         assertNotNull(api.getUsername());
     }

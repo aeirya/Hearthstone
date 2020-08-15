@@ -6,14 +6,7 @@ import com.bubble.athena.server.IServerHandler;
 import com.bubble.net.response.Response;
 
 public abstract class ArenaRequest extends GameRequest implements IArenaRequest {
-
-    protected IArenaEvent event;
     
-    public ArenaRequest(NetRequest type, IArenaEvent event) {
-        super(type);
-        this.event = event;
-    }
-
     public ArenaRequest(NetRequest type) {
         super(type);
     }

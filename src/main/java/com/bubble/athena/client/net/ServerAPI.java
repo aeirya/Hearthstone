@@ -10,10 +10,10 @@ import com.bubble.athena.net.chat.ChatMessage;
 import com.bubble.athena.net.chat.ChatRequest;
 import com.bubble.athena.net.chat.GetChatHistoryRequest;
 import com.bubble.athena.net.friendship.AddFriendRequest;
-// import com.bubble.athena.net.user.DeleteRequest;
+import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
-// import com.bubble.athena.net.user.LogoutRequest;
-// import com.bubble.athena.net.user.SignupRequest;
+import com.bubble.athena.net.user.LogoutRequest;
+import com.bubble.athena.net.user.SignupRequest;
 import com.bubble.athena.server.ServiceLocator;
 import com.bubble.athena.server.lobby.Lobby;
 import com.bubble.net.client.Network;
@@ -66,7 +66,7 @@ public class ServerAPI implements IResponseCatcher {
     public void login(String username, String password) {
         net.request(new LoginRequest(username, password));
         final Response response = net.getResponse();
-        if (response.type == NetResponse.OK) {
+        if (response.isOK()) {
             this.username = username;
             this.password = password;
         }
@@ -74,18 +74,21 @@ public class ServerAPI implements IResponseCatcher {
     }
 
     public void logout() {
-        // net.request(new LogoutRequest(username, password));
-        // dump();
+        net.request(new LogoutRequest(username, password));
+        if (getResponse().isOK()) {
+            this.username = null;
+            this.password = null;
+        }
     }
 
     public void singup(String username, String password) {
-        // net.request(new SignupRequest(username, password));
-        // dump();
+        net.request(new SignupRequest(username, password));
+        dump();
     }
 
     public void removeUser(String username, String password) {
-        // net.request(new DeleteRequest(username, password));
-        // dump();
+        net.request(new DeleteRequest(username, password));
+        dump();
     }
 
     public void findMatch() {
@@ -116,7 +119,7 @@ public class ServerAPI implements IResponseCatcher {
     public List<String> getUserChat() {
         net.request(new GetChatHistoryRequest(username));
         final Gson gson = new Gson();
-        return gson.fromJson(getResponse().body, new TypeToken<List<String>>(){}.getType());
+        return gson.fromJson(getResponse().body, List.class);
     }
 
     // public GameState getUpdate() {
@@ -162,5 +165,6 @@ public class ServerAPI implements IResponseCatcher {
             new AttackRequest(new AttackEvent("attacker"))
         );
         log();
+        // net.request(new AttackRequest(event)
     }
 }

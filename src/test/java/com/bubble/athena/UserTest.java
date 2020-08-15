@@ -20,10 +20,15 @@ public class UserTest {
         client.run();
         ServerAPI api = client.get();
         api.singup("a", "a");
+        api.login("a", "a");
         api.logout();
         api.removeUser("a", "a");
         api.singup("b", "b");
         api.login("b", "b");
         assertNotNull(api.getUsername());
+    }
+
+    public static void main(String[] args) {
+        new UserTest().test();
     }
 }

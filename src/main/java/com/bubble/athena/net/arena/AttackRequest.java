@@ -6,9 +6,11 @@ import com.bubble.net.response.Response;
 
 public class AttackRequest extends ArenaRequest {
 
+    private AttackEvent event;
     
     public AttackRequest(AttackEvent event) {
-        super(NetRequest.ATTACK, event);
+        super(NetRequest.ATTACK);
+        this.event = event;
     }
 
     @Override

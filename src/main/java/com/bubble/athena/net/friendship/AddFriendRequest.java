@@ -3,7 +3,6 @@ package com.bubble.athena.net.friendship;
 import com.bubble.athena.net.lobby.LobbyRequest;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.server.lobby.ILobby;
-import com.bubble.net.request.Request;
 import com.bubble.net.response.Response;
 
 public class AddFriendRequest extends LobbyRequest {
