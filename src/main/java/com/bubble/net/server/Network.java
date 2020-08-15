@@ -54,7 +54,6 @@ public class Network implements INetwork, IClientRequestHandler, IClientAcceptor
     public void request(Client client, String data) {
         // i could change threads here
         final Request request = new Request(data);
-        request.setJson(data);
         if (authenticate(client, request)) {
             handler.handle(request);
         }

@@ -5,7 +5,7 @@ import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.server.IServerHandler;
 import com.bubble.athena.server.ServiceLocator;
-import com.bubble.net.request.Request;
+import com.bubble.net.response.NetResponse;
 import com.bubble.net.response.Response;
 
 public class TestCustomRequest extends GameRequest {
@@ -18,17 +18,9 @@ public class TestCustomRequest extends GameRequest {
         this.c = c;
     }
 
-    public TestCustomRequest(Request request) {
-        super(request);
-    }
-
-    public TestCustomRequest(String json) {
-        super(json);
-    }
-
     @Override
     public Response apply(IServerHandler handler) {
         ServiceLocator.getLogger().log("test request");
-        return Response.OK;
+        return new Response(NetResponse.OK, myname + c.toString());
     }
 }

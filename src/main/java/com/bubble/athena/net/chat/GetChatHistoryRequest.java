@@ -10,16 +10,12 @@ import com.bubble.net.response.Response;
 // maybe i could split this from lobby
 public class GetChatHistoryRequest extends LobbyRequest {
 
-    public GetChatHistoryRequest(Request request) {
-        super(request);
-    }
-
     public GetChatHistoryRequest(String user) {
         super(NetRequest.GET_CHATS, user);
     }
 
     public GetChatHistoryRequest() {
-        super(NetRequest.GET_GLOBAL_CHAT, null);
+        super(NetRequest.GET_GLOBAL_CHAT);
     }
 
     @Override
@@ -27,7 +23,7 @@ public class GetChatHistoryRequest extends LobbyRequest {
         if(NetRequest.valueOf(type) == NetRequest.GET_CHATS) {
             return new Response(
                 NetResponse.OK, 
-                lobby.getUserChat(body)
+                lobby.getUserChat(user)
             );
 
         } else {

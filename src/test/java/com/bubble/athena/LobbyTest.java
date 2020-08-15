@@ -38,7 +38,7 @@ public class LobbyTest {
         System.out.println("already passed");
         api.sendRequest(new TestRequest(" my name is ah"));
         Response res;
-        if ((res = api.getResponse()) == Response.OK) {
+        if ((res = api.getResponse()).isOK()) {
             success = true;
         }
         else {

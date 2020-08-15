@@ -3,25 +3,19 @@ package com.bubble.athena.net.chat;
 import com.bubble.athena.net.lobby.LobbyRequest;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.server.lobby.ILobby;
-import com.bubble.net.request.Request;
 import com.bubble.net.response.Response;
 
 public class ChatRequest extends LobbyRequest {
 
+    private ChatMessage msg;
+
     public ChatRequest(ChatMessage msg) {
-        super(NetRequest.CHAT_MESSAGE, msg);
-    }
-
-    public ChatRequest(Request request) {
-        super(request);
-    }
-
-    public ChatRequest(String json) {
-        super(json);
+        super(NetRequest.CHAT_MESSAGE);
+        this.msg = msg;
     }
 
     private ChatMessage getMessage() {
-        return new ChatMessage(body);
+        return msg;
     }
 
     @Override
