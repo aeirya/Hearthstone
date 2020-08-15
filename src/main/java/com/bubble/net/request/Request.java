@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 public class Request {
     public final String type;
     public final String body;
-    private final String json;
+    private String json;
     private String authToken;
 
     protected Request(Request request) {
@@ -20,14 +20,13 @@ public class Request {
         this.type = r.type;
         this.body = r.body;
         this.authToken = r.authToken;
-        this.json = json;
+        this.json = json;;
     }
 
     public Request(String type, String body) {
         this.type = type;
         this.body = body;
         this.authToken = "";
-        this.json = this.toString();
     }
 
     public Request sign(String auth) {
@@ -37,6 +36,10 @@ public class Request {
 
     public String getAuth() {
         return authToken;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
     }
 
     public String getJson() {

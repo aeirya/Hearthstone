@@ -10,10 +10,10 @@ import com.bubble.athena.net.chat.ChatMessage;
 import com.bubble.athena.net.chat.ChatRequest;
 import com.bubble.athena.net.chat.GetChatHistoryRequest;
 import com.bubble.athena.net.friendship.AddFriendRequest;
-import com.bubble.athena.net.user.DeleteRequest;
+// import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
-import com.bubble.athena.net.user.LogoutRequest;
-import com.bubble.athena.net.user.SignupRequest;
+// import com.bubble.athena.net.user.LogoutRequest;
+// import com.bubble.athena.net.user.SignupRequest;
 import com.bubble.athena.server.ServiceLocator;
 import com.bubble.athena.server.lobby.Lobby;
 import com.bubble.net.client.Network;
@@ -74,18 +74,18 @@ public class ServerAPI implements IResponseCatcher {
     }
 
     public void logout() {
-        net.request(new LogoutRequest(username, password));
-        dump();
+        // net.request(new LogoutRequest(username, password));
+        // dump();
     }
 
     public void singup(String username, String password) {
-        net.request(new SignupRequest(username, password));
-        dump();
+        // net.request(new SignupRequest(username, password));
+        // dump();
     }
 
     public void removeUser(String username, String password) {
-        net.request(new DeleteRequest(username, password));
-        dump();
+        // net.request(new DeleteRequest(username, password));
+        // dump();
     }
 
     public void findMatch() {

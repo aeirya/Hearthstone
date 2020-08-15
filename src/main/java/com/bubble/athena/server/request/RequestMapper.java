@@ -14,10 +14,10 @@ import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.net.test.TestCustomRequest;
 import com.bubble.athena.net.test.TestRequest;
-import com.bubble.athena.net.user.DeleteRequest;
+// import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
-import com.bubble.athena.net.user.LogoutRequest;
-import com.bubble.athena.net.user.SignupRequest;
+// import com.bubble.athena.net.user.LogoutRequest;
+// import com.bubble.athena.net.user.SignupRequest;
 import com.google.gson.Gson;
 
 public class RequestMapper {
@@ -27,9 +27,9 @@ public class RequestMapper {
         map = new EnumMap<>(NetRequest.class);
         // user requests
         map.put(NetRequest.LOGIN, LoginRequest.class);
-        map.put(NetRequest.REGISTER, SignupRequest.class);
-        map.put(NetRequest.DELETE, DeleteRequest.class);
-        map.put(NetRequest.LOGOUT, LogoutRequest.class);
+        // map.put(NetRequest.REGISTER, SignupRequest.class);
+        // map.put(NetRequest.DELETE, DeleteRequest.class);
+        // map.put(NetRequest.LOGOUT, LogoutRequest.class);
         // lobby requests
         map.put(NetRequest.FIND_MATCH, FindMatchRequest.class);
         //friendship
@@ -46,7 +46,8 @@ public class RequestMapper {
         map.put(NetRequest.TEST, TestRequest.class);
     }
 
-    // this is less efficient but is so easy to work this :p
+    // this is less efficient computionally but is so easy to work with and uses less trasffic :p
+
     public GameRequest get(GameRequest request) {
         return new Gson().fromJson(request.getJson(), map.get(request.getType()));
     }
