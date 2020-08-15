@@ -24,4 +24,7 @@ public enum NetRequest {
 
     // MATCH_FINISH,
     // REPLAY,
+
+    TEST,
+    COSTUM1,
 }

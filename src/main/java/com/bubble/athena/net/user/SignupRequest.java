@@ -16,6 +16,10 @@ public class SignupRequest extends UserRequest {
         super(request);
     }
 
+    public SignupRequest(String json) {
+        super(json);
+    }
+
     @Override
     public Response apply(IUserManager manager) {
         final User user = getUser();

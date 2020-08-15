@@ -17,6 +17,7 @@ import com.bubble.athena.net.user.SignupRequest;
 import com.bubble.athena.server.ServiceLocator;
 import com.bubble.athena.server.lobby.Lobby;
 import com.bubble.net.client.Network;
+import com.bubble.net.request.Request;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.net.response.NetResponse;
 import com.bubble.net.response.Response;
@@ -34,6 +35,15 @@ public class ServerAPI implements IResponseCatcher {
     public ServerAPI(Network net) {
         this.net = net;
         logger = new ColoredGameLogger();
+    }
+
+    public Response request(Request request) {
+        net.request(request);
+        return getResponse();
+    }
+
+    public void sendRequest(Request request) {
+        net.request(request);
     }
 
     private void log(Response response) {

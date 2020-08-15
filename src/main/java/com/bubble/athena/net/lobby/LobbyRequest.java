@@ -20,6 +20,10 @@ public abstract class LobbyRequest extends GameRequest implements ILobbyRequest 
         super(request);
     }
 
+    public LobbyRequest(String json) {
+        super(json);
+    }
+
     protected String getUser() {
         return body;
     }

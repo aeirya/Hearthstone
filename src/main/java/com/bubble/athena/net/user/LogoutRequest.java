@@ -16,6 +16,10 @@ public class LogoutRequest extends UserRequest {
         super(request);
     }
 
+    public LogoutRequest(String json) {
+        super(json);
+    }
+
     @Override
     public Response apply(IUserManager manager) {
         final User user = getUser();

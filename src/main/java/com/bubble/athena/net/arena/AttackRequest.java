@@ -16,6 +16,10 @@ public class AttackRequest extends ArenaRequest {
         super(request);
     }
 
+    public AttackRequest(String json) {
+        super(json);
+    }
+
     private AttackEvent getEvent() {
         return new Gson().fromJson(body, AttackEvent.class);
     }

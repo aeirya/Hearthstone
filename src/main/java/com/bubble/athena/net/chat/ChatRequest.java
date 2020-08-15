@@ -16,6 +16,10 @@ public class ChatRequest extends LobbyRequest {
         super(request);
     }
 
+    public ChatRequest(String json) {
+        super(json);
+    }
+
     private ChatMessage getMessage() {
         return new ChatMessage(body);
     }

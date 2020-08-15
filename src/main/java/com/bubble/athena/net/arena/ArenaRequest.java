@@ -12,8 +12,16 @@ public abstract class ArenaRequest extends GameRequest implements IArenaRequest 
         super(type, event);
     }
 
+    public ArenaRequest(NetRequest type) {
+        super(type);
+    }
+
     public ArenaRequest(Request req) {
         super(req);
+    }
+
+    public ArenaRequest(String json) {
+        super(json);
     }
 
     @Override

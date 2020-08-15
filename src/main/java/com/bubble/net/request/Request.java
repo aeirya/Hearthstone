@@ -5,12 +5,14 @@ import com.google.gson.Gson;
 public class Request {
     public final String type;
     public final String body;
+    private final String json;
     private String authToken;
 
     protected Request(Request request) {
         this.body = request.body;
         this.authToken = request.authToken;
         this.type = request.type;
+        this.json = request.json;
     }
     
     public Request(String json) {
@@ -18,12 +20,14 @@ public class Request {
         this.type = r.type;
         this.body = r.body;
         this.authToken = r.authToken;
+        this.json = json;
     }
 
     public Request(String type, String body) {
         this.type = type;
         this.body = body;
         this.authToken = "";
+        this.json = this.toString();
     }
 
     public Request sign(String auth) {
@@ -35,6 +39,11 @@ public class Request {
         return authToken;
     }
 
+    public String getJson() {
+        return json;
+    }
+
+    @Override
     public String toString() {
         return new Gson().toJson(this);
     }

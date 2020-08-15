@@ -12,11 +12,13 @@ import com.bubble.athena.net.chat.GetChatHistoryRequest;
 import com.bubble.athena.net.friendship.AddFriendRequest;
 import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.NetRequest;
+import com.bubble.athena.net.test.TestCustomRequest;
+import com.bubble.athena.net.test.TestRequest;
 import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
 import com.bubble.athena.net.user.LogoutRequest;
 import com.bubble.athena.net.user.SignupRequest;
-import com.bubble.net.request.Request;
+import com.google.gson.Gson;
 
 public class RequestMapper {
     private final Map<NetRequest, Class<? extends GameRequest>> map;
@@ -40,12 +42,18 @@ public class RequestMapper {
         map.put(NetRequest.GET_ARENA, GetArenaRequest.class);
         map.put(NetRequest.ATTACK, AttackRequest.class);
 
-
+        map.put(NetRequest.COSTUM1, TestCustomRequest.class);
+        map.put(NetRequest.TEST, TestRequest.class);
     }
 
+    // this is less efficient but is so easy to work this :p
     public GameRequest get(GameRequest request) {
+        return new Gson().fromJson(request.getJson(), map.get(request.getType()));
+    }
+    
+    public GameRequest instantiate(GameRequest request) {
         try {
-            return map.get(request.getType()).getDeclaredConstructor(Request.class).newInstance(request);
+            return map.get(request.getType()).getDeclaredConstructor(String.class).newInstance(request.getJson());
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException e) {
             return request;

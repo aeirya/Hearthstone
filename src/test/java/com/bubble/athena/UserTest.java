@@ -9,8 +9,9 @@ import com.bubble.athena.server.GameServer;
 import org.junit.Test;
 
 public class UserTest {
+
     @Test
-    public static void main(String[] args) {
+    void test() {
         int port = 8000;
         String ip = "localhost";
         GameServer server = new GameServer(port);

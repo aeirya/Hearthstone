@@ -13,6 +13,10 @@ public class AddFriendRequest extends LobbyRequest {
         super(request);
     }
 
+    public AddFriendRequest(String json) {
+        super(json);
+    }
+
     public AddFriendRequest(String me, String them) {
         this(new FriendshipMessage(me, them));
     }

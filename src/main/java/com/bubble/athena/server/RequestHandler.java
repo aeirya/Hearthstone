@@ -31,7 +31,7 @@ public class RequestHandler implements IRequestHandler, IServerHandler {
     }
 
     private Response apply(GameRequest request) {
-        return mapper.get(request).apply(this);
+        return request.apply(this);
     }
         
     private GameRequest convert(Request request) {

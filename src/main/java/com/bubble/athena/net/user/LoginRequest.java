@@ -12,8 +12,8 @@ public class LoginRequest extends UserRequest {
         super(NetRequest.LOGIN, new User(username, password));
     }
 
-    public LoginRequest(String body) {
-        super(NetRequest.LOGIN, body);
+    public LoginRequest(String json) {
+        super(json);
     }
 
     public LoginRequest(Request request) {

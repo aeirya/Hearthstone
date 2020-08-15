@@ -15,6 +15,10 @@ public abstract class UserRequest extends GameRequest implements IUserRequest {
         super(type, new User(username, password));
     }
 
+    protected UserRequest(String json) {
+        super(json);
+    }
+
     public UserRequest(NetRequest type, User user) {
         super(type, user);
     }

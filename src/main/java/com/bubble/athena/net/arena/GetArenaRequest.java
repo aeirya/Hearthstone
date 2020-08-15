@@ -8,8 +8,7 @@ import com.bubble.net.response.Response;
 public class GetArenaRequest extends ArenaRequest {
 
     public GetArenaRequest(NetRequest type) {
-        // super(NetRequest.GET_ARENA);
-        super(null);
+        super(NetRequest.GET_ARENA);
     }
 
     @Override

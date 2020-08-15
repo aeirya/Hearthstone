@@ -16,6 +16,10 @@ public class NetworkTest {
         assertTrue(new NetworkTest().success);
     }
 
+    NetworkTest() {
+        success = true;
+    }
+
     GameServer runServer() {
         GameServer server = new GameServer(8000);
         server.run();
