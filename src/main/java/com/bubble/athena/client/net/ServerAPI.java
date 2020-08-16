@@ -66,7 +66,7 @@ public class ServerAPI implements IResponseCatcher {
     public void login(String username, String password) {
         net.request(new LoginRequest(username, password));
         final Response response = net.getResponse();
-        if (response.type == NetResponse.OK) {
+        if (response.isOK()) {
             this.username = username;
             this.password = password;
         }
@@ -75,7 +75,10 @@ public class ServerAPI implements IResponseCatcher {
 
     public void logout() {
         net.request(new LogoutRequest(username, password));
-        dump();
+        if (getResponse().isOK()) {
+            this.username = null;
+            this.password = null;
+        }
     }
 
     public void singup(String username, String password) {
@@ -116,7 +119,7 @@ public class ServerAPI implements IResponseCatcher {
     public List<String> getUserChat() {
         net.request(new GetChatHistoryRequest(username));
         final Gson gson = new Gson();
-        return gson.fromJson(getResponse().body, new TypeToken<List<String>>(){}.getType());
+        return gson.fromJson(getResponse().body, List.class);
     }
 
     // public GameState getUpdate() {
@@ -162,5 +165,6 @@ public class ServerAPI implements IResponseCatcher {
             new AttackRequest(new AttackEvent("attacker"))
         );
         log();
+        // net.request(new AttackRequest(event)
     }
 }

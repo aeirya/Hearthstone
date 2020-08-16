@@ -18,6 +18,7 @@ import com.bubble.athena.net.user.DeleteRequest;
 import com.bubble.athena.net.user.LoginRequest;
 import com.bubble.athena.net.user.LogoutRequest;
 import com.bubble.athena.net.user.SignupRequest;
+import com.bubble.net.request.Request;
 import com.google.gson.Gson;
 
 public class RequestMapper {
@@ -46,14 +47,17 @@ public class RequestMapper {
         map.put(NetRequest.TEST, TestRequest.class);
     }
 
-    // this is less efficient but is so easy to work this :p
+    // this is less efficient computionally but is so easy to work with and uses less trasffic :p
+
     public GameRequest get(GameRequest request) {
         return new Gson().fromJson(request.getJson(), map.get(request.getType()));
     }
     
+    // do not use this
+
     public GameRequest instantiate(GameRequest request) {
         try {
-            return map.get(request.getType()).getDeclaredConstructor(String.class).newInstance(request.getJson());
+            return map.get(request.getType()).getDeclaredConstructor(Request.class).newInstance(request);
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException e) {
             return request;

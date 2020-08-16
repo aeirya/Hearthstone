@@ -1,7 +1,6 @@
 package com.bubble.athena.net.chat;
 
 import com.bubble.athena.server.lobby.ILobby;
-import com.google.gson.Gson;
 
 public class ChatMessage {
     private final String from;
@@ -21,30 +20,6 @@ public class ChatMessage {
         this.to = to;
         this.msg = msg;
         isGlobal = false;
-    }
-
-    public ChatMessage(String json) {
-        final ChatMessage cm = new Gson().fromJson(json, ChatMessage.class);
-        this.from = cm.getFrom();
-        this.to = cm.getTo();
-        this.msg = cm.getMsg();
-        this.isGlobal = cm.getIsGlobal();
-    }
-
-    private String getFrom() {
-        return from;
-    }
-
-    private String getTo() {
-        return to;
-    }
-
-    private String getMsg() {
-        return msg;
-    }
-
-    private boolean getIsGlobal() {
-        return isGlobal;
     }
 
     public boolean deliver(ILobby lobby) {

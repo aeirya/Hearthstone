@@ -29,6 +29,10 @@ public class Response {
         this.body = new Gson().toJson(body);
     }
 
+    public String getBody() {
+        return body;
+    }
+
     public String toString() {
         return new Gson().toJson(this);
     }

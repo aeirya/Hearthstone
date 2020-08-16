@@ -4,11 +4,10 @@ import com.bubble.athena.server.IServerHandler;
 import com.bubble.net.request.Request;
 import com.bubble.net.response.NetResponse;
 import com.bubble.net.response.Response;
-import com.google.gson.Gson;
 
 public class GameRequest extends Request implements IGameRequest {
     
-    public GameRequest(NetRequest type, String body) {
+    private GameRequest(NetRequest type, String body) {
         super(type.toString(), body);
     }
 
@@ -16,16 +15,8 @@ public class GameRequest extends Request implements IGameRequest {
         this(type, "");
     }
 
-    public GameRequest(NetRequest type, Object body) {
-        this(type, new Gson().toJson(body));
-    }
-
     public GameRequest(Request request) {
         super(request);
-    }
-
-    protected GameRequest(String json) {
-        super(json);
     }
 
     public NetRequest getType() {

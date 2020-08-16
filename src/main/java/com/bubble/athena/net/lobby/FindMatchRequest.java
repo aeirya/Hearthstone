@@ -2,7 +2,6 @@ package com.bubble.athena.net.lobby;
 
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.server.lobby.ILobby;
-import com.bubble.net.request.Request;
 import com.bubble.net.response.Response;
 
 public class FindMatchRequest extends LobbyRequest {
@@ -11,13 +10,9 @@ public class FindMatchRequest extends LobbyRequest {
         super(NetRequest.FIND_MATCH, user);
     }
 
-    public FindMatchRequest(Request request) {
-        super(request);
-    }
-
     @Override
     public Response apply(ILobby lobby) {
-        lobby.findMatch(getUser());
+        lobby.findMatch(user);
         return Response.OK;
     }
 }

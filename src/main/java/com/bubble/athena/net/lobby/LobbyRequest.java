@@ -3,29 +3,19 @@ package com.bubble.athena.net.lobby;
 import com.bubble.athena.net.request.GameRequest;
 import com.bubble.athena.net.request.NetRequest;
 import com.bubble.athena.server.IServerHandler;
-import com.bubble.net.request.Request;
 import com.bubble.net.response.Response;
 
 public abstract class LobbyRequest extends GameRequest implements ILobbyRequest {
 
-    public LobbyRequest(NetRequest type, Object obj) {
-        super(type, obj);
+    protected String user;
+
+    protected LobbyRequest(NetRequest type) {
+        super(type);
     }
 
-    public LobbyRequest(NetRequest type, String user) {
-        super(type, user);
-    }
-
-    public LobbyRequest(Request request) {
-        super(request);
-    }
-
-    public LobbyRequest(String json) {
-        super(json);
-    }
-
-    protected String getUser() {
-        return body;
+    protected LobbyRequest(NetRequest type, String user) {
+        super(type);
+        this.user = user;
     }
 
     @Override

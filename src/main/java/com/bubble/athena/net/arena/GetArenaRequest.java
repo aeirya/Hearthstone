@@ -16,7 +16,7 @@ public class GetArenaRequest extends ArenaRequest {
         // return new Response(
         //     NetResponse.OK, 
         //     arena
-        // )
+        // );
         return null;
     }
     

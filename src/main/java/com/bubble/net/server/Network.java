@@ -56,6 +56,8 @@ public class Network implements INetwork, IClientRequestHandler, IClientAcceptor
         final Request request = new Request(data);
         if (authenticate(client, request)) {
             handler.handle(request);
+        } else {
+            client.send(Response.ERROR.toString());
         }
     }
 

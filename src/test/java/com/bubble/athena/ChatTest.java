@@ -19,7 +19,7 @@ public class ChatTest extends NetworkTest {
         ServerAPI send = fastLogin(api(), "a");
         ServerAPI rec = fastLogin(api(), "b");
         test1(send, rec);
-        // test2(send, rec);
+        test2(send, rec);
         test3(send, rec);
         
         success = true;

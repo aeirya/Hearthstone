@@ -8,6 +8,10 @@ import org.junit.Test;
 
 public class ArenaEventTest extends NetworkTest {
     
+    public static void main(String[] args) {
+        new ArenaEventTest().attack();
+    }
+
     @Test
     void attack() {
         runServer();
