@@ -1,17 +1,15 @@
 
-package com.mytutorial.util;
+package com.bubble.athena.server.database;
  
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
  
-public enum PersistenceManager {
- 
-    INSTANCE;
+public class PersistenceManager {
     
     private EntityManagerFactory emFactory;
  
-    private PersistenceManager() {
+    PersistenceManager() {
         emFactory = Persistence.createEntityManagerFactory("athena-jpa");
     }
  

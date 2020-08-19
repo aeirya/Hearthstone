@@ -1,7 +1,6 @@
-package com.mytutorial.main;
+package com.bubble.athena.server.database.account;
 
 import com.bubble.util.secure.PasswordDigest;
-import com.mytutorial.model.Account;
 
 public class AccountCreator {
     private Account account;
