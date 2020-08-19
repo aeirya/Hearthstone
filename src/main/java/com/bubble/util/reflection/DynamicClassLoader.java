@@ -1,8 +1,6 @@
 
 package com.bubble.util.reflection;
 
-import java.io.File;
-
 /*
  * Copyright 2018 Mordechai Meisels
  * 
@@ -20,13 +18,9 @@ import java.io.File;
  */
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Paths;
-
-import com.IBird;
 
 public final class DynamicClassLoader extends URLClassLoader {
 
@@ -72,18 +66,6 @@ public final class DynamicClassLoader extends URLClassLoader {
     @SuppressWarnings("unused")
     private void appendToClassPathForInstrumentation(String jarfile) throws IOException {
         add(Paths.get(jarfile).toRealPath().toUri().toURL());
-    }
-
-    public static void main(String[] args) {
-        try (DynamicClassLoader dcl = new DynamicClassLoader(ClassLoader.getSystemClassLoader())) {
-            dcl.add(new File("my.jar").toURI().toURL());
-            Class<?> clazz = dcl.loadClass("com.Hawk");
-            Object obj = clazz.getConstructor().newInstance();
-            ((IBird) obj).sing();
-        } catch (IOException | InstantiationException | IllegalAccessException | IllegalArgumentException
-                | InvocationTargetException | NoSuchMethodException | SecurityException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }
 

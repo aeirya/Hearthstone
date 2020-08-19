@@ -2,14 +2,11 @@ package com.bubble.util.reflection;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.IBird;
 
 public class CustomClassLoader {
 
@@ -44,15 +41,6 @@ public class CustomClassLoader {
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            ((IBird) new CustomClassLoader().load("my.jar", "com.Hawk").getConstructor().newInstance()).sing();
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-                | NoSuchMethodException | SecurityException e) {
-            e.printStackTrace();
         }
     }
 }
