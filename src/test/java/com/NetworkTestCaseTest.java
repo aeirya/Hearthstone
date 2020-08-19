@@ -2,7 +2,6 @@ package com;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import com.bubble.athena.client.GameClient;
 import com.bubble.athena.client.net.ServerAPI;
