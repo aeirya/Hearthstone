@@ -3,6 +3,7 @@ package com.bubble.athena.server.database.account;
 import java.util.List;
 
 import com.bubble.athena.server.database.PersistenceManager;
+import com.bubble.util.secure.PasswordDigest;
 
 import org.apache.log4j.Logger;
 
@@ -42,4 +43,12 @@ public class AccountManager {
         return dao.getAccounts();
     }
 
+    public Account getAccount(String username) {
+        return getAccounts().stream().filter(a -> a.getName().equals(username)).findAny().orElse(null);
+    }
+
+    public boolean authenticate(String username, String password) {
+        final String hash = new PasswordDigest().generatePassword(username, password);
+        return getAccount(username).getPassword().equals(hash); 
+    }
 }

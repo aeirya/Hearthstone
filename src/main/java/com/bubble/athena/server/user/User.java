@@ -1,5 +1,7 @@
 package com.bubble.athena.server.user;
 
+import com.bubble.util.secure.PasswordDigest;
+
 public class User {
     public final String username;
     private final String password;
@@ -10,7 +12,7 @@ public class User {
     }
 
     public boolean authenticate(String password) {
-        return this.password.equals(password);
+        return this.password.equals(new PasswordDigest().generatePassword(username, password));
     }
 
     public String getName() {
