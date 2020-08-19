@@ -28,6 +28,10 @@ public class Network implements INetwork {
         getToken();
     }
 
+    public void terminate() {
+        server.bye();
+    }
+
     private void logConnected() {
         Logger.getLogger("client").info("connected");
     }

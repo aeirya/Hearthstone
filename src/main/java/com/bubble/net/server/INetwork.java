@@ -8,4 +8,5 @@ public interface INetwork {
     void respond(String response, String auth);
     void respond(Response response, OnlineUser user);
     void start();
+    void stop();
 }

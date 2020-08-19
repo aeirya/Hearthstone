@@ -26,5 +26,6 @@ class Server implements INetworkReceiver {
 
     public void terminate() {
         handler.bye();
+        connection.terminate();
     }
 }

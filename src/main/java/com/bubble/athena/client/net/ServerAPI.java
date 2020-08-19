@@ -46,12 +46,13 @@ public class ServerAPI implements IResponseCatcher {
         net.request(request);
     }
 
-    private void log(Response response) {
+    private String log(Response response) {
         logger.log(response.body);
+        return response.body;
     }
 
-    public void log() {
-        log(
+    public String log() {
+        return log(
             net.getResponse()
         );
     }
@@ -166,5 +167,9 @@ public class ServerAPI implements IResponseCatcher {
         );
         log();
         // net.request(new AttackRequest(event)
+    }
+
+    public String getUser() {
+        return username;
     }
 }

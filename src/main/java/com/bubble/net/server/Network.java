@@ -74,4 +74,8 @@ public class Network implements INetwork, IClientRequestHandler, IClientAcceptor
     public void respond(Response response, OnlineUser user) {
         respond(response.toString(), user.getAuth());
     }
+
+    public void stop() {
+        listener.close();
+    }
 }

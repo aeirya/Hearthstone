@@ -41,4 +41,8 @@ public class GameServer implements IRequestHandler {
     public void handle(Request request) {
         core.handle(request);
     }
+
+    public void stop() {
+        net.stop();
+    }
 }

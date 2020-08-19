@@ -9,7 +9,7 @@ import org.junit.Test;
 public class ScoreboardTest {
 
     @Test
-    public static void main(String[] args) {
+    public void scoreboardShouldHaveEntry() {
         Scoreboard scoreboard = new Scoreboard();
         assertNotNull(scoreboard.getUserEntry("name"));
     }

@@ -20,4 +20,8 @@ public class GameClient {
     public ServerAPI get() {
         return server;
     }
+
+    public void quit() {
+        network.terminate();
+    }
 }

@@ -1,52 +1,67 @@
-package com.bubble.athena;
+// package com.bubble.athena;
 
-import static org.junit.Assert.assertTrue;
+// import static org.junit.Assert.assertNotNull;
 
-import com.bubble.athena.client.GameClient;
-import com.bubble.athena.client.net.ServerAPI;
-import com.bubble.athena.server.GameServer;
+// import com.bubble.athena.client.GameClient;
+// import com.bubble.athena.client.net.ServerAPI;
+// import com.bubble.athena.server.GameServer;
 
-import org.junit.Test;
+// import org.gradle.internal.impldep.org.junit.Ignore;
+// import org.junit.After;
+// import org.junit.Before;
+// import org.junit.Test;
 
-public class NetworkTest {
-    protected boolean success = false;
+// @Ignore
+// public class NetworkTest {
 
-    @Test
-    public static void main(String[] args) {
-        assertTrue(new NetworkTest().success);
-    }
+//     protected GameServer server;
+//     private GameClient client1;
+//     protected ServerAPI api1;
 
-    NetworkTest() {
-        success = true;
-    }
+//     @Test
+//     public void serverShouldRun() {
+//         server = runServer();
+//         assertNotNull(server);
+//     }
 
-    GameServer runServer() {
-        GameServer server = new GameServer(8000);
-        server.run();
-        // sleep(500);
-        return server;
-    }
+//     @Before
+//     public void startServer() {
+//         server = runServer();
+//     }
 
-    void sleep(int time) {
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+//     @After
+//     public void closeServer() {
+//         server.stop();
+//         client1.quit();
+//     }
 
-    GameClient runClient() {
-        final GameClient client = new GameClient("localhost", 8000);
-        client.run();
-        return client;
-    }
+//     public GameServer runServer() {
+//         GameServer server = new GameServer(8000);
+//         server.run();
+//         sleep(10);
+//         return server;
+//     }
 
-    ServerAPI api() {
-        return runClient().get();
-    }
+//     void sleep(int time) {
+//         try {
+//             Thread.sleep(time);
+//         } catch (InterruptedException e) {
+//             e.printStackTrace();
+//         }
+//     }
 
-    ServerAPI fastLogin(ServerAPI api, String str) {
-        api.login(str, str);
-        return api;
-    }
-}
+//     GameClient runClient() {
+//         final GameClient client = new GameClient("localhost", 8000);
+//         client.run();
+//         return client;
+//     }
+
+//     ServerAPI api() {
+//         return runClient().get();
+//     }
+
+//     ServerAPI fastLogin(ServerAPI api, String str) {
+//         api.login(str, str);
+//         return api;
+//     }
+// }
