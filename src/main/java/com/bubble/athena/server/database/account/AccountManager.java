@@ -7,7 +7,7 @@ import com.bubble.util.secure.PasswordDigest;
 
 import org.apache.log4j.Logger;
 
-public class AccountManager {
+public class AccountManager implements IAccountManager {
     private AccountDao dao;
     private Logger logger;
 
