@@ -90,6 +90,5 @@ public class NetworkTestCaseTest {
     public void playerShouldAttack() {
         matchShouldStart();
         api.attack();
-        
     }
 }
