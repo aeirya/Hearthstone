@@ -1,9 +1,9 @@
 package com.bubble.hearthstone.controller;
 
 import com.bubble.hearthstone.model.Player;
-import com.bubble.hearthstone.net.event.events.arena.ArenaEvent;
-import com.bubble.hearthstone.net.user.User;
-import com.bubble.hearthstone.net.user.UserSave;
+import com.bubble.hearthstone.net2.event.events.arena.ArenaEvent;
+import com.bubble.hearthstone.net2.user.User;
+import com.bubble.hearthstone.net2.user.UserSave;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 
 public class GameSession {

@@ -1,6 +1,6 @@
 package com.bubble.hearthstone.util.serialize;
 
-import com.bubble.hearthstone.net.user.User;
+import com.bubble.hearthstone.net2.user.User;
 
 public class UserSerializer extends GsonSerializer {
 

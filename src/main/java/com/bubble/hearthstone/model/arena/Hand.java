@@ -30,8 +30,9 @@ public class Hand {
         return cardsInHand;
     }
 
-    public void drawCard() {
-        cardsInHand.add(
-            queue.removeLast());
+    public CardRecord drawCard() {
+        final CardRecord next = queue.removeLast();
+        cardsInHand.add(next);
+        return next;
     }
 } 

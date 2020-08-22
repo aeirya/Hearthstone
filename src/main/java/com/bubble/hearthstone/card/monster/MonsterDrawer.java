@@ -15,6 +15,7 @@ public class MonsterDrawer {
     }
 
     public void draw(Graphics g) {
+        System.out.println("monster drawing :p");
         final GuiComponent guiComp = monsterView.guiComponent;
         final Point loc = guiComp.getLocation();
         final Dimension size = guiComp.getSize();

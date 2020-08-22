@@ -5,7 +5,7 @@ import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.interfaces.Drawable;
 import com.bubble.hearthstone.interfaces.ResizableDrawable;
 import com.bubble.hearthstone.model.shop.Shop;
-import com.bubble.hearthstone.net.event.events.ChangeMenuEvent;
+import com.bubble.hearthstone.net2.event.events.ChangeMenuEvent;
 import com.bubble.hearthstone.ui.MenuType;
 import com.bubble.hearthstone.ui.gui.DrawList;
 import com.bubble.hearthstone.util.services.ServiceLocator;

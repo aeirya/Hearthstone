@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.bubble.hearthstone.net.event.events.ChangeMenuEvent;
+import com.bubble.hearthstone.net2.event.events.ChangeMenuEvent;
 import com.bubble.hearthstone.ui.MenuType;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 

@@ -1,7 +1,7 @@
 package com.bubble.hearthstone.ui.gui.panels;
 
-import com.bubble.hearthstone.net.event.IGameEvent;
-import com.bubble.hearthstone.net.event.events.LoginEvent;
+import com.bubble.hearthstone.net2.event.IGameEvent;
+import com.bubble.hearthstone.net2.event.events.LoginEvent;
 import com.bubble.hearthstone.ui.gui.components.CustomLabel;
 import com.bubble.hearthstone.util.services.ServiceLocator;
 

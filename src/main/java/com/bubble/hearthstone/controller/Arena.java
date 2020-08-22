@@ -3,8 +3,8 @@ package com.bubble.hearthstone.controller;
 import com.bubble.hearthstone.model.Player;
 import com.bubble.hearthstone.model.arena.Battleground;
 import com.bubble.hearthstone.model.arena.CombatMaster;
-import com.bubble.hearthstone.net.event.events.arena.ArenaEvent;
-import com.bubble.hearthstone.net.event.events.arena.battleground.BattlegroundEvent;
+import com.bubble.hearthstone.net2.event.events.arena.ArenaEvent;
+import com.bubble.hearthstone.net2.event.events.arena.battleground.BattlegroundEvent;
 import com.bubble.hearthstone.util.time.ArenaTimer;
 
 public class Arena {
@@ -31,6 +31,14 @@ public class Arena {
 
     public void handleBattlegroundEvent(BattlegroundEvent event) {
         combatMaster.handleEvent(event);
+    }
+    
+    public Player getPlayer(String name) {
+        // change this later, maybe use array list for players
+        if (player.getName().equals(name)) return player;
+        else {
+            return null;
+        }
     }
 
     Player getPlayer() {

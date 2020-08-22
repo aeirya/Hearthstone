@@ -11,7 +11,7 @@ public abstract class CliMenu implements IMenu {
     protected MenuCommands menuCommands;
     private Cli graphics;
 
-    public void lunch(IGameGraphics graphics) {
+    public void launch(IGameGraphics graphics) {
         final Cli g = (Cli) graphics;
         g.load(this);
         this.graphics = g;

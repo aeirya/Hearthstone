@@ -1,0 +1,13 @@
+package com.bubble.hearthstone.net2.event.events;
+
+import com.bubble.hearthstone.controller.GameManager;
+import com.bubble.hearthstone.net2.event.IGameEvent;
+
+public class IdleEvent implements IGameEvent {
+
+    public void process(GameManager manager) {
+        /* nothing happens ... yet */
+        // System.out.println("idle")
+    }
+
+}

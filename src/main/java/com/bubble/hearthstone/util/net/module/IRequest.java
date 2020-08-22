@@ -1,0 +1,8 @@
+package com.bubble.hearthstone.util.net.module;
+
+public interface IRequest {
+    void setID(int id);
+    void addToken(ClientToken token);
+    ClientToken getToken();
+    IResponse process(IRequestHandler server);
+}

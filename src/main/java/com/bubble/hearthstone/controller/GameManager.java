@@ -1,13 +1,13 @@
 package com.bubble.hearthstone.controller;
 
-import com.bubble.hearthstone.net.INetworkService;
-import com.bubble.hearthstone.net.event.EventHandler;
-import com.bubble.hearthstone.net.event.GameEventHandler;
-import com.bubble.hearthstone.net.event.IGameEvent;
-import com.bubble.hearthstone.net.event.events.BroadcastMessageEvent;
-import com.bubble.hearthstone.net.event.events.IClientEvent;
-import com.bubble.hearthstone.net.event.events.arena.ArenaEvent;
-import com.bubble.hearthstone.net.user.UserManager;
+import com.bubble.hearthstone.net2.INetworkService;
+import com.bubble.hearthstone.net2.event.EventHandler;
+import com.bubble.hearthstone.net2.event.GameEventHandler;
+import com.bubble.hearthstone.net2.event.IGameEvent;
+import com.bubble.hearthstone.net2.event.events.BroadcastMessageEvent;
+import com.bubble.hearthstone.net2.event.events.IClientEvent;
+import com.bubble.hearthstone.net2.event.events.arena.ArenaEvent;
+import com.bubble.hearthstone.net2.user.UserManager;
 import com.bubble.hearthstone.ui.IGameGraphics;
 import com.bubble.hearthstone.ui.MenuType;
 import com.bubble.hearthstone.util.services.ServiceLocator;

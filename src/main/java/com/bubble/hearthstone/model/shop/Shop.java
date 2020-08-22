@@ -9,7 +9,7 @@ import com.bubble.hearthstone.card.deck.Deck;
 import com.bubble.hearthstone.card.deck.DeckCliView;
 import com.bubble.hearthstone.card.registry.CardRecord;
 import com.bubble.hearthstone.card.registry.CardRegistry;
-import com.bubble.hearthstone.net.user.UserInventory;
+import com.bubble.hearthstone.net2.user.UserInventory;
 import com.bubble.hearthstone.util.resource.ResourceManager;
 
 public class Shop {
