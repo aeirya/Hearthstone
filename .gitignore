@@ -15,26 +15,6 @@ build
 bin
 .VSCodeCounter
 
-#INTELLIJ
-.idea
-
-
-#not permenantly:
-pipe.txt
-todo.md
-notes.txt
-test/
-
-#data
-data/config/game
-data/config/graphics
-data/settings
-data/assets
-data/logs
-data/save
-
-#my notes
-documents
-events.md
-mynotes.txt
-
+users
+scores
+.VSCodeCounter
