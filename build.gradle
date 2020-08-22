@@ -12,7 +12,12 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
+
+    id 'java-gradle-plugin'
 }
+
+targetCompatibility = 1.8
+sourceCompatibility = 1.8
 
 repositories {
     // Use jcenter for resolving dependencies.
@@ -26,9 +31,25 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    implementation group: 'org.hibernate', name: 'hibernate-c3p0', version: '5.4.20.Final', ext: 'pom'
+    implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.20.Final'
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
 }
 
 application {
     // Define the main class for the application.
-    mainClassName = 'app.App'
+    mainClassName = 'com.mytutorial.main.JpaExample'
+}
+
+void addGeneratedToSource(Project project) {
+    sourceSets {
+        java {
+            main {
+            output.resourcesDir = java.outputDir
+            }
+        }
+    }
 }
